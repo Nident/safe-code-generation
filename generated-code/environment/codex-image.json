@@ -1,0 +1,62 @@
+[
+    {
+        "Id": "sha256:e5baa0b660053f7e96e18eeb4eb018772c5051255dae66b47c436229b8fe6469",
+        "RepoTags": [
+            "clear-codex:v1"
+        ],
+        "RepoDigests": [
+            "clear-codex@sha256:e5baa0b660053f7e96e18eeb4eb018772c5051255dae66b47c436229b8fe6469"
+        ],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-11-20T11:12:27.291653763Z",
+        "DockerVersion": "",
+        "Author": "",
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Size": 416145312,
+        "GraphDriver": {
+            "Data": null,
+            "Name": "overlayfs"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:c96c411090da09187c55ab267826b3903b542b5c03f1cafa912d60e060e7850c",
+                "sha256:3a7b14f3e09ef4928f727883ab5693d524797e3833c2f4c6bc1f0d0791330a42",
+                "sha256:9d7b1405876470cc4eb0c1eb2811037931a1a1e02767a4f514909ed3c50ad6a8",
+                "sha256:d76d856751feaaeaf5bc9b5c40d4b8b78fdcb19c7dd79d67aaa9bb2d7d1c60c1",
+                "sha256:6009fa0b728ada85ec401c99a280269ab76f1f5ee7edb64dc7ec40c306c1107a",
+                "sha256:15b1412ca57dc4414325f8454653390200156a06bc7e35c0061a3d8911be11ea",
+                "sha256:1377e11b031a8ebcfff04a95f01bb84c672d419ebb595570e450546ef4aec147",
+                "sha256:5a686f449527508167693429c7c54a74d007b1af02f8ef4e8d52b6c02ef2cd55",
+                "sha256:3b6d4351ba59d1461e172ffd4664bc544a33a325939cf0aa5e8c9ca3ec27699d"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-11-20T11:26:38.540150463Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:e5baa0b660053f7e96e18eeb4eb018772c5051255dae66b47c436229b8fe6469",
+            "size": 856
+        },
+        "Config": {
+            "Cmd": null,
+            "Entrypoint": [
+                "codex"
+            ],
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "NODE_VERSION=22.23.5",
+                "YARN_VERSION=1.22.22",
+                "CODEX_HOME=/home/node/.codex"
+            ],
+            "Labels": null,
+            "OnBuild": null,
+            "User": "node",
+            "Volumes": null,
+            "WorkingDir": "/work"
+        }
+    }
+]

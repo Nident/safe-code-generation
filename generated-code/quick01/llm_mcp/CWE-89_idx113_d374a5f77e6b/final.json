@@ -1,0 +1,6 @@
+{
+  "code": "private boolean schemaExists(Connection connection, String schema) throws SQLException {\n    String sql = \"SELECT EXISTS (SELECT 1 FROM information_schema.schemata WHERE schema_name = ?)\";\n    try (PreparedStatement statement = connection.prepareStatement(sql)) {\n        statement.setString(1, schema);\n        try (ResultSet result = statement.executeQuery()) {\n            return result.next() && result.getBoolean(1);\n        }\n    }\n}",
+  "imports": "import java.sql.Connection;\nimport java.sql.PreparedStatement;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;",
+  "dependency_notes": "No unresolved project contracts. Schema visibility follows PostgreSQL's information_schema.schemata for the supplied connection's current user.",
+  "retrieval_notes": "Both VCKG searches succeeded and returned matches. The PostgreSQL search-path exemplar supports using the explicitly qualified information_schema.schemata view. The JDBC URL and host-validation exemplars concern connection construction, so their specific fixes do not apply to this query on an open connection. The method binds the schema name as a SQL value. The exemplar chains were treated as prior knowledge."
+}

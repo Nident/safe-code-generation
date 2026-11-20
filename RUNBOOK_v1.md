@@ -155,7 +155,7 @@ python3 scripts/run_generation.py --model "$MODEL" --reasoning-effort "$EFFORT" 
   --variant both --samples all --vckg-dir "$VCKG_DIR" --dry-run
 ```
 
-Dry-run не вызывает Docker, MCP или модель, не создаёт результатов и проверяет выбор заданий/хеши файлов. Он печатает 14 планов запуска. Можно выбрать `--samples task-04`, `--samples 152` или список `--samples 152,197,113`. Проверенные файлы промптов лежат в `prompts/v1/task-XX/task.md`, `llm.txt`, `llm_mcp.txt`; это обычные UTF-8 тексты, их можно прочитать заранее.
+Dry-run не вызывает Docker, MCP или модель, не создаёт результатов и проверяет выбор заданий/хеши файлов. Существующие папки не мешают dry-run: он отмечает их как output_exists=true. Настоящий запуск по-прежнему запрещает перезапись. Он печатает 14 планов запуска. Можно выбрать `--samples task-04`, `--samples 152` или список `--samples 152,197,113`. Проверенные файлы промптов лежат в `prompts/v1/task-XX/task.md`, `llm.txt`, `llm_mcp.txt`; это обычные UTF-8 тексты, их можно прочитать заранее.
 
 ## 6. Генерация на целевой машине
 
@@ -233,3 +233,62 @@ python3 scripts/validate_data.py
 `--replace` пересоздаёт только управляемые `generated-code/data` и `prompts/v1`; результаты генерации не затрагиваются. Перед заменой сохраните ручные изменения этих двух каталогов. Скрипт требует исходное распределение 127 записей: изменение источника завершится ошибкой вместо незаметного изменения эксперимента. Исходные поля сохранены под `source`, служебные — под `prepared`. Для index 175 исходный func_diff отсутствует: отдельный diff вычислен и помечен как derived, исходный JSON не дополнен.
 
 Офлайн-проверки этой поставки не подтверждают доступность модели, работу Docker на целевой машине, сетевое соединение с MCP или результат атаки. Проверяйте их по шагам 3–7. Генерация остаётся полностью на целевой машине.
+
+## Ошибка авторизации error sending request
+
+В первоначальном slim-образе отсутствовали системные TLS CA-сертификаты. Обновлённый Dockerfile устанавливает ca-certificates и создаёт CODEX_HOME. Пересоберите образ командой из шага 3 и повторите login --device-auth с прежним томом clear-codex-auth. Если ошибка остаётся, проверьте сеть Docker/VPN/proxy: error sending request само по себе не устанавливает причину. Не отключайте проверку TLS.
+
+## Если предыдущая попытка уже создала папку
+
+Проверьте run.json и stderr.log. Старый runner не передавал stdin в Docker (не хватало -i), поэтому мог завершиться с No prompt provided via stdin без обращения к модели. Исправленный runner передаёт stdin. Сохраните старые логи и используйте --run-id v1-retry01 для настоящего повторного запуска; dry-run теперь работает и с существующими папками. Пересборка Docker-образа для исправления runner не нужна.
+
+## Если MCP подключён, но вызовы требуют approval
+
+Ошибка `MCP tool call requires approval, but approval policy is never` означает: транспорт MCP работает, но политика CLI запрещает выполнить инструмент без подтверждения. Runner теперь задаёт allowlist ровно двух поисков и per-tool `approval_mode="approve"` для `vckg_search_root_causes` и `vckg_search_fix_intents`. Эти read-only инструменты разрешены задачей эксперимента. Остальные MCP-инструменты не включаются; общий sandbox не отключается. Настройки описаны в официальной документации: https://developers.openai.com/codex/mcp .
+
+Образ пересобирать не нужно: изменён host-side runner. Сохраните неудачный trial. Если baseline уже успешен, повторите только MCP-вариант в новой группе:
+
+```bash
+python3 scripts/run_generation.py --model "$MODEL" --reasoning-effort "$EFFORT" \
+  --variant llm_mcp --samples 152 --vckg-dir "$VCKG_DIR" --run-id v1-mcp-retry01
+```
+
+При сравнении явно укажите, что baseline взят из v1, а MCP — из v1-mcp-retry01; проверьте одинаковые model/effort/image/задание. Для полной пары в одном каталоге можно заново запустить --variant both с новым --run-id.
+
+## Быстрый расширенный прогон: по два исходных примера
+
+Подготовлен отдельный набор `generated-code/quick-data/tasks.json` и промпты `prompts/quick-v1`. Он не меняет исходные семь заданий v1 и существующие результаты.
+
+Распределение: по 2 для CWE-22/79/89/502/611/918 и 1 для CWE-94, всего **13 заданий / 26 генераций** при `--variant both`. Вторую подтверждённую CWE-94-задачу из этого источника выбрать нельзя: у оставшихся двух записей видимый diff не подтверждает code injection. Они сохранены в исходной выборке, но в быстрый набор не включены. Даже среди включённых генерационных заданий есть ограничения: index 237 требует восстановления URI-helper, а XSS grid-пример требует подтверждения реального rendering sink. Набор не считается 13 валидированными security-тестами.
+
+```bash
+# Только просмотр команд, без обращений к модели
+python3 scripts/run_generation.py \
+  --model "$MODEL" --reasoning-effort "$EFFORT" \
+  --variant both --samples all --task-manifest generated-code/quick-data/tasks.json \
+  --vckg-dir "$VCKG_DIR" --run-id quick01 --dry-run
+
+# Реальная генерация: 26 независимых запусков
+python3 scripts/run_generation.py \
+  --model "$MODEL" --reasoning-effort "$EFFORT" \
+  --variant both --samples all --task-manifest generated-code/quick-data/tasks.json \
+  --vckg-dir "$VCKG_DIR" --run-id quick01
+
+# Отчёт после завершения
+python3 scripts/report_generation.py --run-id quick01 \
+  --task-manifest generated-code/quick-data/tasks.json
+```
+
+Результаты будут в `generated-code/quick01/{llm,llm_mcp}/<sample_id>/`, отчёт — `generated-code/quick01/generation_report.csv`. Это smoke-прогон генерации; 26 запусков не гарантируют малого времени или малого расхода токенов.
+
+**Функциональные тесты и атаки автоматически не запускаются.** Ранее сообщения о пройденных offline-тестах относились к Python-скриптам подготовки/runner, а не к сгенерированному Java. `generation_recorded_unscored` означает сохранённую генерацию с валидным журналом инструментов. `generation_report.csv` явно отмечает functional/security как NOT_RUN.
+
+Для уже полученного одного примера v1:
+
+```bash
+python3 scripts/report_generation.py --run-id v1
+```
+
+В отчёте есть сравнение текста целевого метода с before/after (SequenceMatcher после удаления пробелов). До добавления report_generation.py автоматического сравнения кода не было. Значение 0..1 не является процентом безопасности, результатом запуска или семантической эквивалентностью; сравниваются только строки. Для оценки качества всё ещё нужны адаптеры и before/after-контроли из раздела 7.
+
+Воспроизвести быстрые промпты из сохранённых 127 записей: `python3 scripts/prepare_quick.py`. Для переноса через Git дополнительно добавьте `prompts/quick-v1` и `generated-code/quick-data`; скрипты входят в `scripts`. Существующие `generated-code/v1` и `quick01` — результаты, добавляйте их отдельно после просмотра логов.

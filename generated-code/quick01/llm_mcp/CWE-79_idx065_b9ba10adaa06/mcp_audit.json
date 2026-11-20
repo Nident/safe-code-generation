@@ -1,0 +1,79 @@
+{
+  "valid": true,
+  "completed_tools": [
+    "vckg_search_fix_intents",
+    "vckg_search_root_causes"
+  ],
+  "calls": [
+    {
+      "id": "item_1",
+      "type": "mcp_tool_call",
+      "server": "vckg",
+      "tool": "vckg_search_fix_intents",
+      "arguments": {
+        "analysis_id": "trial-f821e157533c898d7dcecafb",
+        "query": "Check grid column attachment before mutation, normalize null caption to empty text, and synchronize stored caption with the matching default header cell when present.",
+        "top_k": 3
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"schema_version\":\"vckg.retrieval.v1\",\"query\":{\"slot\":\"FI\",\"text\":\"Check grid column attachment before mutation, normalize null caption to empty text, and synchronize stored caption with the matching default header cell when present.\",\"top_k\":3,\"analysis_id\":\"trial-f821e157533c898d7dcecafb\"},\"matches\":[],\"retrieval_status\":\"no_relevant_match\",\"rejection_reason\":\"no distinct candidate met minimum_relevance_score=0.400\"}"
+          }
+        ],
+        "structured_content": {
+          "schema_version": "vckg.retrieval.v1",
+          "query": {
+            "slot": "FI",
+            "text": "Check grid column attachment before mutation, normalize null caption to empty text, and synchronize stored caption with the matching default header cell when present.",
+            "top_k": 3,
+            "analysis_id": "trial-f821e157533c898d7dcecafb"
+          },
+          "matches": [],
+          "retrieval_status": "no_relevant_match",
+          "rejection_reason": "no distinct candidate met minimum_relevance_score=0.400"
+        }
+      },
+      "error": null,
+      "status": "completed"
+    },
+    {
+      "id": "item_2",
+      "type": "mcp_tool_call",
+      "server": "vckg",
+      "tool": "vckg_search_root_causes",
+      "arguments": {
+        "analysis_id": "trial-f821e157533c898d7dcecafb",
+        "query": "Java grid column caption setter can mutate detached column state or dereference an absent default header row or matching cell when updating displayed text.",
+        "top_k": 3
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"schema_version\":\"vckg.retrieval.v1\",\"query\":{\"slot\":\"RC\",\"text\":\"Java grid column caption setter can mutate detached column state or dereference an absent default header row or matching cell when updating displayed text.\",\"top_k\":3,\"analysis_id\":\"trial-f821e157533c898d7dcecafb\"},\"matches\":[],\"retrieval_status\":\"no_relevant_match\",\"rejection_reason\":\"no distinct candidate met minimum_relevance_score=0.400\"}"
+          }
+        ],
+        "structured_content": {
+          "schema_version": "vckg.retrieval.v1",
+          "query": {
+            "slot": "RC",
+            "text": "Java grid column caption setter can mutate detached column state or dereference an absent default header row or matching cell when updating displayed text.",
+            "top_k": 3,
+            "analysis_id": "trial-f821e157533c898d7dcecafb"
+          },
+          "matches": [],
+          "retrieval_status": "no_relevant_match",
+          "rejection_reason": "no distinct candidate met minimum_relevance_score=0.400"
+        }
+      },
+      "error": null,
+      "status": "completed"
+    }
+  ],
+  "errors": [],
+  "unparseable_event_lines": [],
+  "unknown_or_missing_mcp_event_schema": false,
+  "no_relevant_match_count": 2
+}

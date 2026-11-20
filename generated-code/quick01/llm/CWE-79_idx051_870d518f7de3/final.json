@@ -1,0 +1,6 @@
+{
+  "code": "public static String sanitizeInput(String string) {\n    if (string == null) {\n        return null;\n    }\n\n    PolicyFactory policy = Sanitizers.FORMATTING\n            .and(Sanitizers.BLOCKS)\n            .and(Sanitizers.LINKS)\n            .and(Sanitizers.TABLES)\n            .and(Sanitizers.IMAGES);\n    return policy.sanitize(string);\n}",
+  "imports": "import org.owasp.html.PolicyFactory;\nimport org.owasp.html.Sanitizers;",
+  "dependency_notes": "Requires OWASP Java HTML Sanitizer (com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer). Its allowlist removes script elements and their contents, event-handler attributes, and URLs with executable schemes while preserving ordinary display text and supported markup. The sanitizer may normalize HTML or remove unsupported markup. Null is passed through because the specification leaves null handling unspecified.",
+  "retrieval_notes": "Used only the supplied specification."
+}

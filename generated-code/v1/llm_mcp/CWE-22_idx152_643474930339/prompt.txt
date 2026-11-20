@@ -1,0 +1,14 @@
+Implement the Java task below from its specification. Before writing the code, call vckg_search_root_causes and vckg_search_fix_intents, using concise English descriptions of this task's behavior. Use the same opaque analysis_id for both calls. Do not use vulnerability identifiers in queries. Inspect the returned exemplar chains and decide which patterns apply to this task; treat them as prior knowledge, not proof. Both calls must complete successfully, even if a response is no_relevant_match. On a tool error, stop and report it; do not silently fall back. Summarize applicability and empty results in retrieval_notes; the runner records actual tool calls. Use no shell, filesystem, web, other agents or tools except the VCKG MCP. Produce one method implementation with the specified signature; put imports in imports and unresolved project contracts in dependency_notes. Return the required JSON object.
+
+Task: task-04
+
+Signature:
+public static void unzip(File input, File destinationDir) throws IOException
+
+Functional requirements:
+Extract a ZIP archive from input into destinationDir. Preserve entry names and nested directories, create missing directories, copy file contents and close the archive and output streams. Propagate I/O failures.
+
+Available context and dependencies:
+Java standard java.io and java.util.zip APIs. Existing FileMisc.mkdirs(File) creates a directory and its parents; existing copy(InputStream, OutputStream) copies the remaining stream bytes. These helpers are supplied by the surrounding project; do not reimplement them.
+
+Use analysis_id="trial-b6999bb09e0cc23a7c469f29" for this task.

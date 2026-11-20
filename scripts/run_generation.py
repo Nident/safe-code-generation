@@ -58,6 +58,7 @@ def main():
  p.add_argument('--root',type=Path,default=Path(__file__).resolve().parents[1]);p.add_argument('--model',required=True)
  p.add_argument('--reasoning-effort',choices=['low','medium','high','xhigh'],default='medium')
  p.add_argument('--variant',choices=['llm','llm_mcp','both'],default='both')
+ p.add_argument('--task-manifest',type=Path,default=Path('generated-code/data/pilot_v1.json'),help='Task list path relative to project root or absolute')
  p.add_argument('--samples',default='all',help='Comma-separated task IDs, sample IDs or source indices; default all')
  p.add_argument('--image',default='clear-codex:v1');p.add_argument('--auth-volume',default='clear-codex-auth')
  p.add_argument('--mcp-url',default='http://host.docker.internal:4250/mcp')
@@ -67,7 +68,8 @@ def main():
  p.add_argument('--timeout',type=int,default=900);p.add_argument('--dry-run',action='store_true')
  a=p.parse_args();root=a.root.resolve()
  if not re.fullmatch(r'[\w.-]+',a.run_id) or a.run_id in ('.','..'):p.error('Invalid run-id')
- tasks=json.loads((root/'generated-code/data/pilot_v1.json').read_text())
+ task_manifest=root/a.task_manifest
+ tasks=json.loads(task_manifest.read_text())
  if a.samples!='all':
   requested=set(a.samples.split(','));selected=[]
   for t in tasks:
@@ -91,7 +93,7 @@ def main():
  for task in tasks:
   for variant in variants:
    dest=root/'generated-code'/a.run_id/variant/task['sample_id']
-   if dest.exists():p.error(f'Output exists: {dest}; use a new --run-id, never overwrite a trial')
+   if dest.exists() and not a.dry_run:p.error(f'Output exists: {dest}; use a new --run-id, never overwrite a trial')
  health=None
  version=None;image_id=None
  if not a.dry_run:
@@ -118,7 +120,7 @@ def main():
    with tempfile.TemporaryDirectory(prefix='clear-codex-') as tmp:
     work=Path(tmp);(work/'prompt.txt').write_text(prompt);shutil.copy2(schema,work/'output.schema.json')
     container_name='clear-trial-'+uuid.uuid4().hex[:12]
-    cmd=['docker','run','--name',container_name,'--rm','--init','--read-only','--cap-drop=ALL','--security-opt=no-new-privileges',
+    cmd=['docker','run','-i','--name',container_name,'--rm','--init','--read-only','--cap-drop=ALL','--security-opt=no-new-privileges',
       '--tmpfs','/tmp:rw,nosuid,nodev,size=128m','--add-host','host.docker.internal:host-gateway',
       '--mount',f'type=volume,src={a.auth_volume},dst=/home/node/.codex',
       '--mount',f'type=bind,src={work},dst=/work',a.image,
@@ -127,11 +129,14 @@ def main():
       '--json','--output-schema','/work/output.schema.json','-o','/work/final.json']
     if variant=='llm_mcp':
      cmd+=['-c','mcp_servers.vckg.url='+json.dumps(a.mcp_url),'-c','mcp_servers.vckg.required=true',
+           '-c','mcp_servers.vckg.enabled_tools=["vckg_search_root_causes","vckg_search_fix_intents"]',
+           '-c','mcp_servers.vckg.tools.vckg_search_root_causes.approval_mode="approve"',
+           '-c','mcp_servers.vckg.tools.vckg_search_fix_intents.approval_mode="approve"',
            '-c','mcp_servers.vckg.startup_timeout_sec=120','-c','mcp_servers.vckg.tool_timeout_sec=180']
     cmd+=['-']
     if a.dry_run:
      # Replace ephemeral host path with a stable placeholder in the plan.
-     print(json.dumps({'task':task['task_id'],'sample_id':task['sample_id'],'variant':variant,'destination':str(dest),
+     print(json.dumps({'task':task['task_id'],'sample_id':task['sample_id'],'variant':variant,'destination':str(dest),'output_exists':dest.exists(),
        'command':[x.replace(str(work),'<isolated-task-dir>').replace(container_name,'<trial-container>') for x in cmd],
        'visible_files':['prompt.txt','output.schema.json'],'prompt_sha256':hashlib.sha256(prompt.encode()).hexdigest(),
        'vckg_provenance':provenance if variant=='llm_mcp' else {}},ensure_ascii=False))
@@ -144,7 +149,7 @@ def main():
       'started_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
       'prompt_sha256':sha(dest/'prompt.txt'),'schema_sha256':sha(schema),
       'data_manifest_sha256':sha(root/'generated-code/data/manifest.json'),
-      'runner_sha256':sha(Path(__file__)),
+      'runner_sha256':sha(Path(__file__)),'task_manifest_sha256':sha(task_manifest),
       'vckg_provenance':provenance if variant=='llm_mcp' else {},'health_snapshot':health if variant=='llm_mcp' else None}
     meta['codex_version']=version;meta['image_id']=image_id
     with (dest/'events.jsonl').open('w') as stdout,(dest/'stderr.log').open('w') as stderr:

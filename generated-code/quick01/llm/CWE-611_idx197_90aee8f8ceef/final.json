@@ -1,0 +1,6 @@
+{
+  "code": "private Document loadXmlFrom(InputStream is) throws SAXException, IOException {\n    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();\n    factory.setNamespaceAware(true);\n\n    try {\n        return factory.newDocumentBuilder().parse(new FilterInputStream(is) {\n            @Override\n            public void close() {\n                // The caller owns the underlying stream.\n            }\n        });\n    } catch (ParserConfigurationException e) {\n        throw new SAXException(\"Could not configure a namespace-aware XML parser\", e);\n    }\n}",
+  "imports": "import java.io.FilterInputStream;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport javax.xml.parsers.DocumentBuilderFactory;\nimport javax.xml.parsers.ParserConfigurationException;\nimport org.w3c.dom.Document;\nimport org.xml.sax.SAXException;",
+  "dependency_notes": "No missing contracts or project-specific helpers.",
+  "retrieval_notes": "Used only the supplied specification."
+}

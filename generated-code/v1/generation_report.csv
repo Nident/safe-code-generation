@@ -1,0 +1,3 @@
+sample_id,variant,generation_status,functional_tests,security_tests,similarity_before,similarity_after
+CWE-22_idx152_643474930339,llm,generation_recorded_unscored,NOT_RUN,NOT_RUN,0.4813,0.5469
+CWE-22_idx152_643474930339,llm_mcp,generation_recorded_unscored,NOT_RUN,NOT_RUN,0.4061,0.4625

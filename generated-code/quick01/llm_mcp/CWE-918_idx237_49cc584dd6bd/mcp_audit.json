@@ -1,0 +1,563 @@
+{
+  "valid": true,
+  "completed_tools": [
+    "vckg_search_fix_intents",
+    "vckg_search_root_causes"
+  ],
+  "calls": [
+    {
+      "id": "item_1",
+      "type": "mcp_tool_call",
+      "server": "vckg",
+      "tool": "vckg_search_root_causes",
+      "arguments": {
+        "analysis_id": "trial-022ba98a8ceeccd6c9000fe7",
+        "query": "Java Apache HttpClient executes outbound webhook requests using message-supplied URL or custom scheme, host, port, path, query, HTTP method, and headers."
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"schema_version\":\"vckg.retrieval.v1\",\"query\":{\"slot\":\"RC\",\"text\":\"Java Apache HttpClient executes outbound webhook requests using message-supplied URL or custom scheme, host, port, path, query, HTTP method, and headers.\",\"top_k\":3,\"analysis_id\":\"trial-022ba98a8ceeccd6c9000fe7\"},\"matches\":[{\"node_id\":\"L:RC:650:1\",\"exemplar_id\":\"650\",\"slot\":\"RC\",\"summary\":\"plain string endpoint field\",\"score\":0.522319,\"pattern\":{\"claim\":\"The endpoint configuration field was implemented as a standard String type, causing sensitive webhook URLs to be saved without encryption.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch changes the endpoint field type from String to Secret, ensuring credentials are encrypted upon storage and securely decrypted during retrieval.\",\"applies_when\":[\"Webhook URLs and secret tokens are persisted in plaintext within configuration files accessible to users with extended read permissions.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch changes the endpoint field type from String to Secret, ensuring credentials are encrypted upon storage and securely decrypted during retrieval.\"],\"required_target_checks\":[\"Inspect the candidate path for the exemplar root-cause behavior.\",\"Verify guard presence and coverage on every relevant target path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"650\",\"matched_node_id\":\"L:RC:650:1\",\"entrypoint\":{\"node_id\":\"L:EP:650:1\",\"slot\":\"EP\",\"summary\":\"Configuration Storage\",\"details\":\"The plugin stores webhook URLs containing secret tokens in global and job configuration files on the Jenkins master.\"},\"precondition\":{\"node_id\":\"L:PRE:650:1\",\"slot\":\"PC\",\"summary\":\"unencrypted credential storage\",\"details\":\"Webhook URLs and secret tokens are persisted in plaintext within configuration files accessible to users with extended read permissions.\"},\"root_cause\":{\"node_id\":\"L:RC:650:1\",\"slot\":\"RC\",\"summary\":\"plain string endpoint field\",\"details\":\"The endpoint configuration field was implemented as a standard String type, causing sensitive webhook URLs to be saved without encryption.\"},\"fix_intent\":{\"node_id\":\"L:FIX:650:1\",\"slot\":\"FI\",\"summary\":\"encrypted secret type migration\",\"details\":\"The patch changes the endpoint field type from String to Secret, ensuring credentials are encrypted upon storage and securely decrypted during retrieval.\"},\"cwe\":{\"node_id\":\"CWE:CWE-522\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Insufficiently Protected Credentials\"},\"edges\":[{\"source_id\":\"L:EP:650:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:650:1\"},{\"source_id\":\"L:PRE:650:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:650:1\"},{\"source_id\":\"L:RC:650:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:650:1\"},{\"source_id\":\"L:RC:650:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-522\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"650\",\"node_id\":\"L:RC:650:1\",\"slot\":\"RC\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:650:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:650:1\"},{\"source_id\":\"L:PRE:650:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:650:1\"},{\"source_id\":\"L:RC:650:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:650:1\"},{\"source_id\":\"L:RC:650:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-522\"}]}},{\"node_id\":\"L:RC:314:1\",\"exemplar_id\":\"314\",\"slot\":\"RC\",\"summary\":\"unrestricted outbound request\",\"score\":0.472499,\"pattern\":{\"claim\":\"The endpoint directly executes outbound HTTP requests to user-supplied addresses without validating caller permissions or restricting request methods.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The update enforces POST request requirements and mandates administrative privileges before executing the validation logic.\",\"applies_when\":[\"Attackers possessing only read-level access can trigger the validation logic without requiring administrative privileges.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The update enforces POST request requirements and mandates administrative privileges before executing the validation logic.\"],\"required_target_checks\":[\"Inspect the candidate path for the exemplar root-cause behavior.\",\"Verify guard presence and coverage on every relevant target path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"314\",\"matched_node_id\":\"L:RC:314:1\",\"entrypoint\":{\"node_id\":\"L:EP:314:1\",\"slot\":\"EP\",\"summary\":\"Form validation endpoint\",\"details\":\"The method acts as a form validation endpoint that processes user input and initiates network connections.\"},\"precondition\":{\"node_id\":\"L:PRE:314:1\",\"slot\":\"PC\",\"summary\":\"insufficient access control\",\"details\":\"Attackers possessing only read-level access can trigger the validation logic without requiring administrative privileges.\"},\"root_cause\":{\"node_id\":\"L:RC:314:1\",\"slot\":\"RC\",\"summary\":\"unrestricted outbound request\",\"details\":\"The endpoint directly executes outbound HTTP requests to user-supplied addresses without validating caller permissions or restricting request methods.\"},\"fix_intent\":{\"node_id\":\"L:FIX:314:1\",\"slot\":\"FI\",\"summary\":\"enforce post and admin permission\",\"details\":\"The update enforces POST request requirements and mandates administrative privileges before executing the validation logic.\"},\"cwe\":{\"node_id\":\"CWE:CWE-918\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Server-Side Request Forgery\"},\"edges\":[{\"source_id\":\"L:EP:314:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:314:1\"},{\"source_id\":\"L:PRE:314:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:314:1\"},{\"source_id\":\"L:RC:314:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:314:1\"},{\"source_id\":\"L:RC:314:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-918\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"314\",\"node_id\":\"L:RC:314:1\",\"slot\":\"RC\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:314:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:314:1\"},{\"source_id\":\"L:PRE:314:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:314:1\"},{\"source_id\":\"L:RC:314:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:314:1\"},{\"source_id\":\"L:RC:314:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-918\"}]}},{\"node_id\":\"L:RC:575:1\",\"exemplar_id\":\"575\",\"slot\":\"RC\",\"summary\":\"missing authorization check\",\"score\":0.438284,\"pattern\":{\"claim\":\"The core webhook processing method lacked a validation step to verify the presence and correctness of an API token before executing build triggers.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The update introduces a conditional validation routine that verifies an API token from the incoming request, requiring it to be included in the webhook URL path before processing payloads.\",\"applies_when\":[\"The webhook endpoint previously accepted and processed incoming HTTP requests without requiring any form of authentication or token validation.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The update introduces a conditional validation routine that verifies an API token from the incoming request, requiring it to be included in the webhook URL path before processing payloads.\"],\"required_target_checks\":[\"Inspect the candidate path for the exemplar root-cause behavior.\",\"Verify guard presence and coverage on every relevant target path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"575\",\"matched_node_id\":\"L:RC:575:1\",\"entrypoint\":{\"node_id\":\"L:EP:575:1\",\"slot\":\"EP\",\"summary\":\"Webhook Notification Handler\",\"details\":\"Handles incoming Docker registry push notifications to automatically trigger corresponding Jenkins job builds.\"},\"precondition\":{\"node_id\":\"L:PRE:575:1\",\"slot\":\"PC\",\"summary\":\"unauthenticated endpoint access\",\"details\":\"The webhook endpoint previously accepted and processed incoming HTTP requests without requiring any form of authentication or token validation.\"},\"root_cause\":{\"node_id\":\"L:RC:575:1\",\"slot\":\"RC\",\"summary\":\"missing authorization check\",\"details\":\"The core webhook processing method lacked a validation step to verify the presence and correctness of an API token before executing build triggers.\"},\"fix_intent\":{\"node_id\":\"L:FIX:575:1\",\"slot\":\"FI\",\"summary\":\"enforce token authentication\",\"details\":\"The update introduces a conditional validation routine that verifies an API token from the incoming request, requiring it to be included in the webhook URL path before processing payloads.\"},\"cwe\":{\"node_id\":\"CWE:CWE-862\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Missing Authorization\"},\"edges\":[{\"source_id\":\"L:EP:575:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:575:1\"},{\"source_id\":\"L:PRE:575:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:575:1\"},{\"source_id\":\"L:RC:575:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:575:1\"},{\"source_id\":\"L:RC:575:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-862\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"575\",\"node_id\":\"L:RC:575:1\",\"slot\":\"RC\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:575:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:575:1\"},{\"source_id\":\"L:PRE:575:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:575:1\"},{\"source_id\":\"L:RC:575:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:575:1\"},{\"source_id\":\"L:RC:575:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-862\"}]}}],\"retrieval_status\":\"matched\",\"rejection_reason\":null}"
+          }
+        ],
+        "structured_content": {
+          "schema_version": "vckg.retrieval.v1",
+          "query": {
+            "slot": "RC",
+            "text": "Java Apache HttpClient executes outbound webhook requests using message-supplied URL or custom scheme, host, port, path, query, HTTP method, and headers.",
+            "top_k": 3,
+            "analysis_id": "trial-022ba98a8ceeccd6c9000fe7"
+          },
+          "matches": [
+            {
+              "node_id": "L:RC:650:1",
+              "exemplar_id": "650",
+              "slot": "RC",
+              "summary": "plain string endpoint field",
+              "score": 0.522319,
+              "pattern": {
+                "claim": "The endpoint configuration field was implemented as a standard String type, causing sensitive webhook URLs to be saved without encryption.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch changes the endpoint field type from String to Secret, ensuring credentials are encrypted upon storage and securely decrypted during retrieval.",
+                "applies_when": [
+                  "Webhook URLs and secret tokens are persisted in plaintext within configuration files accessible to users with extended read permissions."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch changes the endpoint field type from String to Secret, ensuring credentials are encrypted upon storage and securely decrypted during retrieval."
+                ],
+                "required_target_checks": [
+                  "Inspect the candidate path for the exemplar root-cause behavior.",
+                  "Verify guard presence and coverage on every relevant target path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "650",
+                "matched_node_id": "L:RC:650:1",
+                "entrypoint": {
+                  "node_id": "L:EP:650:1",
+                  "slot": "EP",
+                  "summary": "Configuration Storage",
+                  "details": "The plugin stores webhook URLs containing secret tokens in global and job configuration files on the Jenkins master."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:650:1",
+                  "slot": "PC",
+                  "summary": "unencrypted credential storage",
+                  "details": "Webhook URLs and secret tokens are persisted in plaintext within configuration files accessible to users with extended read permissions."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:650:1",
+                  "slot": "RC",
+                  "summary": "plain string endpoint field",
+                  "details": "The endpoint configuration field was implemented as a standard String type, causing sensitive webhook URLs to be saved without encryption."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:650:1",
+                  "slot": "FI",
+                  "summary": "encrypted secret type migration",
+                  "details": "The patch changes the endpoint field type from String to Secret, ensuring credentials are encrypted upon storage and securely decrypted during retrieval."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-522",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Insufficiently Protected Credentials"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:650:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:650:1"
+                  },
+                  {
+                    "source_id": "L:PRE:650:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:650:1"
+                  },
+                  {
+                    "source_id": "L:RC:650:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:650:1"
+                  },
+                  {
+                    "source_id": "L:RC:650:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-522"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "650",
+                "node_id": "L:RC:650:1",
+                "slot": "RC",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:650:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:650:1"
+                  },
+                  {
+                    "source_id": "L:PRE:650:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:650:1"
+                  },
+                  {
+                    "source_id": "L:RC:650:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:650:1"
+                  },
+                  {
+                    "source_id": "L:RC:650:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-522"
+                  }
+                ]
+              }
+            },
+            {
+              "node_id": "L:RC:314:1",
+              "exemplar_id": "314",
+              "slot": "RC",
+              "summary": "unrestricted outbound request",
+              "score": 0.472499,
+              "pattern": {
+                "claim": "The endpoint directly executes outbound HTTP requests to user-supplied addresses without validating caller permissions or restricting request methods.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The update enforces POST request requirements and mandates administrative privileges before executing the validation logic.",
+                "applies_when": [
+                  "Attackers possessing only read-level access can trigger the validation logic without requiring administrative privileges."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The update enforces POST request requirements and mandates administrative privileges before executing the validation logic."
+                ],
+                "required_target_checks": [
+                  "Inspect the candidate path for the exemplar root-cause behavior.",
+                  "Verify guard presence and coverage on every relevant target path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "314",
+                "matched_node_id": "L:RC:314:1",
+                "entrypoint": {
+                  "node_id": "L:EP:314:1",
+                  "slot": "EP",
+                  "summary": "Form validation endpoint",
+                  "details": "The method acts as a form validation endpoint that processes user input and initiates network connections."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:314:1",
+                  "slot": "PC",
+                  "summary": "insufficient access control",
+                  "details": "Attackers possessing only read-level access can trigger the validation logic without requiring administrative privileges."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:314:1",
+                  "slot": "RC",
+                  "summary": "unrestricted outbound request",
+                  "details": "The endpoint directly executes outbound HTTP requests to user-supplied addresses without validating caller permissions or restricting request methods."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:314:1",
+                  "slot": "FI",
+                  "summary": "enforce post and admin permission",
+                  "details": "The update enforces POST request requirements and mandates administrative privileges before executing the validation logic."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-918",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Server-Side Request Forgery"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:314:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:314:1"
+                  },
+                  {
+                    "source_id": "L:PRE:314:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:314:1"
+                  },
+                  {
+                    "source_id": "L:RC:314:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:314:1"
+                  },
+                  {
+                    "source_id": "L:RC:314:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-918"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "314",
+                "node_id": "L:RC:314:1",
+                "slot": "RC",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:314:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:314:1"
+                  },
+                  {
+                    "source_id": "L:PRE:314:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:314:1"
+                  },
+                  {
+                    "source_id": "L:RC:314:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:314:1"
+                  },
+                  {
+                    "source_id": "L:RC:314:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-918"
+                  }
+                ]
+              }
+            },
+            {
+              "node_id": "L:RC:575:1",
+              "exemplar_id": "575",
+              "slot": "RC",
+              "summary": "missing authorization check",
+              "score": 0.438284,
+              "pattern": {
+                "claim": "The core webhook processing method lacked a validation step to verify the presence and correctness of an API token before executing build triggers.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The update introduces a conditional validation routine that verifies an API token from the incoming request, requiring it to be included in the webhook URL path before processing payloads.",
+                "applies_when": [
+                  "The webhook endpoint previously accepted and processed incoming HTTP requests without requiring any form of authentication or token validation."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The update introduces a conditional validation routine that verifies an API token from the incoming request, requiring it to be included in the webhook URL path before processing payloads."
+                ],
+                "required_target_checks": [
+                  "Inspect the candidate path for the exemplar root-cause behavior.",
+                  "Verify guard presence and coverage on every relevant target path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "575",
+                "matched_node_id": "L:RC:575:1",
+                "entrypoint": {
+                  "node_id": "L:EP:575:1",
+                  "slot": "EP",
+                  "summary": "Webhook Notification Handler",
+                  "details": "Handles incoming Docker registry push notifications to automatically trigger corresponding Jenkins job builds."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:575:1",
+                  "slot": "PC",
+                  "summary": "unauthenticated endpoint access",
+                  "details": "The webhook endpoint previously accepted and processed incoming HTTP requests without requiring any form of authentication or token validation."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:575:1",
+                  "slot": "RC",
+                  "summary": "missing authorization check",
+                  "details": "The core webhook processing method lacked a validation step to verify the presence and correctness of an API token before executing build triggers."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:575:1",
+                  "slot": "FI",
+                  "summary": "enforce token authentication",
+                  "details": "The update introduces a conditional validation routine that verifies an API token from the incoming request, requiring it to be included in the webhook URL path before processing payloads."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-862",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Missing Authorization"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:575:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:575:1"
+                  },
+                  {
+                    "source_id": "L:PRE:575:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:575:1"
+                  },
+                  {
+                    "source_id": "L:RC:575:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:575:1"
+                  },
+                  {
+                    "source_id": "L:RC:575:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-862"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "575",
+                "node_id": "L:RC:575:1",
+                "slot": "RC",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:575:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:575:1"
+                  },
+                  {
+                    "source_id": "L:PRE:575:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:575:1"
+                  },
+                  {
+                    "source_id": "L:RC:575:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:575:1"
+                  },
+                  {
+                    "source_id": "L:RC:575:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-862"
+                  }
+                ]
+              }
+            }
+          ],
+          "retrieval_status": "matched",
+          "rejection_reason": null
+        }
+      },
+      "error": null,
+      "status": "completed"
+    },
+    {
+      "id": "item_2",
+      "type": "mcp_tool_call",
+      "server": "vckg",
+      "tool": "vckg_search_fix_intents",
+      "arguments": {
+        "analysis_id": "trial-022ba98a8ceeccd6c9000fe7",
+        "query": "Build and execute an outbound webhook request from message URL components, preserve custom HTTP method and headers, and attach a UTF-8 body only to entity-capable requests."
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"schema_version\":\"vckg.retrieval.v1\",\"query\":{\"slot\":\"FI\",\"text\":\"Build and execute an outbound webhook request from message URL components, preserve custom HTTP method and headers, and attach a UTF-8 body only to entity-capable requests.\",\"top_k\":3,\"analysis_id\":\"trial-022ba98a8ceeccd6c9000fe7\"},\"matches\":[{\"node_id\":\"L:FIX:575:1\",\"exemplar_id\":\"575\",\"slot\":\"FI\",\"summary\":\"enforce token authentication\",\"score\":0.566,\"pattern\":{\"claim\":\"The update introduces a conditional validation routine that verifies an API token from the incoming request, requiring it to be included in the webhook URL path before processing payloads.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The update introduces a conditional validation routine that verifies an API token from the incoming request, requiring it to be included in the webhook URL path before processing payloads.\",\"applies_when\":[\"The webhook endpoint previously accepted and processed incoming HTTP requests without requiring any form of authentication or token validation.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The update introduces a conditional validation routine that verifies an API token from the incoming request, requiring it to be included in the webhook URL path before processing payloads.\"],\"required_target_checks\":[\"Locate the target implementation of the required security property.\",\"Verify that the implementation covers every relevant sink and path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"575\",\"matched_node_id\":\"L:FIX:575:1\",\"entrypoint\":{\"node_id\":\"L:EP:575:1\",\"slot\":\"EP\",\"summary\":\"Webhook Notification Handler\",\"details\":\"Handles incoming Docker registry push notifications to automatically trigger corresponding Jenkins job builds.\"},\"precondition\":{\"node_id\":\"L:PRE:575:1\",\"slot\":\"PC\",\"summary\":\"unauthenticated endpoint access\",\"details\":\"The webhook endpoint previously accepted and processed incoming HTTP requests without requiring any form of authentication or token validation.\"},\"root_cause\":{\"node_id\":\"L:RC:575:1\",\"slot\":\"RC\",\"summary\":\"missing authorization check\",\"details\":\"The core webhook processing method lacked a validation step to verify the presence and correctness of an API token before executing build triggers.\"},\"fix_intent\":{\"node_id\":\"L:FIX:575:1\",\"slot\":\"FI\",\"summary\":\"enforce token authentication\",\"details\":\"The update introduces a conditional validation routine that verifies an API token from the incoming request, requiring it to be included in the webhook URL path before processing payloads.\"},\"cwe\":{\"node_id\":\"CWE:CWE-862\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Missing Authorization\"},\"edges\":[{\"source_id\":\"L:EP:575:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:575:1\"},{\"source_id\":\"L:PRE:575:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:575:1\"},{\"source_id\":\"L:RC:575:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:575:1\"},{\"source_id\":\"L:RC:575:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-862\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"575\",\"node_id\":\"L:FIX:575:1\",\"slot\":\"FI\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:575:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:575:1\"},{\"source_id\":\"L:PRE:575:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:575:1\"},{\"source_id\":\"L:RC:575:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:575:1\"},{\"source_id\":\"L:RC:575:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-862\"}]}}],\"retrieval_status\":\"matched\",\"rejection_reason\":null}"
+          }
+        ],
+        "structured_content": {
+          "schema_version": "vckg.retrieval.v1",
+          "query": {
+            "slot": "FI",
+            "text": "Build and execute an outbound webhook request from message URL components, preserve custom HTTP method and headers, and attach a UTF-8 body only to entity-capable requests.",
+            "top_k": 3,
+            "analysis_id": "trial-022ba98a8ceeccd6c9000fe7"
+          },
+          "matches": [
+            {
+              "node_id": "L:FIX:575:1",
+              "exemplar_id": "575",
+              "slot": "FI",
+              "summary": "enforce token authentication",
+              "score": 0.566,
+              "pattern": {
+                "claim": "The update introduces a conditional validation routine that verifies an API token from the incoming request, requiring it to be included in the webhook URL path before processing payloads.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The update introduces a conditional validation routine that verifies an API token from the incoming request, requiring it to be included in the webhook URL path before processing payloads.",
+                "applies_when": [
+                  "The webhook endpoint previously accepted and processed incoming HTTP requests without requiring any form of authentication or token validation."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The update introduces a conditional validation routine that verifies an API token from the incoming request, requiring it to be included in the webhook URL path before processing payloads."
+                ],
+                "required_target_checks": [
+                  "Locate the target implementation of the required security property.",
+                  "Verify that the implementation covers every relevant sink and path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "575",
+                "matched_node_id": "L:FIX:575:1",
+                "entrypoint": {
+                  "node_id": "L:EP:575:1",
+                  "slot": "EP",
+                  "summary": "Webhook Notification Handler",
+                  "details": "Handles incoming Docker registry push notifications to automatically trigger corresponding Jenkins job builds."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:575:1",
+                  "slot": "PC",
+                  "summary": "unauthenticated endpoint access",
+                  "details": "The webhook endpoint previously accepted and processed incoming HTTP requests without requiring any form of authentication or token validation."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:575:1",
+                  "slot": "RC",
+                  "summary": "missing authorization check",
+                  "details": "The core webhook processing method lacked a validation step to verify the presence and correctness of an API token before executing build triggers."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:575:1",
+                  "slot": "FI",
+                  "summary": "enforce token authentication",
+                  "details": "The update introduces a conditional validation routine that verifies an API token from the incoming request, requiring it to be included in the webhook URL path before processing payloads."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-862",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Missing Authorization"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:575:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:575:1"
+                  },
+                  {
+                    "source_id": "L:PRE:575:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:575:1"
+                  },
+                  {
+                    "source_id": "L:RC:575:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:575:1"
+                  },
+                  {
+                    "source_id": "L:RC:575:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-862"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "575",
+                "node_id": "L:FIX:575:1",
+                "slot": "FI",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:575:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:575:1"
+                  },
+                  {
+                    "source_id": "L:PRE:575:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:575:1"
+                  },
+                  {
+                    "source_id": "L:RC:575:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:575:1"
+                  },
+                  {
+                    "source_id": "L:RC:575:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-862"
+                  }
+                ]
+              }
+            }
+          ],
+          "retrieval_status": "matched",
+          "rejection_reason": null
+        }
+      },
+      "error": null,
+      "status": "completed"
+    }
+  ],
+  "errors": [],
+  "unparseable_event_lines": [],
+  "unknown_or_missing_mcp_event_schema": false,
+  "no_relevant_match_count": 0
+}

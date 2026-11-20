@@ -1,0 +1,10 @@
+Task: quick-06
+
+Signature:
+private List<OraclePackage> getAllRealOraclePackage(OBridgeConfiguration c)
+
+Functional requirements:
+Query Oracle user_objects for objects of type PACKAGE whose object_name matches the pattern from c.getPackagesLike(). For each row create an OraclePackage, set its name from object_name and populate its procedure list through getAllProcedure(name, ""). Return the mapped list.
+
+Available context and dependencies:
+Existing Spring JdbcTemplate field jdbcTemplate and getAllProcedure(String, String) helper are available. OraclePackage supplies setName(String) and setProcedureList(...); OBridgeConfiguration supplies getPackagesLike(). Implement only this method, not the enclosing DAO.

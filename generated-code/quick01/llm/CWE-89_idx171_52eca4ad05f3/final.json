@@ -1,0 +1,6 @@
+{
+  "code": "private List<OraclePackage> getAllRealOraclePackage(OBridgeConfiguration c) {\n    String sql = \"SELECT object_name FROM user_objects \"\n        + \"WHERE object_type = 'PACKAGE' AND object_name LIKE ?\";\n\n    return jdbcTemplate.query(sql, (resultSet, rowNum) -> {\n        String name = resultSet.getString(\"object_name\");\n        OraclePackage oraclePackage = new OraclePackage();\n        oraclePackage.setName(name);\n        oraclePackage.setProcedureList(getAllProcedure(name, \"\"));\n        return oraclePackage;\n    }, c.getPackagesLike());\n}",
+  "imports": "import java.util.List;",
+  "dependency_notes": "OraclePackage must have an accessible no-argument constructor. The return type of getAllProcedure(String, String) must be accepted by OraclePackage.setProcedureList. The package names of the project types were not supplied.",
+  "retrieval_notes": "Implemented using only the supplied specification."
+}

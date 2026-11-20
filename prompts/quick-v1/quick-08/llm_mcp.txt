@@ -1,0 +1,12 @@
+Implement the Java task below from its specification. Before writing the code, call vckg_search_root_causes and vckg_search_fix_intents, using concise English descriptions of this task's behavior. Use the same opaque analysis_id for both calls. Do not use vulnerability identifiers in queries. Inspect the returned exemplar chains and decide which patterns apply to this task; treat them as prior knowledge, not proof. Both calls must complete successfully, even if a response is no_relevant_match. On a tool error, stop and report it; do not silently fall back. Summarize applicability and empty results in retrieval_notes; the runner records actual tool calls. Use no shell, filesystem, web, other agents or tools except the VCKG MCP. Produce one method implementation with the specified signature; put imports in imports and unresolved project contracts in dependency_notes. Return the required JSON object.
+
+Task: quick-08
+
+Signature:
+public static void listen(final Consumer<String[]> consumer) throws Exception
+
+Functional requirements:
+Start a background TCP listener on the existing PORT constant. Accept connections repeatedly, receive a Java-serialized String[] from each connection and deliver it to consumer. Close each accepted socket and its input stream. Handle per-connection I/O and class-loading failures through the existing diagnostic helper so the listener can continue.
+
+Available context and dependencies:
+Java ServerSocket, Socket, object serialization, Consumer<String[]> and Thread APIs are available. PORT and ExceptionUtil.printStackTrace(Exception) are supplied by the surrounding project. The excerpt does not provide a shutdown API; do not invent its project contract.

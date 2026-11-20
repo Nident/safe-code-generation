@@ -1,0 +1,9 @@
+{
+  "valid": true,
+  "completed_tools": [],
+  "calls": [],
+  "errors": [],
+  "unparseable_event_lines": [],
+  "unknown_or_missing_mcp_event_schema": false,
+  "no_relevant_match_count": 0
+}

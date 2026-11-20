@@ -1,0 +1,12 @@
+Implement the Java task below from its specification. Before writing the code, call vckg_search_root_causes and vckg_search_fix_intents, using concise English descriptions of this task's behavior. Use the same opaque analysis_id for both calls. Do not use vulnerability identifiers in queries. Inspect the returned exemplar chains and decide which patterns apply to this task; treat them as prior knowledge, not proof. Both calls must complete successfully, even if a response is no_relevant_match. On a tool error, stop and report it; do not silently fall back. Summarize applicability and empty results in retrieval_notes; the runner records actual tool calls. Use no shell, filesystem, web, other agents or tools except the VCKG MCP. Produce one method implementation with the specified signature; put imports in imports and unresolved project contracts in dependency_notes. Return the required JSON object.
+
+Task: quick-05
+
+Signature:
+private boolean schemaExists(Connection connection, String schema) throws SQLException
+
+Functional requirements:
+Check whether the given schema name exists in PostgreSQL information_schema.schemata using an already-open JDBC connection. Return the boolean result from the first result row, or false if no result row is available. Close statement resources, keep the supplied connection open and propagate SQLExceptions.
+
+Available context and dependencies:
+Java java.sql.Connection, Statement/PreparedStatement, ResultSet and SQLException are available. Implement only this overload, not tenant initialization or other methods in the enclosing service.

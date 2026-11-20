@@ -1,0 +1,6 @@
+{
+  "code": "public Column setHeaderCaption(String caption) throws IllegalStateException {\n    checkColumnIsAttached();\n\n    String headerCaption = caption == null ? \"\" : caption;\n    state.headerCaption = headerCaption;\n\n    HeaderRow defaultRow = grid.getHeader().getDefaultRow();\n    if (defaultRow != null) {\n        HeaderCell cell = defaultRow.getCell(grid.getPropertyIdByColumnId(state.id));\n        if (cell != null) {\n            cell.setText(headerCaption);\n        }\n    }\n    return this;\n}",
+  "imports": "",
+  "dependency_notes": "Requires the supplied Column and grid APIs. Assumes HeaderRow and HeaderCell are visible in the enclosing Grid context and HeaderCell is the return type of HeaderRow.getCell(...). The exact framework version, getCell behavior for an unknown property ID, and rendering path were not supplied.",
+  "retrieval_notes": "Used only the supplied specification."
+}

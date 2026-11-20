@@ -1,0 +1,6 @@
+{
+  "code": "private boolean schemaExists(Connection connection, String schema) throws SQLException {\n    String sql = \"SELECT EXISTS (SELECT 1 FROM information_schema.schemata WHERE schema_name = ?)\";\n    try (PreparedStatement statement = connection.prepareStatement(sql)) {\n        statement.setString(1, schema);\n        try (ResultSet result = statement.executeQuery()) {\n            return result.next() && result.getBoolean(1);\n        }\n    }\n}",
+  "imports": "import java.sql.Connection;\nimport java.sql.PreparedStatement;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;",
+  "dependency_notes": "No missing contracts.",
+  "retrieval_notes": "Used only the supplied specification."
+}

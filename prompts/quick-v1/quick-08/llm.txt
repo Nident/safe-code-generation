@@ -1,0 +1,12 @@
+Implement the Java task below from its specification. Produce one method implementation with the specified signature. Include required imports in imports, not in the method body. Do not create a replacement application or implement missing project helpers. List missing contracts in dependency_notes. Do not use shell, filesystem, web, other agents or external tools; use only the supplied specification. Return the required JSON object.
+
+Task: quick-08
+
+Signature:
+public static void listen(final Consumer<String[]> consumer) throws Exception
+
+Functional requirements:
+Start a background TCP listener on the existing PORT constant. Accept connections repeatedly, receive a Java-serialized String[] from each connection and deliver it to consumer. Close each accepted socket and its input stream. Handle per-connection I/O and class-loading failures through the existing diagnostic helper so the listener can continue.
+
+Available context and dependencies:
+Java ServerSocket, Socket, object serialization, Consumer<String[]> and Thread APIs are available. PORT and ExceptionUtil.printStackTrace(Exception) are supplied by the surrounding project. The excerpt does not provide a shutdown API; do not invent its project contract.

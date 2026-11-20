@@ -1,0 +1,807 @@
+{
+  "valid": true,
+  "completed_tools": [
+    "vckg_search_fix_intents",
+    "vckg_search_root_causes"
+  ],
+  "calls": [
+    {
+      "id": "item_1",
+      "type": "mcp_tool_call",
+      "server": "vckg",
+      "tool": "vckg_search_root_causes",
+      "arguments": {
+        "analysis_id": "trial-2ed7e7ffcfd3509bdbc45ff1",
+        "query": "Untrusted HTML displayed in a browser can retain script elements, inline event handlers, or executable URL schemes when filtering misses browser-parsed markup.",
+        "top_k": 3
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"schema_version\":\"vckg.retrieval.v1\",\"query\":{\"slot\":\"RC\",\"text\":\"Untrusted HTML displayed in a browser can retain script elements, inline event handlers, or executable URL schemes when filtering misses browser-parsed markup.\",\"top_k\":3,\"analysis_id\":\"trial-2ed7e7ffcfd3509bdbc45ff1\"},\"matches\":[{\"node_id\":\"L:RC:216:1\",\"exemplar_id\":\"216\",\"slot\":\"RC\",\"summary\":\"unsanitized html rendering\",\"score\":0.704505,\"pattern\":{\"claim\":\"The parser directly passes raw HTML content to the rendering listener without escaping or sanitizing potentially malicious scripts, leading to cross-site scripting.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch replaces direct raw text output with a dedicated HTML macro generation method, ensuring proper handling and escaping of embedded HTML content.\",\"applies_when\":[\"The vulnerability requires the CommonMark Markdown Syntax 1.2 extension to be installed, allowing users to input Markdown syntax that includes raw HTML tags.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch replaces direct raw text output with a dedicated HTML macro generation method, ensuring proper handling and escaping of embedded HTML content.\"],\"required_target_checks\":[\"Inspect the candidate path for the exemplar root-cause behavior.\",\"Verify guard presence and coverage on every relevant target path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"216\",\"matched_node_id\":\"L:RC:216:1\",\"entrypoint\":{\"node_id\":\"L:EP:216:1\",\"slot\":\"EP\",\"summary\":\"Markdown HTML Processing\",\"details\":\"The vulnerability is triggered when the Markdown parser processes inline or block HTML elements and directly outputs them to the browser.\"},\"precondition\":{\"node_id\":\"L:PRE:216:1\",\"slot\":\"PC\",\"summary\":\"commonmark extension installed\",\"details\":\"The vulnerability requires the CommonMark Markdown Syntax 1.2 extension to be installed, allowing users to input Markdown syntax that includes raw HTML tags.\"},\"root_cause\":{\"node_id\":\"L:RC:216:1\",\"slot\":\"RC\",\"summary\":\"unsanitized html rendering\",\"details\":\"The parser directly passes raw HTML content to the rendering listener without escaping or sanitizing potentially malicious scripts, leading to cross-site scripting.\"},\"fix_intent\":{\"node_id\":\"L:FIX:216:1\",\"slot\":\"FI\",\"summary\":\"html macro generation\",\"details\":\"The patch replaces direct raw text output with a dedicated HTML macro generation method, ensuring proper handling and escaping of embedded HTML content.\"},\"cwe\":{\"node_id\":\"CWE:CWE-79\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Neutralization of Input During Web Page Generation: 'Cross-site Scripting' ('XSS')\"},\"edges\":[{\"source_id\":\"L:EP:216:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:216:1\"},{\"source_id\":\"L:PRE:216:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:216:1\"},{\"source_id\":\"L:RC:216:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:216:1\"},{\"source_id\":\"L:RC:216:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-79\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"216\",\"node_id\":\"L:RC:216:1\",\"slot\":\"RC\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:216:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:216:1\"},{\"source_id\":\"L:PRE:216:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:216:1\"},{\"source_id\":\"L:RC:216:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:216:1\"},{\"source_id\":\"L:RC:216:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-79\"}]}},{\"node_id\":\"L:RC:570:1\",\"exemplar_id\":\"570\",\"slot\":\"RC\",\"summary\":\"reflected cross-site scripting\",\"score\":0.69611,\"pattern\":{\"claim\":\"The lack of input sanitization allows external JavaScript execution on user browsers.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch modifies connection transaction behavior and configures data retrieval limits.\",\"applies_when\":[\"User-supplied parameters in the password reset process are not properly validated or sanitized.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch modifies connection transaction behavior and configures data retrieval limits.\"],\"required_target_checks\":[\"Inspect the candidate path for the exemplar root-cause behavior.\",\"Verify guard presence and coverage on every relevant target path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"570\",\"matched_node_id\":\"L:RC:570:1\",\"entrypoint\":{\"node_id\":\"L:EP:570:1\",\"slot\":\"EP\",\"summary\":\"Password reset functionality\",\"details\":\"The vulnerability is triggered through the application's password reset mechanism.\"},\"precondition\":{\"node_id\":\"L:PRE:570:1\",\"slot\":\"PC\",\"summary\":\"unsanitized parameter input\",\"details\":\"User-supplied parameters in the password reset process are not properly validated or sanitized.\"},\"root_cause\":{\"node_id\":\"L:RC:570:1\",\"slot\":\"RC\",\"summary\":\"reflected cross-site scripting\",\"details\":\"The lack of input sanitization allows external JavaScript execution on user browsers.\"},\"fix_intent\":{\"node_id\":\"L:FIX:570:1\",\"slot\":\"FI\",\"summary\":\"adjust database connection settings\",\"details\":\"The patch modifies connection transaction behavior and configures data retrieval limits.\"},\"cwe\":{\"node_id\":\"CWE:CWE-79\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Neutralization of Input During Web Page Generation: 'Cross-site Scripting' ('XSS')\"},\"edges\":[{\"source_id\":\"L:EP:570:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:570:1\"},{\"source_id\":\"L:PRE:570:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:570:1\"},{\"source_id\":\"L:RC:570:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:570:1\"},{\"source_id\":\"L:RC:570:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-79\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"570\",\"node_id\":\"L:RC:570:1\",\"slot\":\"RC\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:570:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:570:1\"},{\"source_id\":\"L:PRE:570:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:570:1\"},{\"source_id\":\"L:RC:570:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:570:1\"},{\"source_id\":\"L:RC:570:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-79\"}]}},{\"node_id\":\"L:RC:624:1\",\"exemplar_id\":\"624\",\"slot\":\"RC\",\"summary\":\"security header bypass enabling xss\",\"score\":0.639813,\"pattern\":{\"claim\":\"Disabling the Content-Security-Policy header removes browser-enforced restrictions, allowing cross-site scripting attacks via controlled workspace or artifact files.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch removes the system property assignment, ensuring Jenkins retains its default Content-Security-Policy configuration for static file serving.\",\"applies_when\":[\"The plugin modifies a global system property to change the default Content-Security-Policy header for static files, impacting instances without a Resource Root URL.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch removes the system property assignment, ensuring Jenkins retains its default Content-Security-Policy configuration for static file serving.\"],\"required_target_checks\":[\"Inspect the candidate path for the exemplar root-cause behavior.\",\"Verify guard presence and coverage on every relevant target path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"624\",\"matched_node_id\":\"L:RC:624:1\",\"entrypoint\":{\"node_id\":\"L:EP:624:1\",\"slot\":\"EP\",\"summary\":\"Plugin build step execution\",\"details\":\"The vulnerability is triggered when the scanner plugin build step runs, affecting how Jenkins serves static files.\"},\"precondition\":{\"node_id\":\"L:PRE:624:1\",\"slot\":\"PC\",\"summary\":\"global system property override\",\"details\":\"The plugin modifies a global system property to change the default Content-Security-Policy header for static files, impacting instances without a Resource Root URL.\"},\"root_cause\":{\"node_id\":\"L:RC:624:1\",\"slot\":\"RC\",\"summary\":\"security header bypass enabling xss\",\"details\":\"Disabling the Content-Security-Policy header removes browser-enforced restrictions, allowing cross-site scripting attacks via controlled workspace or artifact files.\"},\"fix_intent\":{\"node_id\":\"L:FIX:624:1\",\"slot\":\"FI\",\"summary\":\"restoration of default security headers\",\"details\":\"The patch removes the system property assignment, ensuring Jenkins retains its default Content-Security-Policy configuration for static file serving.\"},\"cwe\":{\"node_id\":\"CWE:CWE-693\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Protection Mechanism Failure\"},\"edges\":[{\"source_id\":\"L:EP:624:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:624:1\"},{\"source_id\":\"L:PRE:624:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:624:1\"},{\"source_id\":\"L:RC:624:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:624:1\"},{\"source_id\":\"L:RC:624:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-693\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"624\",\"node_id\":\"L:RC:624:1\",\"slot\":\"RC\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:624:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:624:1\"},{\"source_id\":\"L:PRE:624:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:624:1\"},{\"source_id\":\"L:RC:624:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:624:1\"},{\"source_id\":\"L:RC:624:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-693\"}]}}],\"retrieval_status\":\"matched\",\"rejection_reason\":null}"
+          }
+        ],
+        "structured_content": {
+          "schema_version": "vckg.retrieval.v1",
+          "query": {
+            "slot": "RC",
+            "text": "Untrusted HTML displayed in a browser can retain script elements, inline event handlers, or executable URL schemes when filtering misses browser-parsed markup.",
+            "top_k": 3,
+            "analysis_id": "trial-2ed7e7ffcfd3509bdbc45ff1"
+          },
+          "matches": [
+            {
+              "node_id": "L:RC:216:1",
+              "exemplar_id": "216",
+              "slot": "RC",
+              "summary": "unsanitized html rendering",
+              "score": 0.704505,
+              "pattern": {
+                "claim": "The parser directly passes raw HTML content to the rendering listener without escaping or sanitizing potentially malicious scripts, leading to cross-site scripting.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch replaces direct raw text output with a dedicated HTML macro generation method, ensuring proper handling and escaping of embedded HTML content.",
+                "applies_when": [
+                  "The vulnerability requires the CommonMark Markdown Syntax 1.2 extension to be installed, allowing users to input Markdown syntax that includes raw HTML tags."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch replaces direct raw text output with a dedicated HTML macro generation method, ensuring proper handling and escaping of embedded HTML content."
+                ],
+                "required_target_checks": [
+                  "Inspect the candidate path for the exemplar root-cause behavior.",
+                  "Verify guard presence and coverage on every relevant target path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "216",
+                "matched_node_id": "L:RC:216:1",
+                "entrypoint": {
+                  "node_id": "L:EP:216:1",
+                  "slot": "EP",
+                  "summary": "Markdown HTML Processing",
+                  "details": "The vulnerability is triggered when the Markdown parser processes inline or block HTML elements and directly outputs them to the browser."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:216:1",
+                  "slot": "PC",
+                  "summary": "commonmark extension installed",
+                  "details": "The vulnerability requires the CommonMark Markdown Syntax 1.2 extension to be installed, allowing users to input Markdown syntax that includes raw HTML tags."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:216:1",
+                  "slot": "RC",
+                  "summary": "unsanitized html rendering",
+                  "details": "The parser directly passes raw HTML content to the rendering listener without escaping or sanitizing potentially malicious scripts, leading to cross-site scripting."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:216:1",
+                  "slot": "FI",
+                  "summary": "html macro generation",
+                  "details": "The patch replaces direct raw text output with a dedicated HTML macro generation method, ensuring proper handling and escaping of embedded HTML content."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-79",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Neutralization of Input During Web Page Generation: 'Cross-site Scripting' ('XSS')"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:216:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:216:1"
+                  },
+                  {
+                    "source_id": "L:PRE:216:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:216:1"
+                  },
+                  {
+                    "source_id": "L:RC:216:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:216:1"
+                  },
+                  {
+                    "source_id": "L:RC:216:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-79"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "216",
+                "node_id": "L:RC:216:1",
+                "slot": "RC",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:216:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:216:1"
+                  },
+                  {
+                    "source_id": "L:PRE:216:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:216:1"
+                  },
+                  {
+                    "source_id": "L:RC:216:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:216:1"
+                  },
+                  {
+                    "source_id": "L:RC:216:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-79"
+                  }
+                ]
+              }
+            },
+            {
+              "node_id": "L:RC:570:1",
+              "exemplar_id": "570",
+              "slot": "RC",
+              "summary": "reflected cross-site scripting",
+              "score": 0.69611,
+              "pattern": {
+                "claim": "The lack of input sanitization allows external JavaScript execution on user browsers.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch modifies connection transaction behavior and configures data retrieval limits.",
+                "applies_when": [
+                  "User-supplied parameters in the password reset process are not properly validated or sanitized."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch modifies connection transaction behavior and configures data retrieval limits."
+                ],
+                "required_target_checks": [
+                  "Inspect the candidate path for the exemplar root-cause behavior.",
+                  "Verify guard presence and coverage on every relevant target path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "570",
+                "matched_node_id": "L:RC:570:1",
+                "entrypoint": {
+                  "node_id": "L:EP:570:1",
+                  "slot": "EP",
+                  "summary": "Password reset functionality",
+                  "details": "The vulnerability is triggered through the application's password reset mechanism."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:570:1",
+                  "slot": "PC",
+                  "summary": "unsanitized parameter input",
+                  "details": "User-supplied parameters in the password reset process are not properly validated or sanitized."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:570:1",
+                  "slot": "RC",
+                  "summary": "reflected cross-site scripting",
+                  "details": "The lack of input sanitization allows external JavaScript execution on user browsers."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:570:1",
+                  "slot": "FI",
+                  "summary": "adjust database connection settings",
+                  "details": "The patch modifies connection transaction behavior and configures data retrieval limits."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-79",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Neutralization of Input During Web Page Generation: 'Cross-site Scripting' ('XSS')"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:570:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:570:1"
+                  },
+                  {
+                    "source_id": "L:PRE:570:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:570:1"
+                  },
+                  {
+                    "source_id": "L:RC:570:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:570:1"
+                  },
+                  {
+                    "source_id": "L:RC:570:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-79"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "570",
+                "node_id": "L:RC:570:1",
+                "slot": "RC",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:570:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:570:1"
+                  },
+                  {
+                    "source_id": "L:PRE:570:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:570:1"
+                  },
+                  {
+                    "source_id": "L:RC:570:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:570:1"
+                  },
+                  {
+                    "source_id": "L:RC:570:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-79"
+                  }
+                ]
+              }
+            },
+            {
+              "node_id": "L:RC:624:1",
+              "exemplar_id": "624",
+              "slot": "RC",
+              "summary": "security header bypass enabling xss",
+              "score": 0.639813,
+              "pattern": {
+                "claim": "Disabling the Content-Security-Policy header removes browser-enforced restrictions, allowing cross-site scripting attacks via controlled workspace or artifact files.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch removes the system property assignment, ensuring Jenkins retains its default Content-Security-Policy configuration for static file serving.",
+                "applies_when": [
+                  "The plugin modifies a global system property to change the default Content-Security-Policy header for static files, impacting instances without a Resource Root URL."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch removes the system property assignment, ensuring Jenkins retains its default Content-Security-Policy configuration for static file serving."
+                ],
+                "required_target_checks": [
+                  "Inspect the candidate path for the exemplar root-cause behavior.",
+                  "Verify guard presence and coverage on every relevant target path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "624",
+                "matched_node_id": "L:RC:624:1",
+                "entrypoint": {
+                  "node_id": "L:EP:624:1",
+                  "slot": "EP",
+                  "summary": "Plugin build step execution",
+                  "details": "The vulnerability is triggered when the scanner plugin build step runs, affecting how Jenkins serves static files."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:624:1",
+                  "slot": "PC",
+                  "summary": "global system property override",
+                  "details": "The plugin modifies a global system property to change the default Content-Security-Policy header for static files, impacting instances without a Resource Root URL."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:624:1",
+                  "slot": "RC",
+                  "summary": "security header bypass enabling xss",
+                  "details": "Disabling the Content-Security-Policy header removes browser-enforced restrictions, allowing cross-site scripting attacks via controlled workspace or artifact files."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:624:1",
+                  "slot": "FI",
+                  "summary": "restoration of default security headers",
+                  "details": "The patch removes the system property assignment, ensuring Jenkins retains its default Content-Security-Policy configuration for static file serving."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-693",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Protection Mechanism Failure"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:624:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:624:1"
+                  },
+                  {
+                    "source_id": "L:PRE:624:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:624:1"
+                  },
+                  {
+                    "source_id": "L:RC:624:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:624:1"
+                  },
+                  {
+                    "source_id": "L:RC:624:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-693"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "624",
+                "node_id": "L:RC:624:1",
+                "slot": "RC",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:624:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:624:1"
+                  },
+                  {
+                    "source_id": "L:PRE:624:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:624:1"
+                  },
+                  {
+                    "source_id": "L:RC:624:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:624:1"
+                  },
+                  {
+                    "source_id": "L:RC:624:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-693"
+                  }
+                ]
+              }
+            }
+          ],
+          "retrieval_status": "matched",
+          "rejection_reason": null
+        }
+      },
+      "error": null,
+      "status": "completed"
+    },
+    {
+      "id": "item_2",
+      "type": "mcp_tool_call",
+      "server": "vckg",
+      "tool": "vckg_search_fix_intents",
+      "arguments": {
+        "analysis_id": "trial-2ed7e7ffcfd3509bdbc45ff1",
+        "query": "Sanitize untrusted HTML for browser display with an HTML parser and an allowlist of safe tags, attributes and URL schemes while preserving ordinary text.",
+        "top_k": 3
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"schema_version\":\"vckg.retrieval.v1\",\"query\":{\"slot\":\"FI\",\"text\":\"Sanitize untrusted HTML for browser display with an HTML parser and an allowlist of safe tags, attributes and URL schemes while preserving ordinary text.\",\"top_k\":3,\"analysis_id\":\"trial-2ed7e7ffcfd3509bdbc45ff1\"},\"matches\":[{\"node_id\":\"L:FIX:600:1\",\"exemplar_id\":\"600\",\"slot\":\"FI\",\"summary\":\"input sanitization implementation\",\"score\":0.636416,\"pattern\":{\"claim\":\"The patch applies dedicated HTML attribute and JavaScript string escaping routines to all user-provided label attributes before they are concatenated into the generated markup.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch applies dedicated HTML attribute and JavaScript string escaping routines to all user-provided label attributes before they are concatenated into the generated markup.\",\"applies_when\":[\"Users with Agent or Configure permissions can define custom label names and descriptions that are subsequently rendered in the web interface.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch applies dedicated HTML attribute and JavaScript string escaping routines to all user-provided label attributes before they are concatenated into the generated markup.\"],\"required_target_checks\":[\"Locate the target implementation of the required security property.\",\"Verify that the implementation covers every relevant sink and path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"600\",\"matched_node_id\":\"L:FIX:600:1\",\"entrypoint\":{\"node_id\":\"L:EP:600:1\",\"slot\":\"EP\",\"summary\":\"Label Configuration UI\",\"details\":\"The vulnerability is triggered when the Jenkins Matrix Project plugin renders the label configuration interface for matrix builds.\"},\"precondition\":{\"node_id\":\"L:PRE:600:1\",\"slot\":\"PC\",\"summary\":\"configurable label attributes\",\"details\":\"Users with Agent or Configure permissions can define custom label names and descriptions that are subsequently rendered in the web interface.\"},\"root_cause\":{\"node_id\":\"L:RC:600:1\",\"slot\":\"RC\",\"summary\":\"unescaped user input injection\",\"details\":\"The rendering function directly embeds user-supplied label names and descriptions into HTML and JavaScript strings without neutralizing special characters, enabling stored cross-site scripting.\"},\"fix_intent\":{\"node_id\":\"L:FIX:600:1\",\"slot\":\"FI\",\"summary\":\"input sanitization implementation\",\"details\":\"The patch applies dedicated HTML attribute and JavaScript string escaping routines to all user-provided label attributes before they are concatenated into the generated markup.\"},\"cwe\":{\"node_id\":\"CWE:CWE-79\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Neutralization of Input During Web Page Generation: 'Cross-site Scripting' ('XSS')\"},\"edges\":[{\"source_id\":\"L:EP:600:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:600:1\"},{\"source_id\":\"L:PRE:600:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:600:1\"},{\"source_id\":\"L:RC:600:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:600:1\"},{\"source_id\":\"L:RC:600:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-79\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"600\",\"node_id\":\"L:FIX:600:1\",\"slot\":\"FI\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:600:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:600:1\"},{\"source_id\":\"L:PRE:600:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:600:1\"},{\"source_id\":\"L:RC:600:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:600:1\"},{\"source_id\":\"L:RC:600:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-79\"}]}},{\"node_id\":\"L:FIX:156:1\",\"exemplar_id\":\"156\",\"slot\":\"FI\",\"summary\":\"integrate html sanitizer\",\"score\":0.625058,\"pattern\":{\"claim\":\"The patch introduces an HTML element sanitizer parameter to renderers and printers, adding checks to verify allowed elements and clean attributes before printing.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch introduces an HTML element sanitizer parameter to renderers and printers, adding checks to verify allowed elements and clean attributes before printing.\",\"applies_when\":[\"The rendering engine processes input content and directly outputs HTML elements and attributes without prior validation of their safety or structure.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch introduces an HTML element sanitizer parameter to renderers and printers, adding checks to verify allowed elements and clean attributes before printing.\"],\"required_target_checks\":[\"Locate the target implementation of the required security property.\",\"Verify that the implementation covers every relevant sink and path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"156\",\"matched_node_id\":\"L:FIX:156:1\",\"entrypoint\":{\"node_id\":\"L:EP:156:1\",\"slot\":\"EP\",\"summary\":\"HTML Rendering Pipeline\",\"details\":\"The vulnerability originates in the XHTML and HTML5 chaining renderers and their associated wiki printers responsible for outputting rendered content.\"},\"precondition\":{\"node_id\":\"L:PRE:156:1\",\"slot\":\"PC\",\"summary\":\"unsanitized html output\",\"details\":\"The rendering engine processes input content and directly outputs HTML elements and attributes without prior validation of their safety or structure.\"},\"root_cause\":{\"node_id\":\"L:RC:156:1\",\"slot\":\"RC\",\"summary\":\"missing attribute sanitization\",\"details\":\"The rendering components lacked a mechanism to filter dangerous attributes or validate element names, enabling malicious code injection during output generation.\"},\"fix_intent\":{\"node_id\":\"L:FIX:156:1\",\"slot\":\"FI\",\"summary\":\"integrate html sanitizer\",\"details\":\"The patch introduces an HTML element sanitizer parameter to renderers and printers, adding checks to verify allowed elements and clean attributes before printing.\"},\"cwe\":{\"node_id\":\"CWE:CWE-79\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Neutralization of Input During Web Page Generation: 'Cross-site Scripting' ('XSS')\"},\"edges\":[{\"source_id\":\"L:EP:156:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:156:1\"},{\"source_id\":\"L:PRE:156:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:156:1\"},{\"source_id\":\"L:RC:156:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:156:1\"},{\"source_id\":\"L:RC:156:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-79\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"156\",\"node_id\":\"L:FIX:156:1\",\"slot\":\"FI\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:156:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:156:1\"},{\"source_id\":\"L:PRE:156:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:156:1\"},{\"source_id\":\"L:RC:156:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:156:1\"},{\"source_id\":\"L:RC:156:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-79\"}]}},{\"node_id\":\"L:FIX:170:1\",\"exemplar_id\":\"170\",\"slot\":\"FI\",\"summary\":\"apply output sanitization\",\"score\":0.579988,\"pattern\":{\"claim\":\"The patch wraps formatted timestamp strings in a sanitization utility to strip unsafe HTML before returning the final output.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch wraps formatted timestamp strings in a sanitization utility to strip unsafe HTML before returning the final output.\",\"applies_when\":[\"The plugin formats timestamps into HTML strings for console display without performing any prior validation or escaping checks.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch wraps formatted timestamp strings in a sanitization utility to strip unsafe HTML before returning the final output.\"],\"required_target_checks\":[\"Locate the target implementation of the required security property.\",\"Verify that the implementation covers every relevant sink and path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"170\",\"matched_node_id\":\"L:FIX:170:1\",\"entrypoint\":{\"node_id\":\"L:EP:170:1\",\"slot\":\"EP\",\"summary\":\"Timestamp formatting methods\",\"details\":\"These methods generate HTML-formatted timestamp strings that are directly rendered in the build console output.\"},\"precondition\":{\"node_id\":\"L:PRE:170:1\",\"slot\":\"PC\",\"summary\":\"unvalidated timestamp formatting\",\"details\":\"The plugin formats timestamps into HTML strings for console display without performing any prior validation or escaping checks.\"},\"root_cause\":{\"node_id\":\"L:RC:170:1\",\"slot\":\"RC\",\"summary\":\"missing html sanitization\",\"details\":\"Formatted timestamp strings are returned directly to the console output without sanitization, enabling arbitrary HTML injection.\"},\"fix_intent\":{\"node_id\":\"L:FIX:170:1\",\"slot\":\"FI\",\"summary\":\"apply output sanitization\",\"details\":\"The patch wraps formatted timestamp strings in a sanitization utility to strip unsafe HTML before returning the final output.\"},\"cwe\":{\"node_id\":\"CWE:CWE-79\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Neutralization of Input During Web Page Generation: 'Cross-site Scripting' ('XSS')\"},\"edges\":[{\"source_id\":\"L:EP:170:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:170:1\"},{\"source_id\":\"L:PRE:170:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:170:1\"},{\"source_id\":\"L:RC:170:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:170:1\"},{\"source_id\":\"L:RC:170:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-79\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"170\",\"node_id\":\"L:FIX:170:1\",\"slot\":\"FI\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:170:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:170:1\"},{\"source_id\":\"L:PRE:170:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:170:1\"},{\"source_id\":\"L:RC:170:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:170:1\"},{\"source_id\":\"L:RC:170:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-79\"}]}}],\"retrieval_status\":\"matched\",\"rejection_reason\":null}"
+          }
+        ],
+        "structured_content": {
+          "schema_version": "vckg.retrieval.v1",
+          "query": {
+            "slot": "FI",
+            "text": "Sanitize untrusted HTML for browser display with an HTML parser and an allowlist of safe tags, attributes and URL schemes while preserving ordinary text.",
+            "top_k": 3,
+            "analysis_id": "trial-2ed7e7ffcfd3509bdbc45ff1"
+          },
+          "matches": [
+            {
+              "node_id": "L:FIX:600:1",
+              "exemplar_id": "600",
+              "slot": "FI",
+              "summary": "input sanitization implementation",
+              "score": 0.636416,
+              "pattern": {
+                "claim": "The patch applies dedicated HTML attribute and JavaScript string escaping routines to all user-provided label attributes before they are concatenated into the generated markup.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch applies dedicated HTML attribute and JavaScript string escaping routines to all user-provided label attributes before they are concatenated into the generated markup.",
+                "applies_when": [
+                  "Users with Agent or Configure permissions can define custom label names and descriptions that are subsequently rendered in the web interface."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch applies dedicated HTML attribute and JavaScript string escaping routines to all user-provided label attributes before they are concatenated into the generated markup."
+                ],
+                "required_target_checks": [
+                  "Locate the target implementation of the required security property.",
+                  "Verify that the implementation covers every relevant sink and path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "600",
+                "matched_node_id": "L:FIX:600:1",
+                "entrypoint": {
+                  "node_id": "L:EP:600:1",
+                  "slot": "EP",
+                  "summary": "Label Configuration UI",
+                  "details": "The vulnerability is triggered when the Jenkins Matrix Project plugin renders the label configuration interface for matrix builds."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:600:1",
+                  "slot": "PC",
+                  "summary": "configurable label attributes",
+                  "details": "Users with Agent or Configure permissions can define custom label names and descriptions that are subsequently rendered in the web interface."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:600:1",
+                  "slot": "RC",
+                  "summary": "unescaped user input injection",
+                  "details": "The rendering function directly embeds user-supplied label names and descriptions into HTML and JavaScript strings without neutralizing special characters, enabling stored cross-site scripting."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:600:1",
+                  "slot": "FI",
+                  "summary": "input sanitization implementation",
+                  "details": "The patch applies dedicated HTML attribute and JavaScript string escaping routines to all user-provided label attributes before they are concatenated into the generated markup."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-79",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Neutralization of Input During Web Page Generation: 'Cross-site Scripting' ('XSS')"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:600:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:600:1"
+                  },
+                  {
+                    "source_id": "L:PRE:600:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:600:1"
+                  },
+                  {
+                    "source_id": "L:RC:600:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:600:1"
+                  },
+                  {
+                    "source_id": "L:RC:600:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-79"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "600",
+                "node_id": "L:FIX:600:1",
+                "slot": "FI",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:600:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:600:1"
+                  },
+                  {
+                    "source_id": "L:PRE:600:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:600:1"
+                  },
+                  {
+                    "source_id": "L:RC:600:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:600:1"
+                  },
+                  {
+                    "source_id": "L:RC:600:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-79"
+                  }
+                ]
+              }
+            },
+            {
+              "node_id": "L:FIX:156:1",
+              "exemplar_id": "156",
+              "slot": "FI",
+              "summary": "integrate html sanitizer",
+              "score": 0.625058,
+              "pattern": {
+                "claim": "The patch introduces an HTML element sanitizer parameter to renderers and printers, adding checks to verify allowed elements and clean attributes before printing.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch introduces an HTML element sanitizer parameter to renderers and printers, adding checks to verify allowed elements and clean attributes before printing.",
+                "applies_when": [
+                  "The rendering engine processes input content and directly outputs HTML elements and attributes without prior validation of their safety or structure."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch introduces an HTML element sanitizer parameter to renderers and printers, adding checks to verify allowed elements and clean attributes before printing."
+                ],
+                "required_target_checks": [
+                  "Locate the target implementation of the required security property.",
+                  "Verify that the implementation covers every relevant sink and path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "156",
+                "matched_node_id": "L:FIX:156:1",
+                "entrypoint": {
+                  "node_id": "L:EP:156:1",
+                  "slot": "EP",
+                  "summary": "HTML Rendering Pipeline",
+                  "details": "The vulnerability originates in the XHTML and HTML5 chaining renderers and their associated wiki printers responsible for outputting rendered content."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:156:1",
+                  "slot": "PC",
+                  "summary": "unsanitized html output",
+                  "details": "The rendering engine processes input content and directly outputs HTML elements and attributes without prior validation of their safety or structure."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:156:1",
+                  "slot": "RC",
+                  "summary": "missing attribute sanitization",
+                  "details": "The rendering components lacked a mechanism to filter dangerous attributes or validate element names, enabling malicious code injection during output generation."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:156:1",
+                  "slot": "FI",
+                  "summary": "integrate html sanitizer",
+                  "details": "The patch introduces an HTML element sanitizer parameter to renderers and printers, adding checks to verify allowed elements and clean attributes before printing."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-79",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Neutralization of Input During Web Page Generation: 'Cross-site Scripting' ('XSS')"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:156:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:156:1"
+                  },
+                  {
+                    "source_id": "L:PRE:156:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:156:1"
+                  },
+                  {
+                    "source_id": "L:RC:156:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:156:1"
+                  },
+                  {
+                    "source_id": "L:RC:156:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-79"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "156",
+                "node_id": "L:FIX:156:1",
+                "slot": "FI",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:156:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:156:1"
+                  },
+                  {
+                    "source_id": "L:PRE:156:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:156:1"
+                  },
+                  {
+                    "source_id": "L:RC:156:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:156:1"
+                  },
+                  {
+                    "source_id": "L:RC:156:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-79"
+                  }
+                ]
+              }
+            },
+            {
+              "node_id": "L:FIX:170:1",
+              "exemplar_id": "170",
+              "slot": "FI",
+              "summary": "apply output sanitization",
+              "score": 0.579988,
+              "pattern": {
+                "claim": "The patch wraps formatted timestamp strings in a sanitization utility to strip unsafe HTML before returning the final output.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch wraps formatted timestamp strings in a sanitization utility to strip unsafe HTML before returning the final output.",
+                "applies_when": [
+                  "The plugin formats timestamps into HTML strings for console display without performing any prior validation or escaping checks."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch wraps formatted timestamp strings in a sanitization utility to strip unsafe HTML before returning the final output."
+                ],
+                "required_target_checks": [
+                  "Locate the target implementation of the required security property.",
+                  "Verify that the implementation covers every relevant sink and path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "170",
+                "matched_node_id": "L:FIX:170:1",
+                "entrypoint": {
+                  "node_id": "L:EP:170:1",
+                  "slot": "EP",
+                  "summary": "Timestamp formatting methods",
+                  "details": "These methods generate HTML-formatted timestamp strings that are directly rendered in the build console output."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:170:1",
+                  "slot": "PC",
+                  "summary": "unvalidated timestamp formatting",
+                  "details": "The plugin formats timestamps into HTML strings for console display without performing any prior validation or escaping checks."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:170:1",
+                  "slot": "RC",
+                  "summary": "missing html sanitization",
+                  "details": "Formatted timestamp strings are returned directly to the console output without sanitization, enabling arbitrary HTML injection."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:170:1",
+                  "slot": "FI",
+                  "summary": "apply output sanitization",
+                  "details": "The patch wraps formatted timestamp strings in a sanitization utility to strip unsafe HTML before returning the final output."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-79",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Neutralization of Input During Web Page Generation: 'Cross-site Scripting' ('XSS')"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:170:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:170:1"
+                  },
+                  {
+                    "source_id": "L:PRE:170:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:170:1"
+                  },
+                  {
+                    "source_id": "L:RC:170:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:170:1"
+                  },
+                  {
+                    "source_id": "L:RC:170:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-79"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "170",
+                "node_id": "L:FIX:170:1",
+                "slot": "FI",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:170:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:170:1"
+                  },
+                  {
+                    "source_id": "L:PRE:170:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:170:1"
+                  },
+                  {
+                    "source_id": "L:RC:170:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:170:1"
+                  },
+                  {
+                    "source_id": "L:RC:170:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-79"
+                  }
+                ]
+              }
+            }
+          ],
+          "retrieval_status": "matched",
+          "rejection_reason": null
+        }
+      },
+      "error": null,
+      "status": "completed"
+    }
+  ],
+  "errors": [],
+  "unparseable_event_lines": [],
+  "unknown_or_missing_mcp_event_schema": false,
+  "no_relevant_match_count": 0
+}

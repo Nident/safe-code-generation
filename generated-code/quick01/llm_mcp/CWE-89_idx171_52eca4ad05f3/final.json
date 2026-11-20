@@ -1,0 +1,6 @@
+{
+  "code": "private List<OraclePackage> getAllRealOraclePackage(OBridgeConfiguration c) {\n    String sql = \"SELECT object_name FROM user_objects \"\n            + \"WHERE object_type = 'PACKAGE' AND object_name LIKE ?\";\n\n    return jdbcTemplate.query(sql, (rs, rowNum) -> {\n        String name = rs.getString(\"object_name\");\n        OraclePackage oraclePackage = new OraclePackage();\n        oraclePackage.setName(name);\n        oraclePackage.setProcedureList(getAllProcedure(name, \"\"));\n        return oraclePackage;\n    }, c.getPackagesLike());\n}",
+  "imports": "import java.util.List;",
+  "dependency_notes": "Uses the existing jdbcTemplate field, getAllProcedure(String, String) helper, and project types OraclePackage and OBridgeConfiguration. Assumes OraclePackage has an accessible no-argument constructor and setProcedureList accepts the helper's return type.",
+  "retrieval_notes": "Both searches completed successfully. The root-cause search returned no relevant match. The fix-intent search returned exemplar 209, whose chain concerns SQLite connection URLs and extension loading. Its preconditions do not apply to this Oracle query through an existing JdbcTemplate. The implementation binds the configured LIKE pattern as a value and preserves its wildcard semantics."
+}

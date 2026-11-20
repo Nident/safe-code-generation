@@ -1,0 +1,441 @@
+{
+  "valid": true,
+  "completed_tools": [
+    "vckg_search_fix_intents",
+    "vckg_search_root_causes"
+  ],
+  "calls": [
+    {
+      "id": "item_1",
+      "type": "mcp_tool_call",
+      "server": "vckg",
+      "tool": "vckg_search_root_causes",
+      "arguments": {
+        "analysis_id": "trial-0ad485fc457af4525bde825a",
+        "query": "Java JAXP compiles a browser DOM stylesheet and transforms a supplied DOM node with parameters. Stylesheet imports and transform-time document references can invoke external resource resolution."
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"schema_version\":\"vckg.retrieval.v1\",\"query\":{\"slot\":\"RC\",\"text\":\"Java JAXP compiles a browser DOM stylesheet and transforms a supplied DOM node with parameters. Stylesheet imports and transform-time document references can invoke external resource resolution.\",\"top_k\":3,\"analysis_id\":\"trial-0ad485fc457af4525bde825a\"},\"matches\":[{\"node_id\":\"L:RC:559:1\",\"exemplar_id\":\"559\",\"slot\":\"RC\",\"summary\":\"unrestricted external entity processing\",\"score\":0.4822,\"pattern\":{\"claim\":\"The original implementation directly unmarshals the input string using a default JAXB unmarshaller, which inherently supports external entities and DTDs by default, enabling XXE attacks.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling.\",\"applies_when\":[\"The vulnerability requires an attacker to supply a malicious XML string to the deserialization method for processing.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling.\"],\"required_target_checks\":[\"Inspect the candidate path for the exemplar root-cause behavior.\",\"Verify guard presence and coverage on every relevant target path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"559\",\"matched_node_id\":\"L:RC:559:1\",\"entrypoint\":{\"node_id\":\"L:EP:559:1\",\"slot\":\"EP\",\"summary\":\"JAXB deserialization method\",\"details\":\"The method accepts user-controlled string content and directly passes it to the JAXB unmarshaller for XML parsing.\"},\"precondition\":{\"node_id\":\"L:PRE:559:1\",\"slot\":\"PC\",\"summary\":\"user-controlled xml input\",\"details\":\"The vulnerability requires an attacker to supply a malicious XML string to the deserialization method for processing.\"},\"root_cause\":{\"node_id\":\"L:RC:559:1\",\"slot\":\"RC\",\"summary\":\"unrestricted external entity processing\",\"details\":\"The original implementation directly unmarshals the input string using a default JAXB unmarshaller, which inherently supports external entities and DTDs by default, enabling XXE attacks.\"},\"fix_intent\":{\"node_id\":\"L:FIX:559:1\",\"slot\":\"FI\",\"summary\":\"disable external entity resolution\",\"details\":\"The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling.\"},\"cwe\":{\"node_id\":\"CWE:CWE-611\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Restriction of XML External Entity Reference\"},\"edges\":[{\"source_id\":\"L:EP:559:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:559:1\"},{\"source_id\":\"L:PRE:559:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:559:1\"},{\"source_id\":\"L:RC:559:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:559:1\"},{\"source_id\":\"L:RC:559:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-611\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"559\",\"node_id\":\"L:RC:559:1\",\"slot\":\"RC\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:559:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:559:1\"},{\"source_id\":\"L:PRE:559:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:559:1\"},{\"source_id\":\"L:RC:559:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:559:1\"},{\"source_id\":\"L:RC:559:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-611\"}]}},{\"node_id\":\"L:RC:530:1\",\"exemplar_id\":\"530\",\"slot\":\"RC\",\"summary\":\"insecure xslt processor configuration\",\"score\":0.416359,\"pattern\":{\"claim\":\"The XML transformer factory lacks secure processing constraints, allowing unrestricted access to external resources during stylesheet resolution.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch configures the transformer factory to enable secure processing features and restrict external stylesheet access to local paths.\",\"applies_when\":[\"An attacker must supply or influence the content of custom policy files used during validation checks.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch configures the transformer factory to enable secure processing features and restrict external stylesheet access to local paths.\"],\"required_target_checks\":[\"Inspect the candidate path for the exemplar root-cause behavior.\",\"Verify guard presence and coverage on every relevant target path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"530\",\"matched_node_id\":\"L:RC:530:1\",\"entrypoint\":{\"node_id\":\"L:EP:530:1\",\"slot\":\"EP\",\"summary\":\"XSL Transformation in Policy Checks\",\"details\":\"The vulnerability is triggered when the application processes custom schematron policy files that invoke XSL transformations.\"},\"precondition\":{\"node_id\":\"L:PRE:530:1\",\"slot\":\"PC\",\"summary\":\"untrusted custom policy files\",\"details\":\"An attacker must supply or influence the content of custom policy files used during validation checks.\"},\"root_cause\":{\"node_id\":\"L:RC:530:1\",\"slot\":\"RC\",\"summary\":\"insecure xslt processor configuration\",\"details\":\"The XML transformer factory lacks secure processing constraints, allowing unrestricted access to external resources during stylesheet resolution.\"},\"fix_intent\":{\"node_id\":\"L:FIX:530:1\",\"slot\":\"FI\",\"summary\":\"enforce secure xslt processing\",\"details\":\"The patch configures the transformer factory to enable secure processing features and restrict external stylesheet access to local paths.\"},\"cwe\":{\"node_id\":\"CWE:CWE-91\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"XML Injection\"},\"edges\":[{\"source_id\":\"L:EP:530:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:530:1\"},{\"source_id\":\"L:PRE:530:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:530:1\"},{\"source_id\":\"L:RC:530:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:530:1\"},{\"source_id\":\"L:RC:530:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-91\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"530\",\"node_id\":\"L:RC:530:1\",\"slot\":\"RC\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:530:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:530:1\"},{\"source_id\":\"L:PRE:530:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:530:1\"},{\"source_id\":\"L:RC:530:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:530:1\"},{\"source_id\":\"L:RC:530:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-91\"}]}},{\"node_id\":\"L:RC:381:1\",\"exemplar_id\":\"381\",\"slot\":\"RC\",\"summary\":\"automatic property substitution\",\"score\":0.421695,\"pattern\":{\"claim\":\"The underlying XML parser automatically resolves and replaces tag values referencing system properties or environment variables with their actual values.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch configures the serializer with a filtering mechanism to explicitly prevent automatic substitution of system properties and environment variables.\",\"applies_when\":[\"Applications process XML data from untrusted or external sources without restricting internal variable expansion mechanisms.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch configures the serializer with a filtering mechanism to explicitly prevent automatic substitution of system properties and environment variables.\"],\"required_target_checks\":[\"Inspect the candidate path for the exemplar root-cause behavior.\",\"Verify guard presence and coverage on every relevant target path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"381\",\"matched_node_id\":\"L:RC:381:1\",\"entrypoint\":{\"node_id\":\"L:EP:381:1\",\"slot\":\"EP\",\"summary\":\"XML Document Processing\",\"details\":\"The vulnerability is triggered when the application parses or validates XML documents containing external content.\"},\"precondition\":{\"node_id\":\"L:PRE:381:1\",\"slot\":\"PC\",\"summary\":\"untrusted xml input\",\"details\":\"Applications process XML data from untrusted or external sources without restricting internal variable expansion mechanisms.\"},\"root_cause\":{\"node_id\":\"L:RC:381:1\",\"slot\":\"RC\",\"summary\":\"automatic property substitution\",\"details\":\"The underlying XML parser automatically resolves and replaces tag values referencing system properties or environment variables with their actual values.\"},\"fix_intent\":{\"node_id\":\"L:FIX:381:1\",\"slot\":\"FI\",\"summary\":\"disable variable expansion\",\"details\":\"The patch configures the serializer with a filtering mechanism to explicitly prevent automatic substitution of system properties and environment variables.\"},\"cwe\":{\"node_id\":\"CWE:CWE-20\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Input Validation\"},\"edges\":[{\"source_id\":\"L:EP:381:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:381:1\"},{\"source_id\":\"L:PRE:381:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:381:1\"},{\"source_id\":\"L:RC:381:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:381:1\"},{\"source_id\":\"L:RC:381:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-20\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"381\",\"node_id\":\"L:RC:381:1\",\"slot\":\"RC\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:381:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:381:1\"},{\"source_id\":\"L:PRE:381:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:381:1\"},{\"source_id\":\"L:RC:381:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:381:1\"},{\"source_id\":\"L:RC:381:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-20\"}]}}],\"retrieval_status\":\"matched\",\"rejection_reason\":null}"
+          }
+        ],
+        "structured_content": {
+          "schema_version": "vckg.retrieval.v1",
+          "query": {
+            "slot": "RC",
+            "text": "Java JAXP compiles a browser DOM stylesheet and transforms a supplied DOM node with parameters. Stylesheet imports and transform-time document references can invoke external resource resolution.",
+            "top_k": 3,
+            "analysis_id": "trial-0ad485fc457af4525bde825a"
+          },
+          "matches": [
+            {
+              "node_id": "L:RC:559:1",
+              "exemplar_id": "559",
+              "slot": "RC",
+              "summary": "unrestricted external entity processing",
+              "score": 0.4822,
+              "pattern": {
+                "claim": "The original implementation directly unmarshals the input string using a default JAXB unmarshaller, which inherently supports external entities and DTDs by default, enabling XXE attacks.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling.",
+                "applies_when": [
+                  "The vulnerability requires an attacker to supply a malicious XML string to the deserialization method for processing."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling."
+                ],
+                "required_target_checks": [
+                  "Inspect the candidate path for the exemplar root-cause behavior.",
+                  "Verify guard presence and coverage on every relevant target path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "559",
+                "matched_node_id": "L:RC:559:1",
+                "entrypoint": {
+                  "node_id": "L:EP:559:1",
+                  "slot": "EP",
+                  "summary": "JAXB deserialization method",
+                  "details": "The method accepts user-controlled string content and directly passes it to the JAXB unmarshaller for XML parsing."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:559:1",
+                  "slot": "PC",
+                  "summary": "user-controlled xml input",
+                  "details": "The vulnerability requires an attacker to supply a malicious XML string to the deserialization method for processing."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:559:1",
+                  "slot": "RC",
+                  "summary": "unrestricted external entity processing",
+                  "details": "The original implementation directly unmarshals the input string using a default JAXB unmarshaller, which inherently supports external entities and DTDs by default, enabling XXE attacks."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:559:1",
+                  "slot": "FI",
+                  "summary": "disable external entity resolution",
+                  "details": "The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-611",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Restriction of XML External Entity Reference"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:559:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:559:1"
+                  },
+                  {
+                    "source_id": "L:PRE:559:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:559:1"
+                  },
+                  {
+                    "source_id": "L:RC:559:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:559:1"
+                  },
+                  {
+                    "source_id": "L:RC:559:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-611"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "559",
+                "node_id": "L:RC:559:1",
+                "slot": "RC",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:559:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:559:1"
+                  },
+                  {
+                    "source_id": "L:PRE:559:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:559:1"
+                  },
+                  {
+                    "source_id": "L:RC:559:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:559:1"
+                  },
+                  {
+                    "source_id": "L:RC:559:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-611"
+                  }
+                ]
+              }
+            },
+            {
+              "node_id": "L:RC:530:1",
+              "exemplar_id": "530",
+              "slot": "RC",
+              "summary": "insecure xslt processor configuration",
+              "score": 0.416359,
+              "pattern": {
+                "claim": "The XML transformer factory lacks secure processing constraints, allowing unrestricted access to external resources during stylesheet resolution.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch configures the transformer factory to enable secure processing features and restrict external stylesheet access to local paths.",
+                "applies_when": [
+                  "An attacker must supply or influence the content of custom policy files used during validation checks."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch configures the transformer factory to enable secure processing features and restrict external stylesheet access to local paths."
+                ],
+                "required_target_checks": [
+                  "Inspect the candidate path for the exemplar root-cause behavior.",
+                  "Verify guard presence and coverage on every relevant target path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "530",
+                "matched_node_id": "L:RC:530:1",
+                "entrypoint": {
+                  "node_id": "L:EP:530:1",
+                  "slot": "EP",
+                  "summary": "XSL Transformation in Policy Checks",
+                  "details": "The vulnerability is triggered when the application processes custom schematron policy files that invoke XSL transformations."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:530:1",
+                  "slot": "PC",
+                  "summary": "untrusted custom policy files",
+                  "details": "An attacker must supply or influence the content of custom policy files used during validation checks."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:530:1",
+                  "slot": "RC",
+                  "summary": "insecure xslt processor configuration",
+                  "details": "The XML transformer factory lacks secure processing constraints, allowing unrestricted access to external resources during stylesheet resolution."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:530:1",
+                  "slot": "FI",
+                  "summary": "enforce secure xslt processing",
+                  "details": "The patch configures the transformer factory to enable secure processing features and restrict external stylesheet access to local paths."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-91",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "XML Injection"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:530:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:530:1"
+                  },
+                  {
+                    "source_id": "L:PRE:530:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:530:1"
+                  },
+                  {
+                    "source_id": "L:RC:530:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:530:1"
+                  },
+                  {
+                    "source_id": "L:RC:530:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-91"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "530",
+                "node_id": "L:RC:530:1",
+                "slot": "RC",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:530:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:530:1"
+                  },
+                  {
+                    "source_id": "L:PRE:530:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:530:1"
+                  },
+                  {
+                    "source_id": "L:RC:530:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:530:1"
+                  },
+                  {
+                    "source_id": "L:RC:530:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-91"
+                  }
+                ]
+              }
+            },
+            {
+              "node_id": "L:RC:381:1",
+              "exemplar_id": "381",
+              "slot": "RC",
+              "summary": "automatic property substitution",
+              "score": 0.421695,
+              "pattern": {
+                "claim": "The underlying XML parser automatically resolves and replaces tag values referencing system properties or environment variables with their actual values.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch configures the serializer with a filtering mechanism to explicitly prevent automatic substitution of system properties and environment variables.",
+                "applies_when": [
+                  "Applications process XML data from untrusted or external sources without restricting internal variable expansion mechanisms."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch configures the serializer with a filtering mechanism to explicitly prevent automatic substitution of system properties and environment variables."
+                ],
+                "required_target_checks": [
+                  "Inspect the candidate path for the exemplar root-cause behavior.",
+                  "Verify guard presence and coverage on every relevant target path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "381",
+                "matched_node_id": "L:RC:381:1",
+                "entrypoint": {
+                  "node_id": "L:EP:381:1",
+                  "slot": "EP",
+                  "summary": "XML Document Processing",
+                  "details": "The vulnerability is triggered when the application parses or validates XML documents containing external content."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:381:1",
+                  "slot": "PC",
+                  "summary": "untrusted xml input",
+                  "details": "Applications process XML data from untrusted or external sources without restricting internal variable expansion mechanisms."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:381:1",
+                  "slot": "RC",
+                  "summary": "automatic property substitution",
+                  "details": "The underlying XML parser automatically resolves and replaces tag values referencing system properties or environment variables with their actual values."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:381:1",
+                  "slot": "FI",
+                  "summary": "disable variable expansion",
+                  "details": "The patch configures the serializer with a filtering mechanism to explicitly prevent automatic substitution of system properties and environment variables."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-20",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Input Validation"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:381:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:381:1"
+                  },
+                  {
+                    "source_id": "L:PRE:381:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:381:1"
+                  },
+                  {
+                    "source_id": "L:RC:381:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:381:1"
+                  },
+                  {
+                    "source_id": "L:RC:381:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-20"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "381",
+                "node_id": "L:RC:381:1",
+                "slot": "RC",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:381:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:381:1"
+                  },
+                  {
+                    "source_id": "L:PRE:381:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:381:1"
+                  },
+                  {
+                    "source_id": "L:RC:381:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:381:1"
+                  },
+                  {
+                    "source_id": "L:RC:381:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-20"
+                  }
+                ]
+              }
+            }
+          ],
+          "retrieval_status": "matched",
+          "rejection_reason": null
+        }
+      },
+      "error": null,
+      "status": "completed"
+    },
+    {
+      "id": "item_2",
+      "type": "mcp_tool_call",
+      "server": "vckg",
+      "tool": "vckg_search_fix_intents",
+      "arguments": {
+        "analysis_id": "trial-0ad485fc457af4525bde825a",
+        "query": "Apply a browser DOM stylesheet with Java JAXP, restricting external resource access during stylesheet compilation and transformation while preserving parameters, indented stream output, and DOM or text results."
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"schema_version\":\"vckg.retrieval.v1\",\"query\":{\"slot\":\"FI\",\"text\":\"Apply a browser DOM stylesheet with Java JAXP, restricting external resource access during stylesheet compilation and transformation while preserving parameters, indented stream output, and DOM or text results.\",\"top_k\":3,\"analysis_id\":\"trial-0ad485fc457af4525bde825a\"},\"matches\":[],\"retrieval_status\":\"no_relevant_match\",\"rejection_reason\":\"no distinct candidate met minimum_relevance_score=0.400\"}"
+          }
+        ],
+        "structured_content": {
+          "schema_version": "vckg.retrieval.v1",
+          "query": {
+            "slot": "FI",
+            "text": "Apply a browser DOM stylesheet with Java JAXP, restricting external resource access during stylesheet compilation and transformation while preserving parameters, indented stream output, and DOM or text results.",
+            "top_k": 3,
+            "analysis_id": "trial-0ad485fc457af4525bde825a"
+          },
+          "matches": [],
+          "retrieval_status": "no_relevant_match",
+          "rejection_reason": "no distinct candidate met minimum_relevance_score=0.400"
+        }
+      },
+      "error": null,
+      "status": "completed"
+    }
+  ],
+  "errors": [],
+  "unparseable_event_lines": [],
+  "unknown_or_missing_mcp_event_schema": false,
+  "no_relevant_match_count": 1
+}

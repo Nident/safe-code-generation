@@ -59,6 +59,49 @@ class OfflineTests(unittest.TestCase):
     self.assertEqual(row['visible_files'],['prompt.txt','output.schema.json'])
     self.assertNotIn('mcp_servers',str(row['command']))
     self.assertIn('experiment root',row['destination'])
+ def test_dry_run_allows_existing_output_but_real_run_rejects(self):
+  with tempfile.TemporaryDirectory(prefix='existing trial ') as tmp:
+   root=Path(tmp)
+   (root/'prompts').symlink_to(ROOT/'prompts',target_is_directory=True)
+   (root/'generated-code/data').mkdir(parents=True)
+   tasks=json.loads((ROOT/'generated-code/data/pilot_v1.json').read_text())
+   (root/'generated-code/data/pilot_v1.json').write_text(json.dumps(tasks))
+   task=next(t for t in tasks if t['source_index']==152)
+   dest=root/'generated-code/v1/llm'/task['sample_id'];dest.mkdir(parents=True)
+   marker=dest/'preserve.txt';marker.write_text('keep')
+   argv=['run_generation','--root',str(root),'--model','offline-model','--variant','llm','--samples','152']
+   output=io.StringIO()
+   with mock.patch.object(sys,'argv',argv+['--dry-run']),mock.patch('subprocess.run',side_effect=AssertionError('External call')),contextlib.redirect_stdout(output):run_main()
+   self.assertTrue(json.loads(output.getvalue())['output_exists'])
+   with mock.patch.object(sys,'argv',argv),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit):run_main()
+   self.assertEqual(marker.read_text(),'keep')
+ def test_mcp_launch_explicitly_approves_only_required_tools(self):
+  vckg=WORKSPACE/'VCKG/Vuln_agent/vckg'
+  if not vckg.exists():self.skipTest('External runtime absent')
+  output=io.StringIO()
+  with mock.patch.object(sys,'argv',['run_generation','--root',str(ROOT),'--model','offline-model','--variant','llm_mcp','--samples','152','--vckg-dir',str(vckg),'--dry-run']),mock.patch('subprocess.run',side_effect=AssertionError('External call')),contextlib.redirect_stdout(output):run_main()
+  command=json.loads(output.getvalue())['command']
+  for tool in ['vckg_search_root_causes','vckg_search_fix_intents']:
+   self.assertIn('mcp_servers.vckg.tools.'+tool+'.approval_mode="approve"',command)
+  self.assertIn('mcp_servers.vckg.enabled_tools=["vckg_search_root_causes","vckg_search_fix_intents"]',command)
+  self.assertNotIn('--dangerously-bypass-approvals-and-sandbox',command)
+ def test_quick_tasks_inventory_and_blind_prompts(self):
+  import collections
+  quick=ROOT/'generated-code/quick-data'
+  manifest=json.loads((quick/'manifest.json').read_text())
+  self.assertEqual(sha(quick/'tasks.json'),manifest['tasks_sha256'])
+  for rel,h in manifest['files'].items():self.assertEqual(sha(ROOT/rel),h)
+  tasks=json.loads((quick/'tasks.json').read_text());self.assertEqual(len(tasks),13)
+  self.assertEqual(collections.Counter(t['cwe'] for t in tasks),{'CWE-22':2,'CWE-79':2,'CWE-89':2,'CWE-94':1,'CWE-502':2,'CWE-611':2,'CWE-918':2})
+  self.assertEqual(len({t['sample_id'] for t in tasks}),13)
+  for task in tasks:
+   self.assertFalse(task['leakage']['known_overlap'])
+   self.assertFalse(task['dynamic_scoring_eligible'])
+   for v in ['llm','llm_mcp']:
+    text=(ROOT/task['prompt_dir']/(v+'.txt')).read_text()
+    self.assertNotRegex(text,r'CWE-\d+|CVE-\d{4}-\d+')
+    base=ROOT if task.get('reference_path_base')=='project' else ROOT/'generated-code/data'
+    for ref in task['target'].values():self.assertNotIn((base/ref['path']).read_text().strip(),text)
  def test_runner_records_a_simulated_trial_without_model(self):
   with tempfile.TemporaryDirectory(prefix='trial root with spaces ') as tmp:
    root=Path(tmp)
@@ -68,7 +111,7 @@ class OfflineTests(unittest.TestCase):
    def fake_run(cmd,**kwargs):
     if cmd[-1]=='--version':return subprocess.CompletedProcess(cmd,0,'codex-cli offline-test\n','')
     if cmd[1:3]==['image','inspect']:return subprocess.CompletedProcess(cmd,0,'sha256:offline-test\n','')
-    self.assertIn('--ignore-user-config',cmd);self.assertIn('--ephemeral',cmd)
+    self.assertIn('-i',cmd);self.assertIn('--ignore-user-config',cmd);self.assertIn('--ephemeral',cmd)
     mounts=[cmd[i+1] for i,x in enumerate(cmd) if x=='--mount']
     bind=next(m for m in mounts if m.startswith('type=bind'))
     work=Path(bind.removeprefix('type=bind,src=').removesuffix(',dst=/work'))

@@ -1,0 +1,563 @@
+{
+  "valid": true,
+  "completed_tools": [
+    "vckg_search_fix_intents",
+    "vckg_search_root_causes"
+  ],
+  "calls": [
+    {
+      "id": "item_1",
+      "type": "mcp_tool_call",
+      "server": "vckg",
+      "tool": "vckg_search_fix_intents",
+      "arguments": {
+        "analysis_id": "trial-b6999bb09e0cc23a7c469f29",
+        "query": "Extract ZIP entries in Java while preserving nested names and confining directory creation and file writes to the destination directory."
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"schema_version\":\"vckg.retrieval.v1\",\"query\":{\"slot\":\"FI\",\"text\":\"Extract ZIP entries in Java while preserving nested names and confining directory creation and file writes to the destination directory.\",\"top_k\":3,\"analysis_id\":\"trial-b6999bb09e0cc23a7c469f29\"},\"matches\":[{\"node_id\":\"L:FIX:233:1\",\"exemplar_id\":\"233\",\"slot\":\"FI\",\"summary\":\"delegate extraction to secure utility\",\"score\":0.422987,\"pattern\":{\"claim\":\"The patch removes the manual ZIP extraction loop and delegates file creation to a dedicated unzip helper method to prevent path traversal.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch removes the manual ZIP extraction loop and delegates file creation to a dedicated unzip helper method to prevent path traversal.\",\"applies_when\":[\"Remote authenticated administrators must upload a malicious ZIP archive containing path traversal sequences to trigger the vulnerability.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch removes the manual ZIP extraction loop and delegates file creation to a dedicated unzip helper method to prevent path traversal.\"],\"required_target_checks\":[\"Locate the target implementation of the required security property.\",\"Verify that the implementation covers every relevant sink and path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"233\",\"matched_node_id\":\"L:FIX:233:1\",\"entrypoint\":{\"node_id\":\"L:EP:233:1\",\"slot\":\"EP\",\"summary\":\"BackupImport.performImport\",\"details\":\"The performImport method processes uploaded ZIP archives to restore system backups, serving as the direct entry point for the vulnerability.\"},\"precondition\":{\"node_id\":\"L:PRE:233:1\",\"slot\":\"PC\",\"summary\":\"authenticated administrator uploads zip\",\"details\":\"Remote authenticated administrators must upload a malicious ZIP archive containing path traversal sequences to trigger the vulnerability.\"},\"root_cause\":{\"node_id\":\"L:RC:233:1\",\"slot\":\"RC\",\"summary\":\"unvalidated zip entry paths during extraction\",\"details\":\"The original code directly constructs file paths using ZIP entry names without sanitizing directory traversal sequences.\"},\"fix_intent\":{\"node_id\":\"L:FIX:233:1\",\"slot\":\"FI\",\"summary\":\"delegate extraction to secure utility\",\"details\":\"The patch removes the manual ZIP extraction loop and delegates file creation to a dedicated unzip helper method to prevent path traversal.\"},\"cwe\":{\"node_id\":\"CWE:CWE-22\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Limitation of a Pathname to a Restricted Directory\"},\"edges\":[{\"source_id\":\"L:EP:233:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:233:1\"},{\"source_id\":\"L:PRE:233:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:233:1\"},{\"source_id\":\"L:RC:233:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:233:1\"},{\"source_id\":\"L:RC:233:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-22\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"233\",\"node_id\":\"L:FIX:233:1\",\"slot\":\"FI\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:233:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:233:1\"},{\"source_id\":\"L:PRE:233:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:233:1\"},{\"source_id\":\"L:RC:233:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:233:1\"},{\"source_id\":\"L:RC:233:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-22\"}]}}],\"retrieval_status\":\"matched\",\"rejection_reason\":null}"
+          }
+        ],
+        "structured_content": {
+          "schema_version": "vckg.retrieval.v1",
+          "query": {
+            "slot": "FI",
+            "text": "Extract ZIP entries in Java while preserving nested names and confining directory creation and file writes to the destination directory.",
+            "top_k": 3,
+            "analysis_id": "trial-b6999bb09e0cc23a7c469f29"
+          },
+          "matches": [
+            {
+              "node_id": "L:FIX:233:1",
+              "exemplar_id": "233",
+              "slot": "FI",
+              "summary": "delegate extraction to secure utility",
+              "score": 0.422987,
+              "pattern": {
+                "claim": "The patch removes the manual ZIP extraction loop and delegates file creation to a dedicated unzip helper method to prevent path traversal.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch removes the manual ZIP extraction loop and delegates file creation to a dedicated unzip helper method to prevent path traversal.",
+                "applies_when": [
+                  "Remote authenticated administrators must upload a malicious ZIP archive containing path traversal sequences to trigger the vulnerability."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch removes the manual ZIP extraction loop and delegates file creation to a dedicated unzip helper method to prevent path traversal."
+                ],
+                "required_target_checks": [
+                  "Locate the target implementation of the required security property.",
+                  "Verify that the implementation covers every relevant sink and path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "233",
+                "matched_node_id": "L:FIX:233:1",
+                "entrypoint": {
+                  "node_id": "L:EP:233:1",
+                  "slot": "EP",
+                  "summary": "BackupImport.performImport",
+                  "details": "The performImport method processes uploaded ZIP archives to restore system backups, serving as the direct entry point for the vulnerability."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:233:1",
+                  "slot": "PC",
+                  "summary": "authenticated administrator uploads zip",
+                  "details": "Remote authenticated administrators must upload a malicious ZIP archive containing path traversal sequences to trigger the vulnerability."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:233:1",
+                  "slot": "RC",
+                  "summary": "unvalidated zip entry paths during extraction",
+                  "details": "The original code directly constructs file paths using ZIP entry names without sanitizing directory traversal sequences."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:233:1",
+                  "slot": "FI",
+                  "summary": "delegate extraction to secure utility",
+                  "details": "The patch removes the manual ZIP extraction loop and delegates file creation to a dedicated unzip helper method to prevent path traversal."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-22",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Limitation of a Pathname to a Restricted Directory"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:233:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:233:1"
+                  },
+                  {
+                    "source_id": "L:PRE:233:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:233:1"
+                  },
+                  {
+                    "source_id": "L:RC:233:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:233:1"
+                  },
+                  {
+                    "source_id": "L:RC:233:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-22"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "233",
+                "node_id": "L:FIX:233:1",
+                "slot": "FI",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:233:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:233:1"
+                  },
+                  {
+                    "source_id": "L:PRE:233:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:233:1"
+                  },
+                  {
+                    "source_id": "L:RC:233:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:233:1"
+                  },
+                  {
+                    "source_id": "L:RC:233:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-22"
+                  }
+                ]
+              }
+            }
+          ],
+          "retrieval_status": "matched",
+          "rejection_reason": null
+        }
+      },
+      "error": null,
+      "status": "completed"
+    },
+    {
+      "id": "item_2",
+      "type": "mcp_tool_call",
+      "server": "vckg",
+      "tool": "vckg_search_root_causes",
+      "arguments": {
+        "analysis_id": "trial-b6999bb09e0cc23a7c469f29",
+        "query": "Java ZIP extraction uses archive entry names to create nested directories and open output files under a destination directory."
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"schema_version\":\"vckg.retrieval.v1\",\"query\":{\"slot\":\"RC\",\"text\":\"Java ZIP extraction uses archive entry names to create nested directories and open output files under a destination directory.\",\"top_k\":3,\"analysis_id\":\"trial-b6999bb09e0cc23a7c469f29\"},\"matches\":[{\"node_id\":\"L:RC:233:1\",\"exemplar_id\":\"233\",\"slot\":\"RC\",\"summary\":\"unvalidated zip entry paths during extraction\",\"score\":0.743886,\"pattern\":{\"claim\":\"The original code directly constructs file paths using ZIP entry names without sanitizing directory traversal sequences.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch removes the manual ZIP extraction loop and delegates file creation to a dedicated unzip helper method to prevent path traversal.\",\"applies_when\":[\"Remote authenticated administrators must upload a malicious ZIP archive containing path traversal sequences to trigger the vulnerability.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch removes the manual ZIP extraction loop and delegates file creation to a dedicated unzip helper method to prevent path traversal.\"],\"required_target_checks\":[\"Inspect the candidate path for the exemplar root-cause behavior.\",\"Verify guard presence and coverage on every relevant target path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"233\",\"matched_node_id\":\"L:RC:233:1\",\"entrypoint\":{\"node_id\":\"L:EP:233:1\",\"slot\":\"EP\",\"summary\":\"BackupImport.performImport\",\"details\":\"The performImport method processes uploaded ZIP archives to restore system backups, serving as the direct entry point for the vulnerability.\"},\"precondition\":{\"node_id\":\"L:PRE:233:1\",\"slot\":\"PC\",\"summary\":\"authenticated administrator uploads zip\",\"details\":\"Remote authenticated administrators must upload a malicious ZIP archive containing path traversal sequences to trigger the vulnerability.\"},\"root_cause\":{\"node_id\":\"L:RC:233:1\",\"slot\":\"RC\",\"summary\":\"unvalidated zip entry paths during extraction\",\"details\":\"The original code directly constructs file paths using ZIP entry names without sanitizing directory traversal sequences.\"},\"fix_intent\":{\"node_id\":\"L:FIX:233:1\",\"slot\":\"FI\",\"summary\":\"delegate extraction to secure utility\",\"details\":\"The patch removes the manual ZIP extraction loop and delegates file creation to a dedicated unzip helper method to prevent path traversal.\"},\"cwe\":{\"node_id\":\"CWE:CWE-22\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Limitation of a Pathname to a Restricted Directory\"},\"edges\":[{\"source_id\":\"L:EP:233:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:233:1\"},{\"source_id\":\"L:PRE:233:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:233:1\"},{\"source_id\":\"L:RC:233:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:233:1\"},{\"source_id\":\"L:RC:233:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-22\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"233\",\"node_id\":\"L:RC:233:1\",\"slot\":\"RC\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:233:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:233:1\"},{\"source_id\":\"L:PRE:233:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:233:1\"},{\"source_id\":\"L:RC:233:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:233:1\"},{\"source_id\":\"L:RC:233:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-22\"}]}},{\"node_id\":\"L:RC:442:1\",\"exemplar_id\":\"442\",\"slot\":\"RC\",\"summary\":\"missing path validation\",\"score\":0.61002,\"pattern\":{\"claim\":\"The extraction logic directly concatenates archive entry names with the output directory without verifying that the resolved path remains within the intended boundary.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch resolves and normalizes the target path, then explicitly checks that it starts with the intended output directory before proceeding with extraction.\",\"applies_when\":[\"The system processes ZIP archives provided by external or untrusted sources during the code generation phase.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch resolves and normalizes the target path, then explicitly checks that it starts with the intended output directory before proceeding with extraction.\"],\"required_target_checks\":[\"Inspect the candidate path for the exemplar root-cause behavior.\",\"Verify guard presence and coverage on every relevant target path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"442\",\"matched_node_id\":\"L:RC:442:1\",\"entrypoint\":{\"node_id\":\"L:EP:442:1\",\"slot\":\"EP\",\"summary\":\"ZIP extraction routine\",\"details\":\"The unzip method processes archive entries and writes them to a target directory without restricting the output path.\"},\"precondition\":{\"node_id\":\"L:PRE:442:1\",\"slot\":\"PC\",\"summary\":\"untrusted archive input\",\"details\":\"The system processes ZIP archives provided by external or untrusted sources during the code generation phase.\"},\"root_cause\":{\"node_id\":\"L:RC:442:1\",\"slot\":\"RC\",\"summary\":\"missing path validation\",\"details\":\"The extraction logic directly concatenates archive entry names with the output directory without verifying that the resolved path remains within the intended boundary.\"},\"fix_intent\":{\"node_id\":\"L:FIX:442:1\",\"slot\":\"FI\",\"summary\":\"enforce output directory boundary\",\"details\":\"The patch resolves and normalizes the target path, then explicitly checks that it starts with the intended output directory before proceeding with extraction.\"},\"cwe\":{\"node_id\":\"CWE:CWE-22\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Limitation of a Pathname to a Restricted Directory\"},\"edges\":[{\"source_id\":\"L:EP:442:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:442:1\"},{\"source_id\":\"L:PRE:442:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:442:1\"},{\"source_id\":\"L:RC:442:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:442:1\"},{\"source_id\":\"L:RC:442:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-22\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"442\",\"node_id\":\"L:RC:442:1\",\"slot\":\"RC\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:442:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:442:1\"},{\"source_id\":\"L:PRE:442:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:442:1\"},{\"source_id\":\"L:RC:442:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:442:1\"},{\"source_id\":\"L:RC:442:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-22\"}]}},{\"node_id\":\"L:RC:288:1\",\"exemplar_id\":\"288\",\"slot\":\"RC\",\"summary\":\"unvalidated archive entry paths\",\"score\":0.566902,\"pattern\":{\"claim\":\"The extraction logic directly uses untrusted entry names to construct file paths without verifying directory boundaries.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The update introduces a normalization check to ensure extracted files remain strictly within the designated target directory.\",\"applies_when\":[\"The application downloads a ZIP file from a remote source and iterates through its entries for extraction.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The update introduces a normalization check to ensure extracted files remain strictly within the designated target directory.\"],\"required_target_checks\":[\"Inspect the candidate path for the exemplar root-cause behavior.\",\"Verify guard presence and coverage on every relevant target path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"288\",\"matched_node_id\":\"L:RC:288:1\",\"entrypoint\":{\"node_id\":\"L:EP:288:1\",\"slot\":\"EP\",\"summary\":\"downloadAndUnpackResource\",\"details\":\"Processes remote ZIP archives and extracts contents to a specified directory.\"},\"precondition\":{\"node_id\":\"L:PRE:288:1\",\"slot\":\"PC\",\"summary\":\"remote archive extraction\",\"details\":\"The application downloads a ZIP file from a remote source and iterates through its entries for extraction.\"},\"root_cause\":{\"node_id\":\"L:RC:288:1\",\"slot\":\"RC\",\"summary\":\"unvalidated archive entry paths\",\"details\":\"The extraction logic directly uses untrusted entry names to construct file paths without verifying directory boundaries.\"},\"fix_intent\":{\"node_id\":\"L:FIX:288:1\",\"slot\":\"FI\",\"summary\":\"validate path containment\",\"details\":\"The update introduces a normalization check to ensure extracted files remain strictly within the designated target directory.\"},\"cwe\":{\"node_id\":\"CWE:CWE-22\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Limitation of a Pathname to a Restricted Directory\"},\"edges\":[{\"source_id\":\"L:EP:288:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:288:1\"},{\"source_id\":\"L:PRE:288:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:288:1\"},{\"source_id\":\"L:RC:288:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:288:1\"},{\"source_id\":\"L:RC:288:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-22\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"288\",\"node_id\":\"L:RC:288:1\",\"slot\":\"RC\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:288:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:288:1\"},{\"source_id\":\"L:PRE:288:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:288:1\"},{\"source_id\":\"L:RC:288:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:288:1\"},{\"source_id\":\"L:RC:288:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-22\"}]}}],\"retrieval_status\":\"matched\",\"rejection_reason\":null}"
+          }
+        ],
+        "structured_content": {
+          "schema_version": "vckg.retrieval.v1",
+          "query": {
+            "slot": "RC",
+            "text": "Java ZIP extraction uses archive entry names to create nested directories and open output files under a destination directory.",
+            "top_k": 3,
+            "analysis_id": "trial-b6999bb09e0cc23a7c469f29"
+          },
+          "matches": [
+            {
+              "node_id": "L:RC:233:1",
+              "exemplar_id": "233",
+              "slot": "RC",
+              "summary": "unvalidated zip entry paths during extraction",
+              "score": 0.743886,
+              "pattern": {
+                "claim": "The original code directly constructs file paths using ZIP entry names without sanitizing directory traversal sequences.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch removes the manual ZIP extraction loop and delegates file creation to a dedicated unzip helper method to prevent path traversal.",
+                "applies_when": [
+                  "Remote authenticated administrators must upload a malicious ZIP archive containing path traversal sequences to trigger the vulnerability."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch removes the manual ZIP extraction loop and delegates file creation to a dedicated unzip helper method to prevent path traversal."
+                ],
+                "required_target_checks": [
+                  "Inspect the candidate path for the exemplar root-cause behavior.",
+                  "Verify guard presence and coverage on every relevant target path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "233",
+                "matched_node_id": "L:RC:233:1",
+                "entrypoint": {
+                  "node_id": "L:EP:233:1",
+                  "slot": "EP",
+                  "summary": "BackupImport.performImport",
+                  "details": "The performImport method processes uploaded ZIP archives to restore system backups, serving as the direct entry point for the vulnerability."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:233:1",
+                  "slot": "PC",
+                  "summary": "authenticated administrator uploads zip",
+                  "details": "Remote authenticated administrators must upload a malicious ZIP archive containing path traversal sequences to trigger the vulnerability."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:233:1",
+                  "slot": "RC",
+                  "summary": "unvalidated zip entry paths during extraction",
+                  "details": "The original code directly constructs file paths using ZIP entry names without sanitizing directory traversal sequences."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:233:1",
+                  "slot": "FI",
+                  "summary": "delegate extraction to secure utility",
+                  "details": "The patch removes the manual ZIP extraction loop and delegates file creation to a dedicated unzip helper method to prevent path traversal."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-22",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Limitation of a Pathname to a Restricted Directory"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:233:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:233:1"
+                  },
+                  {
+                    "source_id": "L:PRE:233:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:233:1"
+                  },
+                  {
+                    "source_id": "L:RC:233:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:233:1"
+                  },
+                  {
+                    "source_id": "L:RC:233:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-22"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "233",
+                "node_id": "L:RC:233:1",
+                "slot": "RC",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:233:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:233:1"
+                  },
+                  {
+                    "source_id": "L:PRE:233:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:233:1"
+                  },
+                  {
+                    "source_id": "L:RC:233:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:233:1"
+                  },
+                  {
+                    "source_id": "L:RC:233:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-22"
+                  }
+                ]
+              }
+            },
+            {
+              "node_id": "L:RC:442:1",
+              "exemplar_id": "442",
+              "slot": "RC",
+              "summary": "missing path validation",
+              "score": 0.61002,
+              "pattern": {
+                "claim": "The extraction logic directly concatenates archive entry names with the output directory without verifying that the resolved path remains within the intended boundary.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch resolves and normalizes the target path, then explicitly checks that it starts with the intended output directory before proceeding with extraction.",
+                "applies_when": [
+                  "The system processes ZIP archives provided by external or untrusted sources during the code generation phase."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch resolves and normalizes the target path, then explicitly checks that it starts with the intended output directory before proceeding with extraction."
+                ],
+                "required_target_checks": [
+                  "Inspect the candidate path for the exemplar root-cause behavior.",
+                  "Verify guard presence and coverage on every relevant target path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "442",
+                "matched_node_id": "L:RC:442:1",
+                "entrypoint": {
+                  "node_id": "L:EP:442:1",
+                  "slot": "EP",
+                  "summary": "ZIP extraction routine",
+                  "details": "The unzip method processes archive entries and writes them to a target directory without restricting the output path."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:442:1",
+                  "slot": "PC",
+                  "summary": "untrusted archive input",
+                  "details": "The system processes ZIP archives provided by external or untrusted sources during the code generation phase."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:442:1",
+                  "slot": "RC",
+                  "summary": "missing path validation",
+                  "details": "The extraction logic directly concatenates archive entry names with the output directory without verifying that the resolved path remains within the intended boundary."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:442:1",
+                  "slot": "FI",
+                  "summary": "enforce output directory boundary",
+                  "details": "The patch resolves and normalizes the target path, then explicitly checks that it starts with the intended output directory before proceeding with extraction."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-22",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Limitation of a Pathname to a Restricted Directory"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:442:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:442:1"
+                  },
+                  {
+                    "source_id": "L:PRE:442:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:442:1"
+                  },
+                  {
+                    "source_id": "L:RC:442:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:442:1"
+                  },
+                  {
+                    "source_id": "L:RC:442:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-22"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "442",
+                "node_id": "L:RC:442:1",
+                "slot": "RC",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:442:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:442:1"
+                  },
+                  {
+                    "source_id": "L:PRE:442:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:442:1"
+                  },
+                  {
+                    "source_id": "L:RC:442:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:442:1"
+                  },
+                  {
+                    "source_id": "L:RC:442:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-22"
+                  }
+                ]
+              }
+            },
+            {
+              "node_id": "L:RC:288:1",
+              "exemplar_id": "288",
+              "slot": "RC",
+              "summary": "unvalidated archive entry paths",
+              "score": 0.566902,
+              "pattern": {
+                "claim": "The extraction logic directly uses untrusted entry names to construct file paths without verifying directory boundaries.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The update introduces a normalization check to ensure extracted files remain strictly within the designated target directory.",
+                "applies_when": [
+                  "The application downloads a ZIP file from a remote source and iterates through its entries for extraction."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The update introduces a normalization check to ensure extracted files remain strictly within the designated target directory."
+                ],
+                "required_target_checks": [
+                  "Inspect the candidate path for the exemplar root-cause behavior.",
+                  "Verify guard presence and coverage on every relevant target path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "288",
+                "matched_node_id": "L:RC:288:1",
+                "entrypoint": {
+                  "node_id": "L:EP:288:1",
+                  "slot": "EP",
+                  "summary": "downloadAndUnpackResource",
+                  "details": "Processes remote ZIP archives and extracts contents to a specified directory."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:288:1",
+                  "slot": "PC",
+                  "summary": "remote archive extraction",
+                  "details": "The application downloads a ZIP file from a remote source and iterates through its entries for extraction."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:288:1",
+                  "slot": "RC",
+                  "summary": "unvalidated archive entry paths",
+                  "details": "The extraction logic directly uses untrusted entry names to construct file paths without verifying directory boundaries."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:288:1",
+                  "slot": "FI",
+                  "summary": "validate path containment",
+                  "details": "The update introduces a normalization check to ensure extracted files remain strictly within the designated target directory."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-22",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Limitation of a Pathname to a Restricted Directory"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:288:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:288:1"
+                  },
+                  {
+                    "source_id": "L:PRE:288:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:288:1"
+                  },
+                  {
+                    "source_id": "L:RC:288:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:288:1"
+                  },
+                  {
+                    "source_id": "L:RC:288:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-22"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "288",
+                "node_id": "L:RC:288:1",
+                "slot": "RC",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:288:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:288:1"
+                  },
+                  {
+                    "source_id": "L:PRE:288:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:288:1"
+                  },
+                  {
+                    "source_id": "L:RC:288:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:288:1"
+                  },
+                  {
+                    "source_id": "L:RC:288:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-22"
+                  }
+                ]
+              }
+            }
+          ],
+          "retrieval_status": "matched",
+          "rejection_reason": null
+        }
+      },
+      "error": null,
+      "status": "completed"
+    }
+  ],
+  "errors": [],
+  "unparseable_event_lines": [],
+  "unknown_or_missing_mcp_event_schema": false,
+  "no_relevant_match_count": 0
+}

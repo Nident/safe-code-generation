@@ -1,0 +1,6 @@
+{
+  "code": "public Column setHeaderCaption(String caption) throws IllegalStateException {\n    checkColumnIsAttached();\n\n    String headerCaption = caption == null ? \"\" : caption;\n    state.headerCaption = headerCaption;\n\n    HeaderRow defaultRow = grid.getHeader().getDefaultRow();\n    if (defaultRow != null) {\n        HeaderCell cell = defaultRow.getCell(grid.getPropertyIdByColumnId(state.id));\n        if (cell != null) {\n            cell.setText(headerCaption);\n        }\n    }\n\n    return this;\n}",
+  "imports": "",
+  "dependency_notes": "Assumes HeaderRow and HeaderCell are in scope in the existing Column class and that HeaderRow.getCell accepts the resolved property ID and returns a nullable HeaderCell. The exact framework version and rendering path are unspecified. Display updates use the supplied setText contract.",
+  "retrieval_notes": "Both VCKG searches completed successfully and returned no_relevant_match with empty exemplar chains. No retrieved pattern informed the implementation. The attachment check, null normalization, and conditional cell update follow the task specification."
+}

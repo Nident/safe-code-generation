@@ -1,0 +1,6 @@
+{
+  "code": "final static private XMLStreamReader createXMLStreamReader(InputStream inputStream) throws XMLStreamException, IOException {\n    InputStream wrappedStream = wrapPrefixRemovingInputStream(inputStream);\n    XMLInputFactory factory = XMLInputFactory.newInstance();\n    factory.setProperty(XMLInputFactory.IS_COALESCING, Boolean.TRUE);\n    factory.setProperty(XMLInputFactory.IS_REPLACING_ENTITY_REFERENCES, Boolean.TRUE);\n    return factory.createXMLStreamReader(wrappedStream);\n}",
+  "imports": "import java.io.IOException;\nimport java.io.InputStream;\nimport javax.xml.stream.XMLInputFactory;\nimport javax.xml.stream.XMLStreamException;\nimport javax.xml.stream.XMLStreamReader;",
+  "dependency_notes": "Requires the existing wrapPrefixRemovingInputStream(InputStream) helper to be callable from this static method and return the transformed InputStream. Its implementation is supplied by the project.",
+  "retrieval_notes": "Used only the supplied specification."
+}

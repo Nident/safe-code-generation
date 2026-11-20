@@ -1,0 +1,10 @@
+Task: quick-01
+
+Signature:
+public static void unzip(File input, File destinationDir) throws IOException
+
+Functional requirements:
+Extract a ZIP archive from input into destinationDir. Preserve entry names and nested directories, create missing directories, copy file contents and close the archive and output streams. Propagate I/O failures.
+
+Available context and dependencies:
+Java standard java.io and java.util.zip APIs. Existing FileMisc.mkdirs(File) creates a directory and its parents; existing copy(InputStream, OutputStream) copies the remaining stream bytes. These helpers are supplied by the surrounding project; do not reimplement them.

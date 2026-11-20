@@ -1,0 +1,807 @@
+{
+  "valid": true,
+  "completed_tools": [
+    "vckg_search_fix_intents",
+    "vckg_search_root_causes"
+  ],
+  "calls": [
+    {
+      "id": "item_1",
+      "type": "mcp_tool_call",
+      "server": "vckg",
+      "tool": "vckg_search_root_causes",
+      "arguments": {
+        "analysis_id": "trial-b448d024273567051ec151a5",
+        "query": "Java JAXP DOM parser reads caller-supplied XML from an InputStream with defaults that can resolve external entities or DTDs.",
+        "top_k": 3
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"schema_version\":\"vckg.retrieval.v1\",\"query\":{\"slot\":\"RC\",\"text\":\"Java JAXP DOM parser reads caller-supplied XML from an InputStream with defaults that can resolve external entities or DTDs.\",\"top_k\":3,\"analysis_id\":\"trial-b448d024273567051ec151a5\"},\"matches\":[{\"node_id\":\"L:RC:559:1\",\"exemplar_id\":\"559\",\"slot\":\"RC\",\"summary\":\"unrestricted external entity processing\",\"score\":0.651526,\"pattern\":{\"claim\":\"The original implementation directly unmarshals the input string using a default JAXB unmarshaller, which inherently supports external entities and DTDs by default, enabling XXE attacks.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling.\",\"applies_when\":[\"The vulnerability requires an attacker to supply a malicious XML string to the deserialization method for processing.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling.\"],\"required_target_checks\":[\"Inspect the candidate path for the exemplar root-cause behavior.\",\"Verify guard presence and coverage on every relevant target path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"559\",\"matched_node_id\":\"L:RC:559:1\",\"entrypoint\":{\"node_id\":\"L:EP:559:1\",\"slot\":\"EP\",\"summary\":\"JAXB deserialization method\",\"details\":\"The method accepts user-controlled string content and directly passes it to the JAXB unmarshaller for XML parsing.\"},\"precondition\":{\"node_id\":\"L:PRE:559:1\",\"slot\":\"PC\",\"summary\":\"user-controlled xml input\",\"details\":\"The vulnerability requires an attacker to supply a malicious XML string to the deserialization method for processing.\"},\"root_cause\":{\"node_id\":\"L:RC:559:1\",\"slot\":\"RC\",\"summary\":\"unrestricted external entity processing\",\"details\":\"The original implementation directly unmarshals the input string using a default JAXB unmarshaller, which inherently supports external entities and DTDs by default, enabling XXE attacks.\"},\"fix_intent\":{\"node_id\":\"L:FIX:559:1\",\"slot\":\"FI\",\"summary\":\"disable external entity resolution\",\"details\":\"The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling.\"},\"cwe\":{\"node_id\":\"CWE:CWE-611\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Restriction of XML External Entity Reference\"},\"edges\":[{\"source_id\":\"L:EP:559:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:559:1\"},{\"source_id\":\"L:PRE:559:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:559:1\"},{\"source_id\":\"L:RC:559:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:559:1\"},{\"source_id\":\"L:RC:559:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-611\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"559\",\"node_id\":\"L:RC:559:1\",\"slot\":\"RC\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:559:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:559:1\"},{\"source_id\":\"L:PRE:559:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:559:1\"},{\"source_id\":\"L:RC:559:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:559:1\"},{\"source_id\":\"L:RC:559:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-611\"}]}},{\"node_id\":\"L:RC:194:1\",\"exemplar_id\":\"194\",\"slot\":\"RC\",\"summary\":\"insecure xml parser configuration\",\"score\":0.630528,\"pattern\":{\"claim\":\"The SAX XML reader is instantiated with default settings that permit the loading of external DTDs and processing of external entities, enabling XXE attacks.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch explicitly configures the XML reader to disable external DTD loading and external general or parameter entity resolution to prevent XXE exploitation.\",\"applies_when\":[\"The application processes externally uploaded document files containing XML content without validating or sanitizing the input structure.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch explicitly configures the XML reader to disable external DTD loading and external general or parameter entity resolution to prevent XXE exploitation.\"],\"required_target_checks\":[\"Inspect the candidate path for the exemplar root-cause behavior.\",\"Verify guard presence and coverage on every relevant target path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"194\",\"matched_node_id\":\"L:RC:194:1\",\"entrypoint\":{\"node_id\":\"L:EP:194:1\",\"slot\":\"EP\",\"summary\":\"XML document preprocessing\",\"details\":\"The vulnerability is triggered during the preprocessing of uploaded document files using a SAX-based XML parser.\"},\"precondition\":{\"node_id\":\"L:PRE:194:1\",\"slot\":\"PC\",\"summary\":\"untrusted xml input parsing\",\"details\":\"The application processes externally uploaded document files containing XML content without validating or sanitizing the input structure.\"},\"root_cause\":{\"node_id\":\"L:RC:194:1\",\"slot\":\"RC\",\"summary\":\"insecure xml parser configuration\",\"details\":\"The SAX XML reader is instantiated with default settings that permit the loading of external DTDs and processing of external entities, enabling XXE attacks.\"},\"fix_intent\":{\"node_id\":\"L:FIX:194:1\",\"slot\":\"FI\",\"summary\":\"disable external entity resolution\",\"details\":\"The patch explicitly configures the XML reader to disable external DTD loading and external general or parameter entity resolution to prevent XXE exploitation.\"},\"cwe\":{\"node_id\":\"CWE:CWE-611\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Restriction of XML External Entity Reference\"},\"edges\":[{\"source_id\":\"L:EP:194:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:194:1\"},{\"source_id\":\"L:PRE:194:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:194:1\"},{\"source_id\":\"L:RC:194:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:194:1\"},{\"source_id\":\"L:RC:194:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-611\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"194\",\"node_id\":\"L:RC:194:1\",\"slot\":\"RC\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:194:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:194:1\"},{\"source_id\":\"L:PRE:194:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:194:1\"},{\"source_id\":\"L:RC:194:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:194:1\"},{\"source_id\":\"L:RC:194:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-611\"}]}},{\"node_id\":\"L:RC:126:1\",\"exemplar_id\":\"126\",\"slot\":\"RC\",\"summary\":\"unrestricted xml entity resolution\",\"score\":0.627604,\"pattern\":{\"claim\":\"The XML parser lacks restrictions on external entity resolution, allowing it to fetch and expand external DTDs and system entities during document processing.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch configures a custom entity resolver that returns empty input sources for all external entity and subset requests, preventing external resource loading.\",\"applies_when\":[\"An attacker must supply a malicious GML layer URL pointing to a server hosting a crafted XML document and external DTD file.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch configures a custom entity resolver that returns empty input sources for all external entity and subset requests, preventing external resource loading.\"],\"required_target_checks\":[\"Inspect the candidate path for the exemplar root-cause behavior.\",\"Verify guard presence and coverage on every relevant target path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"126\",\"matched_node_id\":\"L:RC:126:1\",\"entrypoint\":{\"node_id\":\"L:EP:126:1\",\"slot\":\"EP\",\"summary\":\"GML Layer XML Parsing\",\"details\":\"The vulnerability is triggered when the application fetches and parses GML layer data from a remote URL, initiating XML document processing.\"},\"precondition\":{\"node_id\":\"L:PRE:126:1\",\"slot\":\"PC\",\"summary\":\"remote gml url configuration\",\"details\":\"An attacker must supply a malicious GML layer URL pointing to a server hosting a crafted XML document and external DTD file.\"},\"root_cause\":{\"node_id\":\"L:RC:126:1\",\"slot\":\"RC\",\"summary\":\"unrestricted xml entity resolution\",\"details\":\"The XML parser lacks restrictions on external entity resolution, allowing it to fetch and expand external DTDs and system entities during document processing.\"},\"fix_intent\":{\"node_id\":\"L:FIX:126:1\",\"slot\":\"FI\",\"summary\":\"disable external entity resolution\",\"details\":\"The patch configures a custom entity resolver that returns empty input sources for all external entity and subset requests, preventing external resource loading.\"},\"cwe\":{\"node_id\":\"CWE:CWE-611\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Restriction of XML External Entity Reference\"},\"edges\":[{\"source_id\":\"L:EP:126:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:126:1\"},{\"source_id\":\"L:PRE:126:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:126:1\"},{\"source_id\":\"L:RC:126:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:126:1\"},{\"source_id\":\"L:RC:126:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-611\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"126\",\"node_id\":\"L:RC:126:1\",\"slot\":\"RC\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:126:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:126:1\"},{\"source_id\":\"L:PRE:126:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:126:1\"},{\"source_id\":\"L:RC:126:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:126:1\"},{\"source_id\":\"L:RC:126:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-611\"}]}}],\"retrieval_status\":\"matched\",\"rejection_reason\":null}"
+          }
+        ],
+        "structured_content": {
+          "schema_version": "vckg.retrieval.v1",
+          "query": {
+            "slot": "RC",
+            "text": "Java JAXP DOM parser reads caller-supplied XML from an InputStream with defaults that can resolve external entities or DTDs.",
+            "top_k": 3,
+            "analysis_id": "trial-b448d024273567051ec151a5"
+          },
+          "matches": [
+            {
+              "node_id": "L:RC:559:1",
+              "exemplar_id": "559",
+              "slot": "RC",
+              "summary": "unrestricted external entity processing",
+              "score": 0.651526,
+              "pattern": {
+                "claim": "The original implementation directly unmarshals the input string using a default JAXB unmarshaller, which inherently supports external entities and DTDs by default, enabling XXE attacks.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling.",
+                "applies_when": [
+                  "The vulnerability requires an attacker to supply a malicious XML string to the deserialization method for processing."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling."
+                ],
+                "required_target_checks": [
+                  "Inspect the candidate path for the exemplar root-cause behavior.",
+                  "Verify guard presence and coverage on every relevant target path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "559",
+                "matched_node_id": "L:RC:559:1",
+                "entrypoint": {
+                  "node_id": "L:EP:559:1",
+                  "slot": "EP",
+                  "summary": "JAXB deserialization method",
+                  "details": "The method accepts user-controlled string content and directly passes it to the JAXB unmarshaller for XML parsing."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:559:1",
+                  "slot": "PC",
+                  "summary": "user-controlled xml input",
+                  "details": "The vulnerability requires an attacker to supply a malicious XML string to the deserialization method for processing."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:559:1",
+                  "slot": "RC",
+                  "summary": "unrestricted external entity processing",
+                  "details": "The original implementation directly unmarshals the input string using a default JAXB unmarshaller, which inherently supports external entities and DTDs by default, enabling XXE attacks."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:559:1",
+                  "slot": "FI",
+                  "summary": "disable external entity resolution",
+                  "details": "The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-611",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Restriction of XML External Entity Reference"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:559:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:559:1"
+                  },
+                  {
+                    "source_id": "L:PRE:559:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:559:1"
+                  },
+                  {
+                    "source_id": "L:RC:559:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:559:1"
+                  },
+                  {
+                    "source_id": "L:RC:559:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-611"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "559",
+                "node_id": "L:RC:559:1",
+                "slot": "RC",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:559:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:559:1"
+                  },
+                  {
+                    "source_id": "L:PRE:559:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:559:1"
+                  },
+                  {
+                    "source_id": "L:RC:559:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:559:1"
+                  },
+                  {
+                    "source_id": "L:RC:559:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-611"
+                  }
+                ]
+              }
+            },
+            {
+              "node_id": "L:RC:194:1",
+              "exemplar_id": "194",
+              "slot": "RC",
+              "summary": "insecure xml parser configuration",
+              "score": 0.630528,
+              "pattern": {
+                "claim": "The SAX XML reader is instantiated with default settings that permit the loading of external DTDs and processing of external entities, enabling XXE attacks.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch explicitly configures the XML reader to disable external DTD loading and external general or parameter entity resolution to prevent XXE exploitation.",
+                "applies_when": [
+                  "The application processes externally uploaded document files containing XML content without validating or sanitizing the input structure."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch explicitly configures the XML reader to disable external DTD loading and external general or parameter entity resolution to prevent XXE exploitation."
+                ],
+                "required_target_checks": [
+                  "Inspect the candidate path for the exemplar root-cause behavior.",
+                  "Verify guard presence and coverage on every relevant target path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "194",
+                "matched_node_id": "L:RC:194:1",
+                "entrypoint": {
+                  "node_id": "L:EP:194:1",
+                  "slot": "EP",
+                  "summary": "XML document preprocessing",
+                  "details": "The vulnerability is triggered during the preprocessing of uploaded document files using a SAX-based XML parser."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:194:1",
+                  "slot": "PC",
+                  "summary": "untrusted xml input parsing",
+                  "details": "The application processes externally uploaded document files containing XML content without validating or sanitizing the input structure."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:194:1",
+                  "slot": "RC",
+                  "summary": "insecure xml parser configuration",
+                  "details": "The SAX XML reader is instantiated with default settings that permit the loading of external DTDs and processing of external entities, enabling XXE attacks."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:194:1",
+                  "slot": "FI",
+                  "summary": "disable external entity resolution",
+                  "details": "The patch explicitly configures the XML reader to disable external DTD loading and external general or parameter entity resolution to prevent XXE exploitation."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-611",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Restriction of XML External Entity Reference"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:194:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:194:1"
+                  },
+                  {
+                    "source_id": "L:PRE:194:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:194:1"
+                  },
+                  {
+                    "source_id": "L:RC:194:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:194:1"
+                  },
+                  {
+                    "source_id": "L:RC:194:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-611"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "194",
+                "node_id": "L:RC:194:1",
+                "slot": "RC",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:194:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:194:1"
+                  },
+                  {
+                    "source_id": "L:PRE:194:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:194:1"
+                  },
+                  {
+                    "source_id": "L:RC:194:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:194:1"
+                  },
+                  {
+                    "source_id": "L:RC:194:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-611"
+                  }
+                ]
+              }
+            },
+            {
+              "node_id": "L:RC:126:1",
+              "exemplar_id": "126",
+              "slot": "RC",
+              "summary": "unrestricted xml entity resolution",
+              "score": 0.627604,
+              "pattern": {
+                "claim": "The XML parser lacks restrictions on external entity resolution, allowing it to fetch and expand external DTDs and system entities during document processing.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch configures a custom entity resolver that returns empty input sources for all external entity and subset requests, preventing external resource loading.",
+                "applies_when": [
+                  "An attacker must supply a malicious GML layer URL pointing to a server hosting a crafted XML document and external DTD file."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch configures a custom entity resolver that returns empty input sources for all external entity and subset requests, preventing external resource loading."
+                ],
+                "required_target_checks": [
+                  "Inspect the candidate path for the exemplar root-cause behavior.",
+                  "Verify guard presence and coverage on every relevant target path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "126",
+                "matched_node_id": "L:RC:126:1",
+                "entrypoint": {
+                  "node_id": "L:EP:126:1",
+                  "slot": "EP",
+                  "summary": "GML Layer XML Parsing",
+                  "details": "The vulnerability is triggered when the application fetches and parses GML layer data from a remote URL, initiating XML document processing."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:126:1",
+                  "slot": "PC",
+                  "summary": "remote gml url configuration",
+                  "details": "An attacker must supply a malicious GML layer URL pointing to a server hosting a crafted XML document and external DTD file."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:126:1",
+                  "slot": "RC",
+                  "summary": "unrestricted xml entity resolution",
+                  "details": "The XML parser lacks restrictions on external entity resolution, allowing it to fetch and expand external DTDs and system entities during document processing."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:126:1",
+                  "slot": "FI",
+                  "summary": "disable external entity resolution",
+                  "details": "The patch configures a custom entity resolver that returns empty input sources for all external entity and subset requests, preventing external resource loading."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-611",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Restriction of XML External Entity Reference"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:126:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:126:1"
+                  },
+                  {
+                    "source_id": "L:PRE:126:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:126:1"
+                  },
+                  {
+                    "source_id": "L:RC:126:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:126:1"
+                  },
+                  {
+                    "source_id": "L:RC:126:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-611"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "126",
+                "node_id": "L:RC:126:1",
+                "slot": "RC",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:126:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:126:1"
+                  },
+                  {
+                    "source_id": "L:PRE:126:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:126:1"
+                  },
+                  {
+                    "source_id": "L:RC:126:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:126:1"
+                  },
+                  {
+                    "source_id": "L:RC:126:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-611"
+                  }
+                ]
+              }
+            }
+          ],
+          "retrieval_status": "matched",
+          "rejection_reason": null
+        }
+      },
+      "error": null,
+      "status": "completed"
+    },
+    {
+      "id": "item_2",
+      "type": "mcp_tool_call",
+      "server": "vckg",
+      "tool": "vckg_search_fix_intents",
+      "arguments": {
+        "analysis_id": "trial-b448d024273567051ec151a5",
+        "query": "Configure a namespace-aware Java JAXP DOM parser to block external entity and DTD resolution before parsing caller-supplied XML.",
+        "top_k": 3
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"schema_version\":\"vckg.retrieval.v1\",\"query\":{\"slot\":\"FI\",\"text\":\"Configure a namespace-aware Java JAXP DOM parser to block external entity and DTD resolution before parsing caller-supplied XML.\",\"top_k\":3,\"analysis_id\":\"trial-b448d024273567051ec151a5\"},\"matches\":[{\"node_id\":\"L:FIX:559:1\",\"exemplar_id\":\"559\",\"slot\":\"FI\",\"summary\":\"disable external entity resolution\",\"score\":0.634959,\"pattern\":{\"claim\":\"The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling.\",\"applies_when\":[\"The vulnerability requires an attacker to supply a malicious XML string to the deserialization method for processing.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling.\"],\"required_target_checks\":[\"Locate the target implementation of the required security property.\",\"Verify that the implementation covers every relevant sink and path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"559\",\"matched_node_id\":\"L:FIX:559:1\",\"entrypoint\":{\"node_id\":\"L:EP:559:1\",\"slot\":\"EP\",\"summary\":\"JAXB deserialization method\",\"details\":\"The method accepts user-controlled string content and directly passes it to the JAXB unmarshaller for XML parsing.\"},\"precondition\":{\"node_id\":\"L:PRE:559:1\",\"slot\":\"PC\",\"summary\":\"user-controlled xml input\",\"details\":\"The vulnerability requires an attacker to supply a malicious XML string to the deserialization method for processing.\"},\"root_cause\":{\"node_id\":\"L:RC:559:1\",\"slot\":\"RC\",\"summary\":\"unrestricted external entity processing\",\"details\":\"The original implementation directly unmarshals the input string using a default JAXB unmarshaller, which inherently supports external entities and DTDs by default, enabling XXE attacks.\"},\"fix_intent\":{\"node_id\":\"L:FIX:559:1\",\"slot\":\"FI\",\"summary\":\"disable external entity resolution\",\"details\":\"The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling.\"},\"cwe\":{\"node_id\":\"CWE:CWE-611\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Restriction of XML External Entity Reference\"},\"edges\":[{\"source_id\":\"L:EP:559:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:559:1\"},{\"source_id\":\"L:PRE:559:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:559:1\"},{\"source_id\":\"L:RC:559:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:559:1\"},{\"source_id\":\"L:RC:559:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-611\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"559\",\"node_id\":\"L:FIX:559:1\",\"slot\":\"FI\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:559:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:559:1\"},{\"source_id\":\"L:PRE:559:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:559:1\"},{\"source_id\":\"L:RC:559:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:559:1\"},{\"source_id\":\"L:RC:559:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-611\"}]}},{\"node_id\":\"L:FIX:172:1\",\"exemplar_id\":\"172\",\"slot\":\"FI\",\"summary\":\"disable external entity resolution\",\"score\":0.597925,\"pattern\":{\"claim\":\"Configures the parser factory to disallow DOCTYPE declarations, preventing external entity processing.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"Configures the parser factory to disallow DOCTYPE declarations, preventing external entity processing.\",\"applies_when\":[\"Requires an attacker to supply a malicious XML payload via a configured webhook endpoint.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: Configures the parser factory to disallow DOCTYPE declarations, preventing external entity processing.\"],\"required_target_checks\":[\"Locate the target implementation of the required security property.\",\"Verify that the implementation covers every relevant sink and path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"172\",\"matched_node_id\":\"L:FIX:172:1\",\"entrypoint\":{\"node_id\":\"L:EP:172:1\",\"slot\":\"EP\",\"summary\":\"XML parameter extraction\",\"details\":\"Triggered when the plugin processes incoming webhook payloads using XPath to extract parameters.\"},\"precondition\":{\"node_id\":\"L:PRE:172:1\",\"slot\":\"PC\",\"summary\":\"untrusted xml input\",\"details\":\"Requires an attacker to supply a malicious XML payload via a configured webhook endpoint.\"},\"root_cause\":{\"node_id\":\"L:RC:172:1\",\"slot\":\"RC\",\"summary\":\"unsecured xml parser configuration\",\"details\":\"The XML parser factory lacks configuration to restrict external entity resolution and DOCTYPE declarations.\"},\"fix_intent\":{\"node_id\":\"L:FIX:172:1\",\"slot\":\"FI\",\"summary\":\"disable external entity resolution\",\"details\":\"Configures the parser factory to disallow DOCTYPE declarations, preventing external entity processing.\"},\"cwe\":{\"node_id\":\"CWE:CWE-611\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Restriction of XML External Entity Reference\"},\"edges\":[{\"source_id\":\"L:EP:172:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:172:1\"},{\"source_id\":\"L:PRE:172:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:172:1\"},{\"source_id\":\"L:RC:172:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:172:1\"},{\"source_id\":\"L:RC:172:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-611\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"172\",\"node_id\":\"L:FIX:172:1\",\"slot\":\"FI\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:172:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:172:1\"},{\"source_id\":\"L:PRE:172:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:172:1\"},{\"source_id\":\"L:RC:172:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:172:1\"},{\"source_id\":\"L:RC:172:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-611\"}]}},{\"node_id\":\"L:FIX:639:1\",\"exemplar_id\":\"639\",\"slot\":\"FI\",\"summary\":\"disable external entities\",\"score\":0.605076,\"pattern\":{\"claim\":\"The update configures the XML parser to disable external entity resolution to prevent XXE exploitation.\",\"security_boundary\":null,\"source_kind\":null,\"sink_kind\":null,\"required_guard\":\"The update configures the XML parser to disable external entity resolution to prevent XXE exploitation.\",\"applies_when\":[\"An attacker must be able to control an agent process or supply a crafted changelog file to the Jenkins controller.\"],\"disproven_when\":[\"Target code implements this exemplar fix intent on every relevant path: The update configures the XML parser to disable external entity resolution to prevent XXE exploitation.\"],\"required_target_checks\":[\"Locate the target implementation of the required security property.\",\"Verify that the implementation covers every relevant sink and path.\"],\"common_false_positives\":[],\"framework_assumptions\":[]},\"native_causal_chain\":{\"exemplar_id\":\"639\",\"matched_node_id\":\"L:FIX:639:1\",\"entrypoint\":{\"node_id\":\"L:EP:639:1\",\"slot\":\"EP\",\"summary\":\"XML Changelog Parser\",\"details\":\"The vulnerability is triggered when the Jenkins Mercurial plugin processes an XML changelog file.\"},\"precondition\":{\"node_id\":\"L:PRE:639:1\",\"slot\":\"PC\",\"summary\":\"untrusted changelog input\",\"details\":\"An attacker must be able to control an agent process or supply a crafted changelog file to the Jenkins controller.\"},\"root_cause\":{\"node_id\":\"L:RC:639:1\",\"slot\":\"RC\",\"summary\":\"unrestricted xml parsing\",\"details\":\"The XML changelog parser was not configured to disable external entity resolution, enabling XXE attacks.\"},\"fix_intent\":{\"node_id\":\"L:FIX:639:1\",\"slot\":\"FI\",\"summary\":\"disable external entities\",\"details\":\"The update configures the XML parser to disable external entity resolution to prevent XXE exploitation.\"},\"cwe\":{\"node_id\":\"CWE:CWE-611\",\"slot\":\"CWE\",\"summary\":\"\",\"details\":\"Improper Restriction of XML External Entity Reference\"},\"edges\":[{\"source_id\":\"L:EP:639:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:639:1\"},{\"source_id\":\"L:PRE:639:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:639:1\"},{\"source_id\":\"L:RC:639:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:639:1\"},{\"source_id\":\"L:RC:639:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-611\"}],\"missing_slots\":[]},\"provenance\":{\"graph_id\":\"project_lvl_final_knowledge_graph\",\"exemplar_id\":\"639\",\"node_id\":\"L:FIX:639:1\",\"slot\":\"FI\",\"source_fields\":{\"pattern.claim\":\"matched CLEAR node.details\",\"pattern.applies_when\":\"native CLEAR exemplar PC.details\",\"pattern.required_guard\":\"native CLEAR exemplar FI.details\"},\"derived_fields\":{\"pattern.required_target_checks\":\"deterministic slot-specific verification template\",\"pattern.disproven_when\":\"derived verification condition based on FI; not a claim about target code\"},\"source_references\":[],\"related_edges\":[{\"source_id\":\"L:EP:639:1\",\"relation\":\"has_property\",\"target_id\":\"L:PRE:639:1\"},{\"source_id\":\"L:PRE:639:1\",\"relation\":\"enables\",\"target_id\":\"L:RC:639:1\"},{\"source_id\":\"L:RC:639:1\",\"relation\":\"mitigated_by\",\"target_id\":\"L:FIX:639:1\"},{\"source_id\":\"L:RC:639:1\",\"relation\":\"classified_as\",\"target_id\":\"CWE:CWE-611\"}]}}],\"retrieval_status\":\"matched\",\"rejection_reason\":null}"
+          }
+        ],
+        "structured_content": {
+          "schema_version": "vckg.retrieval.v1",
+          "query": {
+            "slot": "FI",
+            "text": "Configure a namespace-aware Java JAXP DOM parser to block external entity and DTD resolution before parsing caller-supplied XML.",
+            "top_k": 3,
+            "analysis_id": "trial-b448d024273567051ec151a5"
+          },
+          "matches": [
+            {
+              "node_id": "L:FIX:559:1",
+              "exemplar_id": "559",
+              "slot": "FI",
+              "summary": "disable external entity resolution",
+              "score": 0.634959,
+              "pattern": {
+                "claim": "The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling.",
+                "applies_when": [
+                  "The vulnerability requires an attacker to supply a malicious XML string to the deserialization method for processing."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling."
+                ],
+                "required_target_checks": [
+                  "Locate the target implementation of the required security property.",
+                  "Verify that the implementation covers every relevant sink and path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "559",
+                "matched_node_id": "L:FIX:559:1",
+                "entrypoint": {
+                  "node_id": "L:EP:559:1",
+                  "slot": "EP",
+                  "summary": "JAXB deserialization method",
+                  "details": "The method accepts user-controlled string content and directly passes it to the JAXB unmarshaller for XML parsing."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:559:1",
+                  "slot": "PC",
+                  "summary": "user-controlled xml input",
+                  "details": "The vulnerability requires an attacker to supply a malicious XML string to the deserialization method for processing."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:559:1",
+                  "slot": "RC",
+                  "summary": "unrestricted external entity processing",
+                  "details": "The original implementation directly unmarshals the input string using a default JAXB unmarshaller, which inherently supports external entities and DTDs by default, enabling XXE attacks."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:559:1",
+                  "slot": "FI",
+                  "summary": "disable external entity resolution",
+                  "details": "The patch configures an XMLInputFactory to explicitly disable external entity support and restricts DTD processing before creating an XMLStreamReader for safe unmarshalling."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-611",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Restriction of XML External Entity Reference"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:559:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:559:1"
+                  },
+                  {
+                    "source_id": "L:PRE:559:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:559:1"
+                  },
+                  {
+                    "source_id": "L:RC:559:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:559:1"
+                  },
+                  {
+                    "source_id": "L:RC:559:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-611"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "559",
+                "node_id": "L:FIX:559:1",
+                "slot": "FI",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:559:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:559:1"
+                  },
+                  {
+                    "source_id": "L:PRE:559:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:559:1"
+                  },
+                  {
+                    "source_id": "L:RC:559:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:559:1"
+                  },
+                  {
+                    "source_id": "L:RC:559:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-611"
+                  }
+                ]
+              }
+            },
+            {
+              "node_id": "L:FIX:172:1",
+              "exemplar_id": "172",
+              "slot": "FI",
+              "summary": "disable external entity resolution",
+              "score": 0.597925,
+              "pattern": {
+                "claim": "Configures the parser factory to disallow DOCTYPE declarations, preventing external entity processing.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "Configures the parser factory to disallow DOCTYPE declarations, preventing external entity processing.",
+                "applies_when": [
+                  "Requires an attacker to supply a malicious XML payload via a configured webhook endpoint."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: Configures the parser factory to disallow DOCTYPE declarations, preventing external entity processing."
+                ],
+                "required_target_checks": [
+                  "Locate the target implementation of the required security property.",
+                  "Verify that the implementation covers every relevant sink and path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "172",
+                "matched_node_id": "L:FIX:172:1",
+                "entrypoint": {
+                  "node_id": "L:EP:172:1",
+                  "slot": "EP",
+                  "summary": "XML parameter extraction",
+                  "details": "Triggered when the plugin processes incoming webhook payloads using XPath to extract parameters."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:172:1",
+                  "slot": "PC",
+                  "summary": "untrusted xml input",
+                  "details": "Requires an attacker to supply a malicious XML payload via a configured webhook endpoint."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:172:1",
+                  "slot": "RC",
+                  "summary": "unsecured xml parser configuration",
+                  "details": "The XML parser factory lacks configuration to restrict external entity resolution and DOCTYPE declarations."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:172:1",
+                  "slot": "FI",
+                  "summary": "disable external entity resolution",
+                  "details": "Configures the parser factory to disallow DOCTYPE declarations, preventing external entity processing."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-611",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Restriction of XML External Entity Reference"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:172:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:172:1"
+                  },
+                  {
+                    "source_id": "L:PRE:172:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:172:1"
+                  },
+                  {
+                    "source_id": "L:RC:172:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:172:1"
+                  },
+                  {
+                    "source_id": "L:RC:172:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-611"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "172",
+                "node_id": "L:FIX:172:1",
+                "slot": "FI",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:172:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:172:1"
+                  },
+                  {
+                    "source_id": "L:PRE:172:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:172:1"
+                  },
+                  {
+                    "source_id": "L:RC:172:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:172:1"
+                  },
+                  {
+                    "source_id": "L:RC:172:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-611"
+                  }
+                ]
+              }
+            },
+            {
+              "node_id": "L:FIX:639:1",
+              "exemplar_id": "639",
+              "slot": "FI",
+              "summary": "disable external entities",
+              "score": 0.605076,
+              "pattern": {
+                "claim": "The update configures the XML parser to disable external entity resolution to prevent XXE exploitation.",
+                "security_boundary": null,
+                "source_kind": null,
+                "sink_kind": null,
+                "required_guard": "The update configures the XML parser to disable external entity resolution to prevent XXE exploitation.",
+                "applies_when": [
+                  "An attacker must be able to control an agent process or supply a crafted changelog file to the Jenkins controller."
+                ],
+                "disproven_when": [
+                  "Target code implements this exemplar fix intent on every relevant path: The update configures the XML parser to disable external entity resolution to prevent XXE exploitation."
+                ],
+                "required_target_checks": [
+                  "Locate the target implementation of the required security property.",
+                  "Verify that the implementation covers every relevant sink and path."
+                ],
+                "common_false_positives": [],
+                "framework_assumptions": []
+              },
+              "native_causal_chain": {
+                "exemplar_id": "639",
+                "matched_node_id": "L:FIX:639:1",
+                "entrypoint": {
+                  "node_id": "L:EP:639:1",
+                  "slot": "EP",
+                  "summary": "XML Changelog Parser",
+                  "details": "The vulnerability is triggered when the Jenkins Mercurial plugin processes an XML changelog file."
+                },
+                "precondition": {
+                  "node_id": "L:PRE:639:1",
+                  "slot": "PC",
+                  "summary": "untrusted changelog input",
+                  "details": "An attacker must be able to control an agent process or supply a crafted changelog file to the Jenkins controller."
+                },
+                "root_cause": {
+                  "node_id": "L:RC:639:1",
+                  "slot": "RC",
+                  "summary": "unrestricted xml parsing",
+                  "details": "The XML changelog parser was not configured to disable external entity resolution, enabling XXE attacks."
+                },
+                "fix_intent": {
+                  "node_id": "L:FIX:639:1",
+                  "slot": "FI",
+                  "summary": "disable external entities",
+                  "details": "The update configures the XML parser to disable external entity resolution to prevent XXE exploitation."
+                },
+                "cwe": {
+                  "node_id": "CWE:CWE-611",
+                  "slot": "CWE",
+                  "summary": "",
+                  "details": "Improper Restriction of XML External Entity Reference"
+                },
+                "edges": [
+                  {
+                    "source_id": "L:EP:639:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:639:1"
+                  },
+                  {
+                    "source_id": "L:PRE:639:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:639:1"
+                  },
+                  {
+                    "source_id": "L:RC:639:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:639:1"
+                  },
+                  {
+                    "source_id": "L:RC:639:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-611"
+                  }
+                ],
+                "missing_slots": []
+              },
+              "provenance": {
+                "graph_id": "project_lvl_final_knowledge_graph",
+                "exemplar_id": "639",
+                "node_id": "L:FIX:639:1",
+                "slot": "FI",
+                "source_fields": {
+                  "pattern.claim": "matched CLEAR node.details",
+                  "pattern.applies_when": "native CLEAR exemplar PC.details",
+                  "pattern.required_guard": "native CLEAR exemplar FI.details"
+                },
+                "derived_fields": {
+                  "pattern.required_target_checks": "deterministic slot-specific verification template",
+                  "pattern.disproven_when": "derived verification condition based on FI; not a claim about target code"
+                },
+                "source_references": [],
+                "related_edges": [
+                  {
+                    "source_id": "L:EP:639:1",
+                    "relation": "has_property",
+                    "target_id": "L:PRE:639:1"
+                  },
+                  {
+                    "source_id": "L:PRE:639:1",
+                    "relation": "enables",
+                    "target_id": "L:RC:639:1"
+                  },
+                  {
+                    "source_id": "L:RC:639:1",
+                    "relation": "mitigated_by",
+                    "target_id": "L:FIX:639:1"
+                  },
+                  {
+                    "source_id": "L:RC:639:1",
+                    "relation": "classified_as",
+                    "target_id": "CWE:CWE-611"
+                  }
+                ]
+              }
+            }
+          ],
+          "retrieval_status": "matched",
+          "rejection_reason": null
+        }
+      },
+      "error": null,
+      "status": "completed"
+    }
+  ],
+  "errors": [],
+  "unparseable_event_lines": [],
+  "unknown_or_missing_mcp_event_schema": false,
+  "no_relevant_match_count": 0
+}

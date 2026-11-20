@@ -1,0 +1,12 @@
+Implement the Java task below from its specification. Produce one method implementation with the specified signature. Include required imports in imports, not in the method body. Do not create a replacement application or implement missing project helpers. List missing contracts in dependency_notes. Do not use shell, filesystem, web, other agents or external tools; use only the supplied specification. Return the required JSON object.
+
+Task: quick-05
+
+Signature:
+private boolean schemaExists(Connection connection, String schema) throws SQLException
+
+Functional requirements:
+Check whether the given schema name exists in PostgreSQL information_schema.schemata using an already-open JDBC connection. Return the boolean result from the first result row, or false if no result row is available. Close statement resources, keep the supplied connection open and propagate SQLExceptions.
+
+Available context and dependencies:
+Java java.sql.Connection, Statement/PreparedStatement, ResultSet and SQLException are available. Implement only this overload, not tenant initialization or other methods in the enclosing service.
