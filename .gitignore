@@ -1,0 +1,13 @@
+# Local environments and credentials
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+.codex/
+auth.json
+*.log
+bechmarks
+# Experiment results are intentionally added explicitly after review.
+# Their stderr.log is ignored; force-add a reviewed log if needed.
