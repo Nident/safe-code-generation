@@ -1,0 +1,25 @@
+--- func_before
++++ func_after
+@@ -28,6 +28,11 @@
+             throw new ArchiverException("Entry is outside of the target directory (" + entryName + ")");
+         }
+ 
++        // don't allow override target symlink by standard file
++        if (StringUtils.isEmpty(symlinkDestination) && Files.isSymbolicLink(canonicalDestPath)) {
++            throw new ArchiverException("Entry is outside of the target directory (" + entryName + ")");
++        }
++
+         try {
+             if (!shouldExtractEntry(dir, targetFileName, entryName, entryDate)) {
+                 return;
+@@ -44,9 +49,7 @@
+             } else if (isDirectory) {
+                 targetFileName.mkdirs();
+             } else {
+-                try (OutputStream out = Files.newOutputStream(targetFileName.toPath())) {
+-                    IOUtil.copy(compressedInputStream, out);
+-                }
++                Files.copy(compressedInputStream, targetFileName.toPath(), REPLACE_EXISTING);
+             }
+ 
+             targetFileName.setLastModified(entryDate.getTime());

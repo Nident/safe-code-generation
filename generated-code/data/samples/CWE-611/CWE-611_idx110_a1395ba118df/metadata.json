@@ -1,0 +1,50 @@
+{
+  "sample_id": "CWE-611_idx110_a1395ba118df",
+  "cwe": "CWE-611",
+  "source_index": 110,
+  "attack_candidates": [
+    "XXESAXReader",
+    "XXESAXParser",
+    "XXEDocumentBuilder",
+    "XXEValidator",
+    "XXETransformerFactory",
+    "XXEJDOM2",
+    "XXEStAX",
+    "XXEDigester",
+    "XXEXPath",
+    "XXEJAXBUnmarshal",
+    "XXESchemaFactory",
+    "XXEXMLReader"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [
+      257
+    ],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [
+      257
+    ],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": true
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 110,
+    "commit_hash": "a1395ba118df306c7fe67c24fb0c9a95a4473140",
+    "cve_id": "CVE-2019-13990",
+    "cwe_id": "CWE-611",
+    "file_name": "XMLSchedulingDataProcessor.java",
+    "jaccard_similarity": 82.35294,
+    "cve_description": "initDocumentParser in xml/XMLSchedulingDataProcessor.java in Terracotta Quartz Scheduler through 2.3.0 allows XXE attacks via a job description."
+  }
+}

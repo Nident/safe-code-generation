@@ -1,0 +1,39 @@
+{
+  "sample_id": "CWE-502_idx195_0ba14114c3f6",
+  "cwe": "CWE-502",
+  "source_index": 195,
+  "attack_candidates": [
+    "DeserializationHessian",
+    "DeserializationObjectInputStream",
+    "DeserializationSnakeYAML",
+    "DeserializationXMLDecoder",
+    "DeserializationFlexjson"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 195,
+    "commit_hash": "0ba14114c3f6154da40cb00b82b9d7a6b0684314",
+    "cve_id": "CVE-2024-42323",
+    "cwe_id": "CWE-502",
+    "file_name": "collector/src/main/java/com/usthe/collector/collect/snmp/SnmpCollectImpl.java",
+    "jaccard_similarity": 92.42424,
+    "cve_description": "SnakeYaml Deser Load Malicious xml rce vulnerability in Apache HertzBeat (incubating). \n\nThis vulnerability can only be exploited by authorized attackers.\nThis issue affects Apache HertzBeat (incubating): before 1.6.0.\n\nUsers are recommended to upgrade to version 1.6.0, which fixes the issue."
+  }
+}

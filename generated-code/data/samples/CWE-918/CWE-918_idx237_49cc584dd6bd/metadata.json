@@ -1,0 +1,43 @@
+{
+  "sample_id": "CWE-918_idx237_49cc584dd6bd",
+  "cwe": "CWE-918",
+  "source_index": 237,
+  "attack_candidates": [
+    "SSRFApacheHttpClient",
+    "SSRFURLConnection",
+    "SSRFRestTemplate",
+    "SSRFCommonsIO",
+    "SSRFOkHttp",
+    "SSRFImageIO",
+    "SSRFJsoup"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unconfirmed_missing_uri_validation_context",
+    "issues": [
+      "delegated_fix_not_visible"
+    ],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "The project supplies BaseMessage.getUrl(); CustomWebhookMessage additionally supplies getScheme(), getHost(), getPort(), getPath(), getQueryParams(), getMethod(), getHeaderParams(). Existing helpers buildUri(...), constructHttpRequest(method), and extractBody(message), plus HTTP_CLIENT, are referenced but their implementations and complete type signatures are missing. Use them as existing project dependencies and list unresolved contracts. Apache HttpClient 4-style request/response and StringEntity types are used.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 237,
+    "commit_hash": "49cc584dd6bd38ca26129eeaca5cd04e40a27f25",
+    "cve_id": "CVE-2021-31828",
+    "cwe_id": "CWE-918",
+    "file_name": "DestinationHttpClient.java",
+    "jaccard_similarity": 80.76923,
+    "cve_description": "An SSRF issue in Open Distro for Elasticsearch (ODFE) before 1.13.1.0 allows an existing privileged user to enumerate listening services or interact with configured resources via HTTP requests exceeding the Alerting plugin's intended scope."
+  }
+}

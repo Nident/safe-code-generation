@@ -1,0 +1,39 @@
+{
+  "sample_id": "CWE-502_idx020_d0f324c6b8de",
+  "cwe": "CWE-502",
+  "source_index": 20,
+  "attack_candidates": [
+    "DeserializationHessian",
+    "DeserializationObjectInputStream",
+    "DeserializationSnakeYAML",
+    "DeserializationXMLDecoder",
+    "DeserializationFlexjson"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 20,
+    "commit_hash": "d0f324c6b8de8e49982d616779ec48b65533eaf3",
+    "cve_id": "CVE-2025-53606",
+    "cwe_id": "CWE-502",
+    "file_name": "rm-datasource/src/main/java/io/seata/rm/datasource/exec/mysql/MySQLInsertOnDuplicateUpdateExecutor.java",
+    "jaccard_similarity": 89.47368,
+    "cve_description": "Deserialization of Untrusted Data vulnerability in Apache Seata (incubating).\n\nThis issue affects Apache Seata (incubating): 2.4.0.\n\nUsers are recommended to upgrade to version 2.5.0, which fixes the issue."
+  }
+}

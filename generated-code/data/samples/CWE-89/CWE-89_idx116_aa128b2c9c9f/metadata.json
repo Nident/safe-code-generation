@@ -1,0 +1,42 @@
+{
+  "sample_id": "CWE-89_idx116_aa128b2c9c9f",
+  "cwe": "CWE-89",
+  "source_index": 116,
+  "attack_candidates": [
+    "SQLInjectionMyBatisGroupBy",
+    "SQLInjectionMyBatisOrderBy",
+    "SQLInjectionSpringJDBC",
+    "SQLInjectionMyBatisLike",
+    "JDBCInjectionExecuteUpdate",
+    "SQLInjectionMyBatisCRUD"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [
+      "The visible diff replaces bound parameters with concatenation: possible reversed pair."
+    ],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 116,
+    "commit_hash": "aa128b2c9c9fdcbbf5ecd82c1e92103573017fe0",
+    "cve_id": "CVE-2014-125038",
+    "cwe_id": "CWE-89",
+    "file_name": "NewsBean.java",
+    "jaccard_similarity": 83.87097,
+    "cve_description": "A vulnerability has been found in IS_Projecto2 and classified as critical. This vulnerability affects unknown code of the file Cnn-EJB/ejbModule/ejbs/NewsBean.java. The manipulation of the argument date leads to sql injection. The name of the patch is aa128b2c9c9fdcbbf5ecd82c1e92103573017fe0. It is recommended to apply a patch to fix this issue. The identifier of this vulnerability is VDB-217192."
+  }
+}

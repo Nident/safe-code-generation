@@ -1,0 +1,88 @@
+--- func_before
++++ func_after
+@@ -37,10 +37,10 @@
+                 if (ttcNames == null) {
+
+                     return null;
+
+                 }
+
+-            } catch (Exception e) {
+
++            } catch (Throwable e) {
+
+                 if (this.eventListener != null) {
+
+                     this.eventListener.fontLoadingErrorAtAutoDetection(this,
+
+-                            fontURI.toASCIIString(), e);
+
++                            fontURI.toASCIIString(), new RuntimeException(e));
+
+                 }
+
+                 return null;
+
+             } finally {
+
+@@ -62,13 +62,13 @@
+                     if (this.eventListener != null) {
+
+                         customFont.setEventListener(this.eventListener);
+
+                     }
+
+-                } catch (Exception e) {
+
++                } catch (Throwable e) {
+
+                     if (fontCache != null) {
+
+                         fontCache.registerFailedFont(embedUri.toASCIIString(), fileLastModified);
+
+                     }
+
+                     if (this.eventListener != null) {
+
+                         this.eventListener.fontLoadingErrorAtAutoDetection(this,
+
+-                                embedUri.toASCIIString(), e);
+
++                                embedUri.toASCIIString(), new RuntimeException(e));
+
+                     }
+
+                     continue;
+
+                 }
+
+@@ -89,13 +89,13 @@
+                 if (this.eventListener != null) {
+
+                     customFont.setEventListener(this.eventListener);
+
+                 }
+
+-            } catch (Exception e) {
+
++            } catch (Throwable e) {
+
+                 if (fontCache != null) {
+
+                     fontCache.registerFailedFont(embedUri.toASCIIString(), fileLastModified);
+
+                 }
+
+                 if (this.eventListener != null) {
+
+                     this.eventListener.fontLoadingErrorAtAutoDetection(this,
+
+-                            embedUri.toASCIIString(), e);
+
++                            embedUri.toASCIIString(), new RuntimeException(e));
+
+                 }
+
+                 return null;
+
+             }

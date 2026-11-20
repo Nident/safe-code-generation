@@ -1,0 +1,37 @@
+{
+  "sample_id": "CWE-22_idx132_54759839fbdf",
+  "cwe": "CWE-22",
+  "source_index": 132,
+  "attack_candidates": [
+    "PathTraversalRead",
+    "PathTraversalWrite",
+    "ZipSlip"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 132,
+    "commit_hash": "54759839fbdf85caf8442076f001d5fd64e0dcb2",
+    "cve_id": "CVE-2023-37460",
+    "cwe_id": "CWE-22",
+    "file_name": "AbstractUnArchiver.java",
+    "jaccard_similarity": 89.13043,
+    "cve_description": "Plexis Archiver is a collection of Plexus components to create archives or extract archives to a directory with a unified `Archiver`/`UnArchiver` API. Prior to version 4.8.0, using AbstractUnArchiver for extracting an archive might lead to an arbitrary file creation and possibly remote code execution. When extracting an archive with an entry that already exists in the destination directory as a symbolic link whose target does not exist - the `resolveFile()` function will return the symlink's source instead of its target, which will pass the verification that ensures the file will not be extracted outside of the destination directory. Later `Files.newOutputStream()`, that follows symlinks by default,  will actually write the entry's content to the symlink's target. Whoever uses plexus archiver to extract an untrusted archive is vulnerable to an arbitrary file creation and possibly remote code execution. Version 4.8.0 contains a patch for this issue."
+  }
+}

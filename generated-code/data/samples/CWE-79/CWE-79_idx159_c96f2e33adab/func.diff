@@ -1,0 +1,17 @@
+--- func_before
++++ func_after
+@@ -17,13 +17,7 @@
+ 			sc.setAttribute("cssTheme", theme);
+ 			sc.setAttribute("content", content);
+ 			sc.getRequestDispatcher("/html_preview.jsp").forward(request, response);
+-		} catch (PathNotFoundException e) {
+-			sendErrorRedirect(request, response, e);
+-		} catch (AccessDeniedException e) {
+-			sendErrorRedirect(request, response, e);
+-		} catch (RepositoryException e) {
+-			sendErrorRedirect(request, response, e);
+-		} catch (DatabaseException e) {
++		} catch (PathNotFoundException | AccessDeniedException | RepositoryException | DatabaseException e) {
+ 			sendErrorRedirect(request, response, e);
+ 		} finally {
+ 			IOUtils.closeQuietly(fis);

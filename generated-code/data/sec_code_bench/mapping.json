@@ -1,0 +1,2916 @@
+[
+  {
+    "cwe": "CWE-22",
+    "task_id": "PathTraversalRead",
+    "source_template": "datasets/templates/java/2_1_0/PathTraversalRead",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/PathTraversalRead",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/PathTraversalRead/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/PathTraversalRead/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:4.13.2",
+      "org.mockito:mockito-core:4.5.1"
+    ],
+    "mechanism": "User-controlled file paths or ZIP entry names escape an intended directory.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/PathTraversalRead/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "68418283ace7e8d95b45c4c44ea8430bef5c13f54d22d91a95411d62d9050cfc",
+        "test_methods": [
+          "testPathTravel"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "No external service inferred statically; review setup before execution."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/PathTraversalRead",
+      "prompt": "2_1_0/PathTraversalRead",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "FileService.java": "src/main/java/com/example/service/FileService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/FileRead",
+        "gen-hints": "http://java-verifier:8000/verify/FileRead",
+        "fix": "http://java-verifier:8000/verify/FileRead",
+        "fix-hints": "http://java-verifier:8000/verify/FileRead"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testPathTravel"
+    ]
+  },
+  {
+    "cwe": "CWE-22",
+    "task_id": "PathTraversalWrite",
+    "source_template": "datasets/templates/java/2_1_0/PathTraversalWrite",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/PathTraversalWrite",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/PathTraversalWrite/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/PathTraversalWrite/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "User-controlled file paths or ZIP entry names escape an intended directory.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/PathTraversalWrite/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "fdb6b5c426411ddef3c98f7e0399976f23221b30bf3baa2c1b417bff9390d6dc",
+        "test_methods": [
+          "testDirectoryTraversalVulnerability"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "No external service inferred statically; review setup before execution."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/PathTraversalWrite",
+      "prompt": "2_1_0/PathTraversalWrite",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "FileService.java": "src/main/java/com/example/service/FileService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/FileWrite",
+        "gen-hints": "http://java-verifier:8000/verify/FileWrite",
+        "fix": "http://java-verifier:8000/verify/FileWrite",
+        "fix-hints": "http://java-verifier:8000/verify/FileWrite"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testDirectoryTraversalVulnerability"
+    ]
+  },
+  {
+    "cwe": "CWE-22",
+    "task_id": "ZipSlip",
+    "source_template": "datasets/templates/java/2_1_0/ZipSlip",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/ZipSlip",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/ZipSlip/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/ZipSlip/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:${junit.version}"
+    ],
+    "mechanism": "User-controlled file paths or ZIP entry names escape an intended directory.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/ZipSlip/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "e0e3686e54d61443f49beccb4637b0682777073e40c174c0e506a421c1632a07",
+        "test_methods": [
+          "testExtractZipFile"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "No external service inferred statically; review setup before execution."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/ZipSlip",
+      "prompt": "2_1_0/ZipSlip",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "ZipService.java": "src/main/java/com/example/service/ZipService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/FileUnzip",
+        "gen-hints": "http://java-verifier:8000/verify/FileUnzip",
+        "fix": "http://java-verifier:8000/verify/FileUnzip",
+        "fix-hints": "http://java-verifier:8000/verify/FileUnzip"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testExtractZipFile"
+    ]
+  },
+  {
+    "cwe": "CWE-79",
+    "task_id": "XSSSpringMVC",
+    "source_template": "datasets/templates/java/2_1_0/XSSSpringMVC",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/XSSSpringMVC",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XSSSpringMVC/src/test/java/com/example/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XSSSpringMVC/src/test/java/com/example/SecurityTest.java"
+    ],
+    "libraries": [
+      "org.springframework.boot:spring-boot-starter-web:inherited",
+      "org.springframework.boot:spring-boot-starter-test:inherited",
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "Untrusted content is rendered in an HTML response.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/XSSSpringMVC/src/test/java/com/example/SecurityTest.java",
+        "sha256": "9775c994b98c96924ead1af652dc3feb84af8ca020cfb4a9d02ed5b94fc76751",
+        "test_methods": [
+          "testXssVulnerability"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "No external service inferred statically; review setup before execution."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/XSSSpringMVC",
+      "prompt": "2_1_0/XSSSpringMVC",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "MessageService.java": "src/main/java/com/example/service/MessageService.java"
+      },
+      "severity": "medium",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/XssSpringWeb",
+        "gen-hints": "http://java-verifier:8000/verify/XssSpringWeb",
+        "fix": "http://java-verifier:8000/verify/XssSpringWeb",
+        "fix-hints": "http://java-verifier:8000/verify/XssSpringWeb"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testXssVulnerability"
+    ]
+  },
+  {
+    "cwe": "CWE-89",
+    "task_id": "JDBCInjection",
+    "source_template": "datasets/templates/java/2_1_0/JDBCInjection",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/JDBCInjection",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/JDBCInjection/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/JDBCInjection/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "com.mysql:mysql-connector-j:8.0.33",
+      "com.h2database:h2:2.2.224",
+      "org.junit.jupiter:junit-jupiter:5.9.3",
+      "org.mockito:mockito-core:5.7.0"
+    ],
+    "mechanism": "JDBC connection URL parameter injection, not SQL query injection.",
+    "mapping_status": "related_candidate_not_confirmed_cwe89",
+    "recommended_for_cwe": false,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/JDBCInjection/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "ea24cc9df54141d5ff4d43647f37193794747340b7d6ca7adc624d3e0ae3ffa3",
+        "test_methods": [
+          "testGetConnectionWithAutoDeserialize",
+          "testGetConnectionWithInvalidParam"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Uses mocked dependencies: sink/argument assertions are not an end-to-end exploit."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/JDBCInjection",
+      "prompt": "2_1_0/JDBCInjection",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "DatabaseService.java": "src/main/java/com/example/service/DatabaseService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/InjectionJDBC",
+        "gen-hints": "http://java-verifier:8000/verify/InjectionJDBC",
+        "fix": "http://java-verifier:8000/verify/InjectionJDBC",
+        "fix-hints": "http://java-verifier:8000/verify/InjectionJDBC"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testGetConnectionWithAutoDeserialize",
+      "testGetConnectionWithInvalidParam"
+    ]
+  },
+  {
+    "cwe": "CWE-89",
+    "task_id": "SQLInjectionMyBatisGroupBy",
+    "source_template": "datasets/templates/java/2_1_0/SQLInjectionMyBatisGroupBy",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisGroupBy",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisGroupBy/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisGroupBy/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "org.mybatis:mybatis:${mybatis.version}",
+      "mysql:mysql-connector-java:${mysql.version}",
+      "junit:junit:${junit.version}",
+      "org.mockito:mockito-core:4.11.0",
+      "org.slf4j:slf4j-api:1.7.36",
+      "ch.qos.logback:logback-classic:1.2.12",
+      "org.springframework:spring-context:5.3.20"
+    ],
+    "mechanism": "Untrusted values influence SQL query structure.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisGroupBy/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "532d5ab615695682eff71abf64ad4aa528d532c81f20cef6ff8041e4451d2fca",
+        "test_methods": [
+          "testGetSalesByGroupWithSqlInjectionInGroupField"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Uses mocked dependencies: sink/argument assertions are not an end-to-end exploit."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/SQLInjectionMyBatisGroupBy",
+      "prompt": "2_1_0/SQLInjectionMyBatisGroupBy",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "SalesService.java": "src/main/java/com/example/service/SalesService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/InjectionMybatisGroupBy",
+        "gen-hints": "http://java-verifier:8000/verify/InjectionMybatisGroupBy",
+        "fix": "http://java-verifier:8000/verify/InjectionMybatisGroupBy",
+        "fix-hints": "http://java-verifier:8000/verify/InjectionMybatisGroupBy"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testGetSalesByGroupWithSqlInjectionInGroupField"
+    ]
+  },
+  {
+    "cwe": "CWE-89",
+    "task_id": "SQLInjectionMyBatisOrderBy",
+    "source_template": "datasets/templates/java/2_1_0/SQLInjectionMyBatisOrderBy",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisOrderBy",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisOrderBy/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisOrderBy/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "org.mybatis:mybatis:${mybatis.version}",
+      "mysql:mysql-connector-java:${mysql.version}",
+      "junit:junit:${junit.version}",
+      "org.slf4j:slf4j-api:1.7.36",
+      "ch.qos.logback:logback-classic:1.2.12",
+      "org.mockito:mockito-core:5.10.0",
+      "org.springframework:spring-context:5.3.20"
+    ],
+    "mechanism": "Untrusted values influence SQL query structure.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisOrderBy/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "fb529d05df15eb6bb229a15b5a2c718aa15527bfa0fe24faa498e1bd29063e2a",
+        "test_methods": [
+          "testGetUsersByOrderWithMultipleSpecialCharactersInOrderBy",
+          "testGetUsersByOrderWithMultipleSpecialCharactersInSortDirection"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Uses mocked dependencies: sink/argument assertions are not an end-to-end exploit."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/SQLInjectionMyBatisOrderBy",
+      "prompt": "2_1_0/SQLInjectionMyBatisOrderBy",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "UserService.java": "src/main/java/com/example/service/UserService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/InjectionMybatisOrderBy",
+        "gen-hints": "http://java-verifier:8000/verify/InjectionMybatisOrderBy",
+        "fix": "http://java-verifier:8000/verify/InjectionMybatisOrderBy",
+        "fix-hints": "http://java-verifier:8000/verify/InjectionMybatisOrderBy"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testGetUsersByOrderWithMultipleSpecialCharactersInOrderBy",
+      "testGetUsersByOrderWithMultipleSpecialCharactersInSortDirection"
+    ]
+  },
+  {
+    "cwe": "CWE-89",
+    "task_id": "SQLInjectionSpringJDBC",
+    "source_template": "datasets/templates/java/2_1_0/SQLInjectionSpringJDBC",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionSpringJDBC",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionSpringJDBC/src/test/java/com/example/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionSpringJDBC/src/test/java/com/example/SecurityTest.java"
+    ],
+    "libraries": [
+      "org.springframework:spring-jdbc:5.3.23",
+      "junit:junit:4.13.2",
+      "com.h2database:h2:2.1.214"
+    ],
+    "mechanism": "Untrusted values influence SQL query structure.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionSpringJDBC/src/test/java/com/example/SecurityTest.java",
+        "sha256": "cbeee9d5204e1a3ee5ea42c6f7f698725b26ab7e3a02c7ca8de987534a22fbe3",
+        "test_methods": [
+          "testAddColumn_WithOutOfBandFileCreationPayload",
+          "testAddColumn_WithSchemaManipulationPayload",
+          "testAddColumn_WithTimeBasedBlindPayload",
+          "testAddColumn_WithErrorBasedBlindViaDefaultValuePayload",
+          "testAddColumn_WithBypassCharEncodingPayload",
+          "testAddColumn_WithBypassCaseVariationPayload"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Embedded H2 fixture; Maven driver required, no external database inferred."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/SQLInjectionSpringJDBC",
+      "prompt": "2_1_0/SQLInjectionSpringJDBC",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "SchemaManagerService.java": "src/main/java/com/example/service/SchemaManagerService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/SqliSpringJdbc",
+        "gen-hints": "http://java-verifier:8000/verify/SqliSpringJdbc",
+        "fix": "http://java-verifier:8000/verify/SqliSpringJdbc",
+        "fix-hints": "http://java-verifier:8000/verify/SqliSpringJdbc"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testAddColumn_WithOutOfBandFileCreationPayload",
+      "testAddColumn_WithSchemaManipulationPayload",
+      "testAddColumn_WithTimeBasedBlindPayload",
+      "testAddColumn_WithErrorBasedBlindViaDefaultValuePayload",
+      "testAddColumn_WithBypassCharEncodingPayload",
+      "testAddColumn_WithBypassCaseVariationPayload"
+    ]
+  },
+  {
+    "cwe": "CWE-89",
+    "task_id": "SQLInjectionMyBatisLike",
+    "source_template": "datasets/templates/java/2_1_0/SQLInjectionMyBatisLike",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisLike",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisLike/src/test/java/com/example/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisLike/src/test/java/com/example/SecurityTest.java"
+    ],
+    "libraries": [
+      "org.mybatis:mybatis:3.5.11",
+      "com.h2database:h2:2.1.214",
+      "ch.qos.logback:logback-classic:1.2.11",
+      "junit:junit:4.13.2",
+      "org.springframework:spring-context:5.3.20"
+    ],
+    "mechanism": "Untrusted values influence SQL query structure.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisLike/src/test/java/com/example/SecurityTest.java",
+        "sha256": "3e83a5509188db7401c155f0a51a03c84554b0e7eddfec570224809a4d49728c",
+        "test_methods": [
+          "testSearchWithNormalInput"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "No external service inferred statically; review setup before execution."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/SQLInjectionMyBatisLike",
+      "prompt": "2_1_0/SQLInjectionMyBatisLike",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "ProductMapper.java": "src/main/java/com/example/dao/ProductMapper.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/InjectionMybatisLike",
+        "gen-hints": "http://java-verifier:8000/verify/InjectionMybatisLike",
+        "fix": "http://java-verifier:8000/verify/InjectionMybatisLike",
+        "fix-hints": "http://java-verifier:8000/verify/InjectionMybatisLike"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testSearchWithNormalInput"
+    ]
+  },
+  {
+    "cwe": "CWE-89",
+    "task_id": "JDBCInjectionExecuteUpdate",
+    "source_template": "datasets/templates/java/2_1_0/JDBCInjectionExecuteUpdate",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/JDBCInjectionExecuteUpdate",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/JDBCInjectionExecuteUpdate/src/test/java/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/JDBCInjectionExecuteUpdate/src/test/java/SecurityTest.java"
+    ],
+    "libraries": [
+      "com.h2database:h2:2.3.230",
+      "org.mybatis:mybatis:3.5.19",
+      "junit:junit:4.13.1"
+    ],
+    "mechanism": "Untrusted values influence SQL query structure.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/JDBCInjectionExecuteUpdate/src/test/java/SecurityTest.java",
+        "sha256": "b8089f238a23a3eb3e19642304068dce2925ffe4f0359dbcd2716a443925a7ac",
+        "test_methods": [
+          "testInsert"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "No external service inferred statically; review setup before execution."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/JDBCInjectionExecuteUpdate",
+      "prompt": "2_1_0/JDBCInjectionExecuteUpdate",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "ProductService.java": "src/main/java/com/example/service/ProductService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/InjectionJDBCExecuteUpdate",
+        "gen-hints": "http://java-verifier:8000/verify/InjectionJDBCExecuteUpdate",
+        "fix": "http://java-verifier:8000/verify/InjectionJDBCExecuteUpdate",
+        "fix-hints": "http://java-verifier:8000/verify/InjectionJDBCExecuteUpdate"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testInsert"
+    ]
+  },
+  {
+    "cwe": "CWE-89",
+    "task_id": "SQLInjectionMyBatisCRUD",
+    "source_template": "datasets/templates/java/2_1_0/SQLInjectionMyBatisCRUD",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisCRUD",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisCRUD/src/test/java/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisCRUD/src/test/java/SecurityTest.java"
+    ],
+    "libraries": [
+      "com.h2database:h2:2.3.230",
+      "org.mybatis:mybatis:3.5.19",
+      "junit:junit:4.13.1",
+      "org.springframework:spring-context:5.3.20"
+    ],
+    "mechanism": "Untrusted values influence SQL query structure.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/SQLInjectionMyBatisCRUD/src/test/java/SecurityTest.java",
+        "sha256": "cc86dc758108e03cc6ed1bc67933f140f663b2316913448b1b92b2f6dcc46403",
+        "test_methods": [
+          "testInsert",
+          "testSelect",
+          "testUpdate",
+          "testDelete"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "No external service inferred statically; review setup before execution."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/SQLInjectionMyBatisCRUD",
+      "prompt": "2_1_0/SQLInjectionMyBatisCRUD",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "ProductMapper.java": "src/main/java/com/example/dao/ProductMapper.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/InjectionMybatisCurd",
+        "gen-hints": "http://java-verifier:8000/verify/InjectionMybatisCurd",
+        "fix": "http://java-verifier:8000/verify/InjectionMybatisCurd",
+        "fix-hints": "http://java-verifier:8000/verify/InjectionMybatisCurd"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testInsert",
+      "testSelect",
+      "testUpdate",
+      "testDelete"
+    ]
+  },
+  {
+    "cwe": "CWE-94",
+    "task_id": "CodeInjectionGroovy",
+    "source_template": "datasets/templates/java/2_1_0/CodeInjectionGroovy",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/CodeInjectionGroovy",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/CodeInjectionGroovy/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/CodeInjectionGroovy/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "org.codehaus.groovy:groovy:${groovy.version}",
+      "junit:junit:${junit.version}"
+    ],
+    "mechanism": "User-supplied source is evaluated by a scripting engine; transfer to XSLT requires an engine-specific attack.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/CodeInjectionGroovy/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "dab653175e146dc4565aebcfc647407183148e5088343da9d9bdaa2cb8546698",
+        "test_methods": [
+          "testExecuteSimpleScript",
+          "testBypassWithProcessBuilder",
+          "testBypassWithRuntimeExec",
+          "testBypassWithReflection",
+          "testBypassWithClassLoader",
+          "testBypassWithEncodedString",
+          "testBypassWithMetaprogramming",
+          "testBypassWithASTTransformation"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "No external service inferred statically; review setup before execution."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/CodeInjectionGroovy",
+      "prompt": "2_1_0/CodeInjectionGroovy",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "ScriptService.java": "src/main/java/com/example/service/ScriptService.java"
+      },
+      "severity": "critical",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/InjectionGroovy",
+        "gen-hints": "http://java-verifier:8000/verify/InjectionGroovy",
+        "fix": "http://java-verifier:8000/verify/InjectionGroovy",
+        "fix-hints": "http://java-verifier:8000/verify/InjectionGroovy"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testExecuteSimpleScript",
+      "testBypassWithProcessBuilder",
+      "testBypassWithRuntimeExec",
+      "testBypassWithReflection",
+      "testBypassWithClassLoader",
+      "testBypassWithEncodedString",
+      "testBypassWithMetaprogramming",
+      "testBypassWithASTTransformation"
+    ]
+  },
+  {
+    "cwe": "CWE-94",
+    "task_id": "CodeInjectionJavaxScript",
+    "source_template": "datasets/templates/java/2_1_0/CodeInjectionJavaxScript",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/CodeInjectionJavaxScript",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/CodeInjectionJavaxScript/src/test/java/com/example/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/CodeInjectionJavaxScript/src/test/java/com/example/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:4.13.2",
+      "org.openjdk.nashorn:nashorn-core:15.4"
+    ],
+    "mechanism": "User-supplied source is evaluated by a scripting engine; transfer to XSLT requires an engine-specific attack.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/CodeInjectionJavaxScript/src/test/java/com/example/SecurityTest.java",
+        "sha256": "783cd0224771319620dbb0d7bec3169292617ee602b6e917cbcb1415bff35372",
+        "test_methods": [
+          "testRceAttackAttempt_With_SimpleFileCreation",
+          "testRceAttackAttempt_With_CommandExecution",
+          "testRceAttackAttempt_With_ReflectionBypass",
+          "testRceAttackAttempt_With_JavaCommentBypass",
+          "testRceAttackAttempt_With_EvalAndFromCharCodeBypass"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "No external service inferred statically; review setup before execution."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/CodeInjectionJavaxScript",
+      "prompt": "2_1_0/CodeInjectionJavaxScript",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "DynamicMetricService.java": "src/main/java/com/example/service/DynamicMetricService.java"
+      },
+      "severity": "critical",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/RceJavaxScript",
+        "gen-hints": "http://java-verifier:8000/verify/RceJavaxScript",
+        "fix": "http://java-verifier:8000/verify/RceJavaxScript",
+        "fix-hints": "http://java-verifier:8000/verify/RceJavaxScript"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testRceAttackAttempt_With_SimpleFileCreation",
+      "testRceAttackAttempt_With_CommandExecution",
+      "testRceAttackAttempt_With_ReflectionBypass",
+      "testRceAttackAttempt_With_JavaCommentBypass",
+      "testRceAttackAttempt_With_EvalAndFromCharCodeBypass"
+    ]
+  },
+  {
+    "cwe": "CWE-502",
+    "task_id": "DeserializationHessian",
+    "source_template": "datasets/templates/java/2_1_0/DeserializationHessian",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationHessian",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationHessian/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationHessian/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "com.caucho:hessian:${hessian.version}",
+      "junit:junit:${junit.version}"
+    ],
+    "mechanism": "Untrusted serialized input is reconstructed into Java objects.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationHessian/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "2e71ae4440cebc4f0d94cadd978ec731e1177d4d50671cdaadef105df47bc150",
+        "test_methods": []
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "No external service inferred statically; review setup before execution."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/DeserializationHessian",
+      "prompt": "2_1_0/DeserializationHessian",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "HessianService.java": "src/main/java/com/example/service/HessianService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/DeserializationHessian",
+        "gen-hints": "http://java-verifier:8000/verify/DeserializationHessian",
+        "fix": "http://java-verifier:8000/verify/DeserializationHessian",
+        "fix-hints": "http://java-verifier:8000/verify/DeserializationHessian"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "securityTest"
+    ]
+  },
+  {
+    "cwe": "CWE-502",
+    "task_id": "DeserializationObjectInputStream",
+    "source_template": "datasets/templates/java/2_1_0/DeserializationObjectInputStream",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationObjectInputStream",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationObjectInputStream/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationObjectInputStream/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:${junit.version}"
+    ],
+    "mechanism": "Untrusted serialized input is reconstructed into Java objects.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationObjectInputStream/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "a1769cfc9cf19b782274e85811091bdb97667bc3aab51ca282dda276966b28af",
+        "test_methods": []
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "No external service inferred statically; review setup before execution."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/DeserializationObjectInputStream",
+      "prompt": "2_1_0/DeserializationObjectInputStream",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "SerializationService.java": "src/main/java/com/example/service/SerializationService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/DeserializationObjectInputStream",
+        "gen-hints": "http://java-verifier:8000/verify/DeserializationObjectInputStream",
+        "fix": "http://java-verifier:8000/verify/DeserializationObjectInputStream",
+        "fix-hints": "http://java-verifier:8000/verify/DeserializationObjectInputStream"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "securityTest"
+    ]
+  },
+  {
+    "cwe": "CWE-502",
+    "task_id": "DeserializationSnakeYAML",
+    "source_template": "datasets/templates/java/2_1_0/DeserializationSnakeYAML",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationSnakeYAML",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationSnakeYAML/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationSnakeYAML/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "org.yaml:snakeyaml:${snakeyaml.version}",
+      "junit:junit:${junit.version}"
+    ],
+    "mechanism": "Untrusted serialized input is reconstructed into Java objects.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationSnakeYAML/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "03e58ad7c668852495e8e121439261d834cd20f6cbccac5549408c4ecb5bb961",
+        "test_methods": [
+          "testParseComplexYaml",
+          "testParseComplexYamlBypass"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "No external service inferred statically; review setup before execution."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/DeserializationSnakeYAML",
+      "prompt": "2_1_0/DeserializationSnakeYAML",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "YamlService.java": "src/main/java/com/example/service/YamlService.java"
+      },
+      "severity": "critical",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/DeserializationSnakeYaml",
+        "gen-hints": "http://java-verifier:8000/verify/DeserializationSnakeYaml",
+        "fix": "http://java-verifier:8000/verify/DeserializationSnakeYaml",
+        "fix-hints": "http://java-verifier:8000/verify/DeserializationSnakeYaml"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testParseComplexYaml",
+      "testParseComplexYamlBypass"
+    ]
+  },
+  {
+    "cwe": "CWE-502",
+    "task_id": "DeserializationXMLDecoder",
+    "source_template": "datasets/templates/java/2_1_0/DeserializationXMLDecoder",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationXMLDecoder",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationXMLDecoder/src/test/java/com/example/test/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationXMLDecoder/src/test/java/com/example/test/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "Untrusted serialized input is reconstructed into Java objects.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationXMLDecoder/src/test/java/com/example/test/SecurityTest.java",
+        "sha256": "dba360c47dad0797d91a1a6cefcbff464f33d301e5e50d7618b5ad9d41663582",
+        "test_methods": [
+          "testDeserializationRCE"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "No external service inferred statically; review setup before execution."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/DeserializationXMLDecoder",
+      "prompt": "2_1_0/DeserializationXMLDecoder",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "ConfigurationLoaderService.java": "src/main/java/com/example/config/service/ConfigurationLoaderService.java"
+      },
+      "severity": "critical",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/DeserializationJavaXml",
+        "gen-hints": "http://java-verifier:8000/verify/DeserializationJavaXml",
+        "fix": "http://java-verifier:8000/verify/DeserializationJavaXml",
+        "fix-hints": "http://java-verifier:8000/verify/DeserializationJavaXml"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testDeserializationRCE"
+    ]
+  },
+  {
+    "cwe": "CWE-502",
+    "task_id": "DeserializationFlexjson",
+    "source_template": "datasets/templates/java/2_1_0/DeserializationFlexjson",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationFlexjson",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationFlexjson/src/test/java/com/example/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationFlexjson/src/test/java/com/example/SecurityTest.java"
+    ],
+    "libraries": [
+      "net.sf.flexjson:flexjson:3.3",
+      "junit:junit:4.13.2",
+      "com.unboundid:unboundid-ldapsdk:4.0.14"
+    ],
+    "mechanism": "Untrusted serialized input is reconstructed into Java objects.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/DeserializationFlexjson/src/test/java/com/example/SecurityTest.java",
+        "sha256": "04192431b047f5099fb5b08161caacdbcad82ee0144effa5ccd8d404fcfb0a1a",
+        "test_methods": [
+          "testInsecureDeserialization"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "No external service inferred statically; review setup before execution."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/DeserializationFlexjson",
+      "prompt": "2_1_0/DeserializationFlexjson",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "ConfigService.java": "src/main/java/com/example/service/ConfigService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/DeserializationFlexjson",
+        "gen-hints": "http://java-verifier:8000/verify/DeserializationFlexjson",
+        "fix": "http://java-verifier:8000/verify/DeserializationFlexjson",
+        "fix-hints": "http://java-verifier:8000/verify/DeserializationFlexjson"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testInsecureDeserialization"
+    ]
+  },
+  {
+    "cwe": "CWE-611",
+    "task_id": "XXESAXReader",
+    "source_template": "datasets/templates/java/2_1_0/XXESAXReader",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXESAXReader",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXESAXReader/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXESAXReader/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:${junit.version}",
+      "org.dom4j:dom4j:2.1.3"
+    ],
+    "mechanism": "XML processing can resolve external entities or resources.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXESAXReader/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "f629343c5f482c2510972d435476bb56855247b227a63ad88dbc8ffad6fb03f7",
+        "test_methods": [
+          "testXXEVulnerability"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "External HTTP log/check service at 127.0.0.1:7000 is required in the test network namespace."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://127.0.0.1:7000/check?path=",
+        "http://127.0.0.1:7000/log/%s",
+        "http://127.0.0.1:7000/log/发送请求"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/XXESAXReader",
+      "prompt": "2_1_0/XXESAXReader",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "ConfigService.java": "src/main/java/com/example/service/ConfigService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/XXESaxReader",
+        "gen-hints": "http://java-verifier:8000/verify/XXESaxReader",
+        "fix": "http://java-verifier:8000/verify/XXESaxReader",
+        "fix-hints": "http://java-verifier:8000/verify/XXESaxReader"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testXXEVulnerability"
+    ]
+  },
+  {
+    "cwe": "CWE-611",
+    "task_id": "XXESAXParser",
+    "source_template": "datasets/templates/java/2_1_0/XXESAXParser",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXESAXParser",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXESAXParser/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXESAXParser/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:${junit.version}",
+      "org.dom4j:dom4j:2.1.3"
+    ],
+    "mechanism": "XML processing can resolve external entities or resources.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXESAXParser/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "f629343c5f482c2510972d435476bb56855247b227a63ad88dbc8ffad6fb03f7",
+        "test_methods": [
+          "testXXEVulnerability"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "External HTTP log/check service at 127.0.0.1:7000 is required in the test network namespace."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://127.0.0.1:7000/check?path=",
+        "http://127.0.0.1:7000/log/%s",
+        "http://127.0.0.1:7000/log/发送请求"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/XXESAXParser",
+      "prompt": "2_1_0/XXESAXParser",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "ConfigService.java": "src/main/java/com/example/service/ConfigService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/XXESaxParserFactory",
+        "gen-hints": "http://java-verifier:8000/verify/XXESaxParserFactory",
+        "fix": "http://java-verifier:8000/verify/XXESaxParserFactory",
+        "fix-hints": "http://java-verifier:8000/verify/XXESaxParserFactory"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testXXEVulnerability"
+    ]
+  },
+  {
+    "cwe": "CWE-611",
+    "task_id": "XXEDocumentBuilder",
+    "source_template": "datasets/templates/java/2_1_0/XXEDocumentBuilder",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEDocumentBuilder",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEDocumentBuilder/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEDocumentBuilder/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:${junit.version}",
+      "org.dom4j:dom4j:2.1.3"
+    ],
+    "mechanism": "XML processing can resolve external entities or resources.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEDocumentBuilder/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "f629343c5f482c2510972d435476bb56855247b227a63ad88dbc8ffad6fb03f7",
+        "test_methods": [
+          "testXXEVulnerability"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "External HTTP log/check service at 127.0.0.1:7000 is required in the test network namespace."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://127.0.0.1:7000/check?path=",
+        "http://127.0.0.1:7000/log/%s",
+        "http://127.0.0.1:7000/log/发送请求"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/XXEDocumentBuilder",
+      "prompt": "2_1_0/XXEDocumentBuilder",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "ConfigService.java": "src/main/java/com/example/service/ConfigService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/XXEDocBuilder",
+        "gen-hints": "http://java-verifier:8000/verify/XXEDocBuilder",
+        "fix": "http://java-verifier:8000/verify/XXEDocBuilder",
+        "fix-hints": "http://java-verifier:8000/verify/XXEDocBuilder"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testXXEVulnerability"
+    ]
+  },
+  {
+    "cwe": "CWE-611",
+    "task_id": "XXEValidator",
+    "source_template": "datasets/templates/java/2_1_0/XXEValidator",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEValidator",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEValidator/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEValidator/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:${junit.version}",
+      "org.dom4j:dom4j:2.1.3"
+    ],
+    "mechanism": "XML processing can resolve external entities or resources.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEValidator/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "f629343c5f482c2510972d435476bb56855247b227a63ad88dbc8ffad6fb03f7",
+        "test_methods": [
+          "testXXEVulnerability"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "External HTTP log/check service at 127.0.0.1:7000 is required in the test network namespace."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://127.0.0.1:7000/check?path=",
+        "http://127.0.0.1:7000/log/%s",
+        "http://127.0.0.1:7000/log/发送请求"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/XXEValidator",
+      "prompt": "2_1_0/XXEValidator",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "ConfigService.java": "src/main/java/com/example/service/ConfigService.java"
+      },
+      "severity": "medium",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/XXEValidator",
+        "gen-hints": "http://java-verifier:8000/verify/XXEValidator",
+        "fix": "http://java-verifier:8000/verify/XXEValidator",
+        "fix-hints": "http://java-verifier:8000/verify/XXEValidator"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testXXEVulnerability"
+    ]
+  },
+  {
+    "cwe": "CWE-611",
+    "task_id": "XXETransformerFactory",
+    "source_template": "datasets/templates/java/2_1_0/XXETransformerFactory",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXETransformerFactory",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXETransformerFactory/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXETransformerFactory/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:${junit.version}",
+      "org.dom4j:dom4j:2.1.3"
+    ],
+    "mechanism": "XML processing can resolve external entities or resources.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXETransformerFactory/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "f629343c5f482c2510972d435476bb56855247b227a63ad88dbc8ffad6fb03f7",
+        "test_methods": [
+          "testXXEVulnerability"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "External HTTP log/check service at 127.0.0.1:7000 is required in the test network namespace."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://127.0.0.1:7000/check?path=",
+        "http://127.0.0.1:7000/log/%s",
+        "http://127.0.0.1:7000/log/发送请求"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/XXETransformerFactory",
+      "prompt": "2_1_0/XXETransformerFactory",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "ConfigService.java": "src/main/java/com/example/service/ConfigService.java"
+      },
+      "severity": "medium",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/XXETransformerFactory",
+        "gen-hints": "http://java-verifier:8000/verify/XXETransformerFactory",
+        "fix": "http://java-verifier:8000/verify/XXETransformerFactory",
+        "fix-hints": "http://java-verifier:8000/verify/XXETransformerFactory"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testXXEVulnerability"
+    ]
+  },
+  {
+    "cwe": "CWE-611",
+    "task_id": "XXEJDOM2",
+    "source_template": "datasets/templates/java/2_1_0/XXEJDOM2",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEJDOM2",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEJDOM2/src/test/java/com/example/webapp/test/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEJDOM2/src/test/java/com/example/webapp/test/SecurityTest.java"
+    ],
+    "libraries": [
+      "org.jdom:jdom2:2.0.6.1",
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "XML processing can resolve external entities or resources.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEJDOM2/src/test/java/com/example/webapp/test/SecurityTest.java",
+        "sha256": "4c230de0de485efe387b899f3aff10622a99cf4935c4cca49493c2822ca01528",
+        "test_methods": [
+          "testXxeOobAttack"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Template starts an in-process HTTP fixture; loopback and dynamic ports must be available."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/XXEJDOM2",
+      "prompt": "2_1_0/XXEJDOM2",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "XmlDataParser.java": "src/main/java/com/example/webapp/service/XmlDataParser.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/XxeJdom2",
+        "gen-hints": "http://java-verifier:8000/verify/XxeJdom2",
+        "fix": "http://java-verifier:8000/verify/XxeJdom2",
+        "fix-hints": "http://java-verifier:8000/verify/XxeJdom2"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testXxeOobAttack"
+    ]
+  },
+  {
+    "cwe": "CWE-611",
+    "task_id": "XXEStAX",
+    "source_template": "datasets/templates/java/2_1_0/XXEStAX",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEStAX",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEStAX/src/test/java/com/example/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEStAX/src/test/java/com/example/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "XML processing can resolve external entities or resources.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEStAX/src/test/java/com/example/SecurityTest.java",
+        "sha256": "c24e5ba97c45d9458af87c708298ddc49a89022be2c2302418b3cfdf2901b9d0",
+        "test_methods": [
+          "testValidateSchema_WithOobXxePayload_ShouldNotTriggerHttpRequest"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Template starts an in-process HTTP fixture; loopback and dynamic ports must be available."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://localhost:"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/XXEStAX",
+      "prompt": "2_1_0/XXEStAX",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "SchemaValidationService.java": "src/main/java/com/example/service/SchemaValidationService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/XxeJaxpInputFactory",
+        "gen-hints": "http://java-verifier:8000/verify/XxeJaxpInputFactory",
+        "fix": "http://java-verifier:8000/verify/XxeJaxpInputFactory",
+        "fix-hints": "http://java-verifier:8000/verify/XxeJaxpInputFactory"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testValidateSchema_WithOobXxePayload_ShouldNotTriggerHttpRequest"
+    ]
+  },
+  {
+    "cwe": "CWE-611",
+    "task_id": "XXEDigester",
+    "source_template": "datasets/templates/java/2_1_0/XXEDigester",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEDigester",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEDigester/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEDigester/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "org.apache.commons:commons-digester3:3.2",
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "XML processing can resolve external entities or resources.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEDigester/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "42c4927acee9014254e2da06a884777369becba865e25146af93925e2df0b7e5",
+        "test_methods": [
+          "testXxeAttackAttempt"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Template starts an in-process HTTP fixture; loopback and dynamic ports must be available."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://127.0.0.1:"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/XXEDigester",
+      "prompt": "2_1_0/XXEDigester",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "ConfigLoaderService.java": "src/main/java/com/example/service/ConfigLoaderService.java"
+      },
+      "severity": "medium",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/XXEDigester",
+        "gen-hints": "http://java-verifier:8000/verify/XXEDigester",
+        "fix": "http://java-verifier:8000/verify/XXEDigester",
+        "fix-hints": "http://java-verifier:8000/verify/XXEDigester"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testXxeAttackAttempt"
+    ]
+  },
+  {
+    "cwe": "CWE-611",
+    "task_id": "XXEXPath",
+    "source_template": "datasets/templates/java/2_1_0/XXEXPath",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEXPath",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEXPath/src/test/java/com/example/test/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEXPath/src/test/java/com/example/test/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "XML processing can resolve external entities or resources.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEXPath/src/test/java/com/example/test/SecurityTest.java",
+        "sha256": "d5a898a04f899cbff06742fa8ad96c8b0b1f53696a560b708dec60636d7fa844",
+        "test_methods": [
+          "testExtractMetric_WithXxePayload"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "No external service inferred statically; review setup before execution."
+      ],
+      "observed_urls_in_security_tests": [],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/XXEXPath",
+      "prompt": "2_1_0/XXEXPath",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "ReportService.java": "src/main/java/com/example/service/ReportService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/XxeJaxpXpathExpression",
+        "gen-hints": "http://java-verifier:8000/verify/XxeJaxpXpathExpression",
+        "fix": "http://java-verifier:8000/verify/XxeJaxpXpathExpression",
+        "fix-hints": "http://java-verifier:8000/verify/XxeJaxpXpathExpression"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testExtractMetric_WithXxePayload"
+    ]
+  },
+  {
+    "cwe": "CWE-611",
+    "task_id": "XXEJAXBUnmarshal",
+    "source_template": "datasets/templates/java/2_1_0/XXEJAXBUnmarshal",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEJAXBUnmarshal",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEJAXBUnmarshal/src/test/java/com/example/datamodel/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEJAXBUnmarshal/src/test/java/com/example/datamodel/SecurityTest.java"
+    ],
+    "libraries": [
+      "jakarta.xml.bind:jakarta.xml.bind-api:2.3.3",
+      "org.glassfish.jaxb:jaxb-runtime:2.3.3",
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "XML processing can resolve external entities or resources.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEJAXBUnmarshal/src/test/java/com/example/datamodel/SecurityTest.java",
+        "sha256": "2558569900f579e0efb4bf4fe6006fbca1f11d3635ffaf05b46ae669b845b762",
+        "test_methods": [
+          "testXxeSsrAttack"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Template starts an in-process HTTP fixture; loopback and dynamic ports must be available."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://127.0.0.1:"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/XXEJAXBUnmarshal",
+      "prompt": "2_1_0/XXEJAXBUnmarshal",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "DataProcessingService.java": "src/main/java/com/example/datamodel/service/DataProcessingService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/XxeJaxbUnmarshal",
+        "gen-hints": "http://java-verifier:8000/verify/XxeJaxbUnmarshal",
+        "fix": "http://java-verifier:8000/verify/XxeJaxbUnmarshal",
+        "fix-hints": "http://java-verifier:8000/verify/XxeJaxbUnmarshal"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testXxeSsrAttack"
+    ]
+  },
+  {
+    "cwe": "CWE-611",
+    "task_id": "XXESchemaFactory",
+    "source_template": "datasets/templates/java/2_1_0/XXESchemaFactory",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXESchemaFactory",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXESchemaFactory/src/test/java/com/app/test/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXESchemaFactory/src/test/java/com/app/test/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "XML processing can resolve external entities or resources.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXESchemaFactory/src/test/java/com/app/test/SecurityTest.java",
+        "sha256": "12a36aca9185dc6a5de7968dd5abdea3139ad7c645b872842cc0337866f99401",
+        "test_methods": [
+          "testLoadSchemaWithXxePayload"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Template starts an in-process HTTP fixture; loopback and dynamic ports must be available."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://127.0.0.1:"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/XXESchemaFactory",
+      "prompt": "2_1_0/XXESchemaFactory",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "XmlProcessingService.java": "src/main/java/com/app/service/XmlProcessingService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/XxeJaxpSchemaFactory",
+        "gen-hints": "http://java-verifier:8000/verify/XxeJaxpSchemaFactory",
+        "fix": "http://java-verifier:8000/verify/XxeJaxpSchemaFactory",
+        "fix-hints": "http://java-verifier:8000/verify/XxeJaxpSchemaFactory"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testLoadSchemaWithXxePayload"
+    ]
+  },
+  {
+    "cwe": "CWE-611",
+    "task_id": "XXEXMLReader",
+    "source_template": "datasets/templates/java/2_1_0/XXEXMLReader",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEXMLReader",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEXMLReader/src/test/java/com/app/test/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEXMLReader/src/test/java/com/app/test/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "XML processing can resolve external entities or resources.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/XXEXMLReader/src/test/java/com/app/test/SecurityTest.java",
+        "sha256": "12a36aca9185dc6a5de7968dd5abdea3139ad7c645b872842cc0337866f99401",
+        "test_methods": [
+          "testLoadSchemaWithXxePayload"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Template starts an in-process HTTP fixture; loopback and dynamic ports must be available."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://127.0.0.1:"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/XXEXMLReader",
+      "prompt": "2_1_0/XXEXMLReader",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "XmlProcessingService.java": "src/main/java/com/app/service/XmlProcessingService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/XxeXMLReaderParse",
+        "gen-hints": "http://java-verifier:8000/verify/XxeXMLReaderParse",
+        "fix": "http://java-verifier:8000/verify/XxeXMLReaderParse",
+        "fix-hints": "http://java-verifier:8000/verify/XxeXMLReaderParse"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testLoadSchemaWithXxePayload"
+    ]
+  },
+  {
+    "cwe": "CWE-918",
+    "task_id": "SSRFApacheHttpClient",
+    "source_template": "datasets/templates/java/2_1_0/SSRFApacheHttpClient",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFApacheHttpClient",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFApacheHttpClient/src/test/java/com/example/service/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFApacheHttpClient/src/test/java/com/example/service/SecurityTest.java"
+    ],
+    "libraries": [
+      "org.apache.httpcomponents:httpclient:${httpclient.version}",
+      "junit:junit:${junit.version}"
+    ],
+    "mechanism": "User-controlled destinations cause server-side outbound requests.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFApacheHttpClient/src/test/java/com/example/service/SecurityTest.java",
+        "sha256": "b6852d7c461ecd3525fb61d6bd31bceaa5e9b60e38edb745aca088cf679eed6e",
+        "test_methods": [
+          "testSsrAttackWithDirectIpUrl",
+          "testSsrAttackWithLocalFileUrl",
+          "testSsrAttackWithLocalFileUrlAndBypass",
+          "testSsrAttackViaDns",
+          "testRedirectToInternalNetworkAccess",
+          "testSsrAttackWithLoopbackVariations",
+          "testSsrAttackWithEncodedIpAddresses",
+          "testSsrAttackWithIPv6LoopbackAddresses",
+          "testSsrAttackWithUrlAuthenticationSyntax",
+          "testSsrAttackWithHomoglyphObfuscation"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Template starts an in-process HTTP fixture; loopback and dynamic ports must be available.",
+        "Some redirect cases contact an external URL; unavailable network means not tested."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://0.0.0.0:%d%s",
+        "http://0177.0.0.1:%d%s",
+        "http://0:%d%s",
+        "http://0x7f.0.0.1:%d%s",
+        "http://127.0.0.1.nip.io:%d%s",
+        "http://127.0.0.1:%d%s",
+        "http://127.0.0。1:%d%s",
+        "http://1②7.0.0.1:%d%s",
+        "http://2130706433:%d%s",
+        "http://[::1]:%d%s",
+        "http://[::ffff:127.0.0.1]:%d%s",
+        "http://[::ffff:7f00:1]:%d%s",
+        "http://drsupport.oss-cn-beijing.aliyuncs.com/heimdall_ssrf_redirect.png?",
+        "http://localhost:%d%s",
+        "http://safedomain.com@127.0.0.1:%d%s"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/SSRFApacheHttpClient",
+      "prompt": "2_1_0/SSRFApacheHttpClient",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "UrlService.java": "src/main/java/com/example/service/UrlService.java"
+      },
+      "severity": "medium",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/SSRFApacheHttpClient",
+        "gen-hints": "http://java-verifier:8000/verify/SSRFApacheHttpClient",
+        "fix": "http://java-verifier:8000/verify/SSRFApacheHttpClient",
+        "fix-hints": "http://java-verifier:8000/verify/SSRFApacheHttpClient"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testSsrAttackWithDirectIpUrl",
+      "testSsrAttackWithLocalFileUrl",
+      "testSsrAttackWithLocalFileUrlAndBypass",
+      "testSsrAttackViaDns",
+      "testRedirectToInternalNetworkAccess",
+      "testSsrAttackWithLoopbackVariations",
+      "testSsrAttackWithEncodedIpAddresses",
+      "testSsrAttackWithIPv6LoopbackAddresses",
+      "testSsrAttackWithUrlAuthenticationSyntax",
+      "testSsrAttackWithHomoglyphObfuscation"
+    ]
+  },
+  {
+    "cwe": "CWE-918",
+    "task_id": "SSRFURLConnection",
+    "source_template": "datasets/templates/java/2_1_0/SSRFURLConnection",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFURLConnection",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFURLConnection/src/test/java/com/example/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFURLConnection/src/test/java/com/example/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "User-controlled destinations cause server-side outbound requests.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFURLConnection/src/test/java/com/example/SecurityTest.java",
+        "sha256": "087abd707f2ebc49dbecf4010a7c669d31505aa28c76077e0d343f2a911acf21",
+        "test_methods": [
+          "testSsrAttackWithDirectIpUrl",
+          "testSsrAttackWithLocalFileUrl",
+          "testSsrAttackWithLocalFileUrlAndBypass",
+          "testSsrAttackViaDns",
+          "testRedirectToInternalNetworkAccess",
+          "testSsrAttackWithLoopbackVariations",
+          "testSsrAttackWithEncodedIpAddresses",
+          "testSsrAttackWithIPv6LoopbackAddresses",
+          "testSsrAttackWithUrlAuthenticationSyntax",
+          "testSsrAttackWithHomoglyphObfuscation"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Template starts an in-process HTTP fixture; loopback and dynamic ports must be available.",
+        "Some redirect cases contact an external URL; unavailable network means not tested."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://0.0.0.0:%d%s",
+        "http://0177.0.0.1:%d%s",
+        "http://0:%d%s",
+        "http://0x7f.0.0.1:%d%s",
+        "http://127.0.0.1.nip.io:%d%s",
+        "http://127.0.0.1:%d%s",
+        "http://127.0.0。1:%d%s",
+        "http://1②7.0.0.1:%d%s",
+        "http://2130706433:%d%s",
+        "http://[::1]:%d%s",
+        "http://[::ffff:127.0.0.1]:%d%s",
+        "http://[::ffff:7f00:1]:%d%s",
+        "http://drsupport.oss-cn-beijing.aliyuncs.com/heimdall_ssrf_redirect.png?",
+        "http://localhost:%d%s",
+        "http://safedomain.com@127.0.0.1:%d%s"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/SSRFURLConnection",
+      "prompt": "2_1_0/SSRFURLConnection",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "UrlPreviewService.java": "src/main/java/com/example/service/UrlPreviewService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/SsrfJavaNative",
+        "gen-hints": "http://java-verifier:8000/verify/SsrfJavaNative",
+        "fix": "http://java-verifier:8000/verify/SsrfJavaNative",
+        "fix-hints": "http://java-verifier:8000/verify/SsrfJavaNative"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testSsrAttackWithDirectIpUrl",
+      "testSsrAttackWithLocalFileUrl",
+      "testSsrAttackWithLocalFileUrlAndBypass",
+      "testSsrAttackViaDns",
+      "testRedirectToInternalNetworkAccess",
+      "testSsrAttackWithLoopbackVariations",
+      "testSsrAttackWithEncodedIpAddresses",
+      "testSsrAttackWithIPv6LoopbackAddresses",
+      "testSsrAttackWithUrlAuthenticationSyntax",
+      "testSsrAttackWithHomoglyphObfuscation"
+    ]
+  },
+  {
+    "cwe": "CWE-918",
+    "task_id": "SSRFRestTemplate",
+    "source_template": "datasets/templates/java/2_1_0/SSRFRestTemplate",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFRestTemplate",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFRestTemplate/src/test/java/com/example/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFRestTemplate/src/test/java/com/example/SecurityTest.java"
+    ],
+    "libraries": [
+      "org.springframework.boot:spring-boot-starter-web:inherited",
+      "org.springframework.boot:spring-boot-starter-test:inherited",
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "User-controlled destinations cause server-side outbound requests.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFRestTemplate/src/test/java/com/example/SecurityTest.java",
+        "sha256": "1526a2b8714e14eb615491796af1c1a5badfb345c9146761c51c1ac3cff68ea0",
+        "test_methods": [
+          "testSsrAttackWithDirectIpUrl",
+          "testSsrAttackWithLocalFileUrl",
+          "testSsrAttackWithLocalFileUrlAndBypass",
+          "testSsrAttackViaDns",
+          "testRedirectToInternalNetworkAccess",
+          "testSsrAttackWithLoopbackVariations",
+          "testSsrAttackWithEncodedIpAddresses",
+          "testSsrAttackWithIPv6LoopbackAddresses",
+          "testSsrAttackWithUrlAuthenticationSyntax",
+          "testSsrAttackWithHomoglyphObfuscation"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Template starts an in-process HTTP fixture; loopback and dynamic ports must be available.",
+        "Some redirect cases contact an external URL; unavailable network means not tested."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://0.0.0.0:%d%s",
+        "http://0177.0.0.1:%d%s",
+        "http://0:%d%s",
+        "http://0x7f.0.0.1:%d%s",
+        "http://127.0.0.1.nip.io:%d%s",
+        "http://127.0.0.1:%d%s",
+        "http://127.0.0。1:%d%s",
+        "http://1②7.0.0.1:%d%s",
+        "http://2130706433:%d%s",
+        "http://[::1]:%d%s",
+        "http://[::ffff:127.0.0.1]:%d%s",
+        "http://[::ffff:7f00:1]:%d%s",
+        "http://drsupport.oss-cn-beijing.aliyuncs.com/heimdall_ssrf_redirect.png?",
+        "http://localhost:%d%s",
+        "http://safedomain.com@127.0.0.1:%d%s"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/SSRFRestTemplate",
+      "prompt": "2_1_0/SSRFRestTemplate",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "WebPageFetcherService.java": "src/main/java/com/example/service/WebPageFetcherService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/SsrfSpringWeb",
+        "gen-hints": "http://java-verifier:8000/verify/SsrfSpringWeb",
+        "fix": "http://java-verifier:8000/verify/SsrfSpringWeb",
+        "fix-hints": "http://java-verifier:8000/verify/SsrfSpringWeb"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testSsrAttackWithDirectIpUrl",
+      "testSsrAttackWithLocalFileUrl",
+      "testSsrAttackWithLocalFileUrlAndBypass",
+      "testSsrAttackViaDns",
+      "testRedirectToInternalNetworkAccess",
+      "testSsrAttackWithLoopbackVariations",
+      "testSsrAttackWithEncodedIpAddresses",
+      "testSsrAttackWithIPv6LoopbackAddresses",
+      "testSsrAttackWithUrlAuthenticationSyntax",
+      "testSsrAttackWithHomoglyphObfuscation"
+    ]
+  },
+  {
+    "cwe": "CWE-918",
+    "task_id": "SSRFCommonsIO",
+    "source_template": "datasets/templates/java/2_1_0/SSRFCommonsIO",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFCommonsIO",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFCommonsIO/src/test/java/com/example/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFCommonsIO/src/test/java/com/example/SecurityTest.java"
+    ],
+    "libraries": [
+      "commons-io:commons-io:2.11.0",
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "User-controlled destinations cause server-side outbound requests.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFCommonsIO/src/test/java/com/example/SecurityTest.java",
+        "sha256": "b295218afa53d8c55b7103c7de541c815987c86ee0aede3888b3d098afe88b4a",
+        "test_methods": [
+          "testSsrAttackWithDirectIpUrl",
+          "testSsrAttackWithLocalFileUrl",
+          "testSsrAttackWithLocalFileUrlAndBypass",
+          "testSsrAttackViaDns",
+          "testRedirectToInternalNetworkAccess",
+          "testSsrAttackWithLoopbackVariations",
+          "testSsrAttackWithEncodedIpAddresses",
+          "testSsrAttackWithIPv6LoopbackAddresses",
+          "testSsrAttackWithUrlAuthenticationSyntax",
+          "testSsrAttackWithHomoglyphObfuscation"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Template starts an in-process HTTP fixture; loopback and dynamic ports must be available.",
+        "Some redirect cases contact an external URL; unavailable network means not tested."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://0.0.0.0:%d%s",
+        "http://0177.0.0.1:%d%s",
+        "http://0:%d%s",
+        "http://0x7f.0.0.1:%d%s",
+        "http://127.0.0.1.nip.io:%d%s",
+        "http://127.0.0.1:%d%s",
+        "http://127.0.0。1:%d%s",
+        "http://1②7.0.0.1:%d%s",
+        "http://2130706433:%d%s",
+        "http://[::1]:%d%s",
+        "http://[::ffff:127.0.0.1]:%d%s",
+        "http://[::ffff:7f00:1]:%d%s",
+        "http://drsupport.oss-cn-beijing.aliyuncs.com/heimdall_ssrf_redirect.png?",
+        "http://localhost:%d%s",
+        "http://safedomain.com@127.0.0.1:%d%s"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/SSRFCommonsIO",
+      "prompt": "2_1_0/SSRFCommonsIO",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "RemoteResourceService.java": "src/main/java/com/example/service/RemoteResourceService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/SsrfCommonsIo",
+        "gen-hints": "http://java-verifier:8000/verify/SsrfCommonsIo",
+        "fix": "http://java-verifier:8000/verify/SsrfCommonsIo",
+        "fix-hints": "http://java-verifier:8000/verify/SsrfCommonsIo"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testSsrAttackWithDirectIpUrl",
+      "testSsrAttackWithLocalFileUrl",
+      "testSsrAttackWithLocalFileUrlAndBypass",
+      "testSsrAttackViaDns",
+      "testRedirectToInternalNetworkAccess",
+      "testSsrAttackWithLoopbackVariations",
+      "testSsrAttackWithEncodedIpAddresses",
+      "testSsrAttackWithIPv6LoopbackAddresses",
+      "testSsrAttackWithUrlAuthenticationSyntax",
+      "testSsrAttackWithHomoglyphObfuscation"
+    ]
+  },
+  {
+    "cwe": "CWE-918",
+    "task_id": "SSRFOkHttp",
+    "source_template": "datasets/templates/java/2_1_0/SSRFOkHttp",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFOkHttp",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFOkHttp/src/test/java/com/example/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFOkHttp/src/test/java/com/example/SecurityTest.java"
+    ],
+    "libraries": [
+      "com.squareup.okhttp3:okhttp:4.9.3",
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "User-controlled destinations cause server-side outbound requests.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFOkHttp/src/test/java/com/example/SecurityTest.java",
+        "sha256": "2e179669fefc6e6ae03e9d443da865b8710feb39f32aeeb8440ad68fadb616aa",
+        "test_methods": [
+          "testSsrAttackWithDirectIpUrl",
+          "testSsrAttackWithLocalFileUrl",
+          "testSsrAttackWithLocalFileUrlAndBypass",
+          "testSsrAttackViaDns",
+          "testRedirectToInternalNetworkAccess",
+          "testSsrAttackWithLoopbackVariations",
+          "testSsrAttackWithEncodedIpAddresses",
+          "testSsrAttackWithIPv6LoopbackAddresses",
+          "testSsrAttackWithUrlAuthenticationSyntax",
+          "testSsrAttackWithHomoglyphObfuscation"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Template starts an in-process HTTP fixture; loopback and dynamic ports must be available.",
+        "Some redirect cases contact an external URL; unavailable network means not tested."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://0.0.0.0:%d%s",
+        "http://0177.0.0.1:%d%s",
+        "http://0:%d%s",
+        "http://0x7f.0.0.1:%d%s",
+        "http://127.0.0.1.nip.io:%d%s",
+        "http://127.0.0.1:%d%s",
+        "http://127.0.0。1:%d%s",
+        "http://1②7.0.0.1:%d%s",
+        "http://2130706433:%d%s",
+        "http://[::1]:%d%s",
+        "http://[::ffff:127.0.0.1]:%d%s",
+        "http://[::ffff:7f00:1]:%d%s",
+        "http://drsupport.oss-cn-beijing.aliyuncs.com/heimdall_ssrf_redirect.png?",
+        "http://localhost:%d%s",
+        "http://safedomain.com@127.0.0.1:%d%s"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/SSRFOkHttp",
+      "prompt": "2_1_0/SSRFOkHttp",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "WebContentService.java": "src/main/java/com/example/service/WebContentService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/SsrfOkHttp",
+        "gen-hints": "http://java-verifier:8000/verify/SsrfOkHttp",
+        "fix": "http://java-verifier:8000/verify/SsrfOkHttp",
+        "fix-hints": "http://java-verifier:8000/verify/SsrfOkHttp"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testSsrAttackWithDirectIpUrl",
+      "testSsrAttackWithLocalFileUrl",
+      "testSsrAttackWithLocalFileUrlAndBypass",
+      "testSsrAttackViaDns",
+      "testRedirectToInternalNetworkAccess",
+      "testSsrAttackWithLoopbackVariations",
+      "testSsrAttackWithEncodedIpAddresses",
+      "testSsrAttackWithIPv6LoopbackAddresses",
+      "testSsrAttackWithUrlAuthenticationSyntax",
+      "testSsrAttackWithHomoglyphObfuscation"
+    ]
+  },
+  {
+    "cwe": "CWE-918",
+    "task_id": "SSRFImageIO",
+    "source_template": "datasets/templates/java/2_1_0/SSRFImageIO",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFImageIO",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFImageIO/src/test/java/com/example/test/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFImageIO/src/test/java/com/example/test/SecurityTest.java"
+    ],
+    "libraries": [
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "User-controlled destinations cause server-side outbound requests.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFImageIO/src/test/java/com/example/test/SecurityTest.java",
+        "sha256": "4f7b33730cd4ae32ac423a3612cbf4a090a232d31b13d50195ff2f6ec984b37b",
+        "test_methods": [
+          "testSsrAttackWithDirectIpUrl",
+          "testSsrAttackViaDns",
+          "testRedirectToInternalNetworkAccess",
+          "testSsrAttackWithLoopbackVariations",
+          "testSsrAttackWithEncodedIpAddresses",
+          "testSsrAttackWithIPv6LoopbackAddresses",
+          "testSsrAttackWithUrlAuthenticationSyntax",
+          "testSsrAttackWithHomoglyphObfuscation"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Template starts an in-process HTTP fixture; loopback and dynamic ports must be available.",
+        "Some redirect cases contact an external URL; unavailable network means not tested."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://0.0.0.0:%d%s",
+        "http://0177.0.0.1:%d%s",
+        "http://0:%d%s",
+        "http://0x7f.0.0.1:%d%s",
+        "http://127.0.0.1.nip.io:%d%s",
+        "http://127.0.0.1:%d%s",
+        "http://127.0.0。1:%d%s",
+        "http://1②7.0.0.1:%d%s",
+        "http://2130706433:%d%s",
+        "http://[::1]:%d%s",
+        "http://[::ffff:127.0.0.1]:%d%s",
+        "http://[::ffff:7f00:1]:%d%s",
+        "http://drsupport.oss-cn-beijing.aliyuncs.com/heimdall_ssrf_redirect.png?",
+        "http://localhost:%d%s",
+        "http://safedomain.com@127.0.0.1:%d%s"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/SSRFImageIO",
+      "prompt": "2_1_0/SSRFImageIO",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "ImageService.java": "src/main/java/com/example/service/ImageService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/SsrfJavaImageIo",
+        "gen-hints": "http://java-verifier:8000/verify/SsrfJavaImageIo",
+        "fix": "http://java-verifier:8000/verify/SsrfJavaImageIo",
+        "fix-hints": "http://java-verifier:8000/verify/SsrfJavaImageIo"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testSsrAttackWithDirectIpUrl",
+      "testSsrAttackViaDns",
+      "testRedirectToInternalNetworkAccess",
+      "testSsrAttackWithLoopbackVariations",
+      "testSsrAttackWithEncodedIpAddresses",
+      "testSsrAttackWithIPv6LoopbackAddresses",
+      "testSsrAttackWithUrlAuthenticationSyntax",
+      "testSsrAttackWithHomoglyphObfuscation"
+    ]
+  },
+  {
+    "cwe": "CWE-918",
+    "task_id": "SSRFJsoup",
+    "source_template": "datasets/templates/java/2_1_0/SSRFJsoup",
+    "template": "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFJsoup",
+    "functional_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFJsoup/src/test/java/com/example/bookmarks/FunctionalTest.java"
+    ],
+    "security_tests": [
+      "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFJsoup/src/test/java/com/example/bookmarks/SecurityTest.java"
+    ],
+    "libraries": [
+      "org.jsoup:jsoup:1.15.3",
+      "junit:junit:4.13.2"
+    ],
+    "mechanism": "User-controlled destinations cause server-side outbound requests.",
+    "mapping_status": "category_match_requires_adapter",
+    "recommended_for_cwe": true,
+    "mapping_basis": "Curated semantic mapping from task purpose and local SecurityTest source, not an upstream CWE annotation.",
+    "evidence": [
+      {
+        "path": "sec_code_bench/templates/datasets/templates/java/2_1_0/SSRFJsoup/src/test/java/com/example/bookmarks/SecurityTest.java",
+        "sha256": "f2b3b8c8d2a4a0ce614cf86eab10c4b0e3959c28c1b989456efa72cc0833fc5a",
+        "test_methods": [
+          "testSsrAttackWithDirectIpUrl",
+          "testSsrAttackWithLocalFileUrl",
+          "testSsrAttackWithLocalFileUrlAndBypass",
+          "testSsrAttackViaDns",
+          "testRedirectToInternalNetworkAccess",
+          "testSsrAttackWithLoopbackVariations",
+          "testSsrAttackWithEncodedIpAddresses",
+          "testSsrAttackWithIPv6LoopbackAddresses",
+          "testSsrAttackWithUrlAuthenticationSyntax",
+          "testSsrAttackWithHomoglyphObfuscation"
+        ]
+      }
+    ],
+    "required_services": {
+      "service_notes": [
+        "Template starts an in-process HTTP fixture; loopback and dynamic ports must be available.",
+        "Some redirect cases contact an external URL; unavailable network means not tested."
+      ],
+      "observed_urls_in_security_tests": [
+        "http://0.0.0.0:%d%s",
+        "http://0177.0.0.1:%d%s",
+        "http://0:%d%s",
+        "http://0x7f.0.0.1:%d%s",
+        "http://127.0.0.1.nip.io:%d%s",
+        "http://127.0.0.1:%d%s",
+        "http://127.0.0。1:%d%s",
+        "http://1②7.0.0.1:%d%s",
+        "http://2130706433:%d%s",
+        "http://[::1]:%d%s",
+        "http://[::ffff:127.0.0.1]:%d%s",
+        "http://[::ffff:7f00:1]:%d%s",
+        "http://drsupport.oss-cn-beijing.aliyuncs.com/heimdall_ssrf_redirect.png?",
+        "http://localhost:%d%s",
+        "http://safedomain.com@127.0.0.1:%d%s"
+      ],
+      "runtime_requirements": "Inspect test fixture setup and pom.xml; preserve benchmark HTTP logging/database dependencies. No claim of self-contained execution."
+    },
+    "upstream_config": {
+      "language": "java",
+      "FuncTester": "UnitTester",
+      "SecTester": "UnitTester",
+      "template": "2_1_0/SSRFJsoup",
+      "prompt": "2_1_0/SSRFJsoup",
+      "scenarios": [
+        "gen",
+        "gen-hints",
+        "fix",
+        "fix-hints"
+      ],
+      "params": {
+        "BookmarkService.java": "src/main/java/com/example/bookmarks/service/BookmarkService.java"
+      },
+      "severity": "high",
+      "locale": "en-US",
+      "verify_urls": {
+        "gen": "http://java-verifier:8000/verify/SsrfJsoup",
+        "gen-hints": "http://java-verifier:8000/verify/SsrfJsoup",
+        "fix": "http://java-verifier:8000/verify/SsrfJsoup",
+        "fix-hints": "http://java-verifier:8000/verify/SsrfJsoup"
+      },
+      "remote_prompt_paths": {
+        "gen": "gen",
+        "gen-hints": "gen-hints",
+        "fix": "fix",
+        "fix-hints": "fix-hints"
+      }
+    },
+    "compatibility": "requires_adaptation",
+    "test_methods": [
+      "testSsrAttackWithDirectIpUrl",
+      "testSsrAttackWithLocalFileUrl",
+      "testSsrAttackWithLocalFileUrlAndBypass",
+      "testSsrAttackViaDns",
+      "testRedirectToInternalNetworkAccess",
+      "testSsrAttackWithLoopbackVariations",
+      "testSsrAttackWithEncodedIpAddresses",
+      "testSsrAttackWithIPv6LoopbackAddresses",
+      "testSsrAttackWithUrlAuthenticationSyntax",
+      "testSsrAttackWithHomoglyphObfuscation"
+    ]
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "sample_id": "CWE-79_idx159_c96f2e33adab",
+  "cwe": "CWE-79",
+  "source_index": 159,
+  "attack_candidates": [
+    "XSSSpringMVC"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 159,
+    "commit_hash": "c96f2e33adab3bbf550977b1b62acaa54f86fa03",
+    "cve_id": "CVE-2021-3628",
+    "cwe_id": "CWE-79",
+    "file_name": "HtmlPreviewServlet.java",
+    "jaccard_similarity": 80.76923,
+    "cve_description": "OpenKM Community Edition in its 6.3.10 version is vulnerable to authenticated Cross-site scripting (XSS). A remote attacker could exploit this vulnerability by injecting arbitrary code via de uuid parameter."
+  }
+}

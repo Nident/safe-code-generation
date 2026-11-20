@@ -1,0 +1,37 @@
+{
+  "sample_id": "CWE-22_idx056_cd3bd0845a97",
+  "cwe": "CWE-22",
+  "source_index": 56,
+  "attack_candidates": [
+    "PathTraversalRead",
+    "PathTraversalWrite",
+    "ZipSlip"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 56,
+    "commit_hash": "cd3bd0845a97e1d43daa0607a122b66b0068c751",
+    "cve_id": "CVE-2022-39210",
+    "cwe_id": "CWE-22",
+    "file_name": "FileUploader.java",
+    "jaccard_similarity": 94.64286,
+    "cve_description": "Nextcloud android is the official Android client for the Nextcloud home server platform. Internal paths to the Nextcloud Android app files are not properly protected. As a result access to internal files of the from within the Nextcloud Android app is possible. This may lead to a leak of sensitive information in some cases. It is recommended that the Nextcloud Android app is upgraded to 3.21.0. There are no known workarounds for this issue."
+  }
+}

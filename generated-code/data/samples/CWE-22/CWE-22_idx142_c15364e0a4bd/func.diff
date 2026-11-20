@@ -1,0 +1,11 @@
+--- func_before
++++ func_after
+@@ -14,7 +14,7 @@
+ 		try (GFileSystem fs = fsService.openFileSystemContainer(archiveFSRL, monitor)) {
+ 			verifyArchive(fs, monitor);
+ 			startExtract(fs, null, monitor);
+-			verifyRestoredProject();
++			createProjectMarkerFile();
+ 			openRestoredProject();
+ 			Msg.info(this, "Restore Archive: " + locInfo + " succeeded.");
+ 		}

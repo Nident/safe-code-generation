@@ -1,0 +1,46 @@
+{
+  "sample_id": "CWE-611_idx187_e3527b98fdd8",
+  "cwe": "CWE-611",
+  "source_index": 187,
+  "attack_candidates": [
+    "XXESAXReader",
+    "XXESAXParser",
+    "XXEDocumentBuilder",
+    "XXEValidator",
+    "XXETransformerFactory",
+    "XXEJDOM2",
+    "XXEStAX",
+    "XXEDigester",
+    "XXEXPath",
+    "XXEJAXBUnmarshal",
+    "XXESchemaFactory",
+    "XXEXMLReader"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 187,
+    "commit_hash": "e3527b98fdd8dc8179c24dc55e662b2c55199434",
+    "cve_id": "CVE-2023-27480",
+    "cwe_id": "CWE-611",
+    "file_name": "XarPackage.java",
+    "jaccard_similarity": 92.59259,
+    "cve_description": "XWiki Platform is a generic wiki platform offering runtime services for applications built on top of it. In affected versions any user with edit rights on a document can trigger an XAR import on a forged XAR file, leading to the ability to display the content of any file on the XWiki server host. This vulnerability has been patched in XWiki 13.10.11, 14.4.7 and 14.10-rc-1. Users are advised to upgrade. Users unable to upgrade may apply the patch `e3527b98fd` manually."
+  }
+}

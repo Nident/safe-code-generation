@@ -1,0 +1,14 @@
+--- func_before
++++ func_after
+@@ -59,8 +59,9 @@
+                             res.append(((Boolean) arg).booleanValue() ? 1 : 0);
+                         } else {
+                             res.append('\'');
+-                            // Escape single quote character while appending the string.
+-                            res.append(arg.toString().replace("'", "''"));
++                            // Escape single quote character while appending the string and reject
++                            // invalid unicode.
++                            res.append(escapeSingleQuoteAndRejectInvalidUnicode(arg.toString()));
+                             res.append('\'');
+                         }
+                         break;

@@ -1,0 +1,19 @@
+--- func_before
++++ func_after
+@@ -131,7 +131,7 @@
+ 			String pageTitle = pageTitleListMergeable.mergeToString(
+ 				StringPool.SPACE);
+ 
+-			template.put("pageTitle", pageTitle);
++			template.put("pageTitle", HtmlUtil.stripHtml(pageTitle));
+ 		}
+ 
+ 		ListMergeable<String> pageSubtitleListMergeable =
+@@ -141,6 +141,6 @@
+ 			String pageSubtitle = pageSubtitleListMergeable.mergeToString(
+ 				StringPool.SPACE);
+ 
+-			template.put("pageSubtitle", pageSubtitle);
++			template.put("pageSubtitle", HtmlUtil.stripHtml(pageSubtitle));
+ 		}
+ 	}

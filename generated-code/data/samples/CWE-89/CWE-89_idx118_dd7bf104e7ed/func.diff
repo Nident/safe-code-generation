@@ -1,0 +1,14 @@
+--- func_before
++++ func_after
+@@ -11,7 +11,10 @@
+             return true;
+         }
+         log.info("--获取sql信息--", list.toString());
+-        boolean flag = true;
++        boolean flag = checkTableAndFieldsName(list);
++        if(flag == false){
++            return false;
++        }
+         for (QueryTable table : list) {
+             String name = table.getName();
+             String fieldString = ruleMap.get(name);

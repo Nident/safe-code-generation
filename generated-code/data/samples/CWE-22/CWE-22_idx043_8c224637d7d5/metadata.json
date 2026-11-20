@@ -1,0 +1,37 @@
+{
+  "sample_id": "CWE-22_idx043_8c224637d7d5",
+  "cwe": "CWE-22",
+  "source_index": 43,
+  "attack_candidates": [
+    "PathTraversalRead",
+    "PathTraversalWrite",
+    "ZipSlip"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 43,
+    "commit_hash": "8c224637d7d561076364a9e3c2c375daeaf463dc",
+    "cve_id": "CVE-2022-4583",
+    "cwe_id": "CWE-22",
+    "file_name": "JUtil.java",
+    "jaccard_similarity": 98.8024,
+    "cve_description": "A vulnerability was found in jLEMS. It has been declared as critical. Affected by this vulnerability is the function unpackJar of the file src/main/java/org/lemsml/jlems/io/util/JUtil.java. The manipulation leads to path traversal. The attack can be launched remotely. The name of the patch is 8c224637d7d561076364a9e3c2c375daeaf463dc. It is recommended to apply a patch to fix this issue. The identifier VDB-216169 was assigned to this vulnerability."
+  }
+}

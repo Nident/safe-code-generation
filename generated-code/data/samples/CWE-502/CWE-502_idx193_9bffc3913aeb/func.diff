@@ -1,0 +1,11 @@
+--- func_before
++++ func_after
+@@ -11,6 +11,8 @@
+ 			}
+ 		}
+ 		else {
++			checkClassName(jsonParser.classnameWhitelist, className);
++
+ 			try {
+ 				targetType = ClassLoaderUtil.loadClass(className);
+ 			} catch (ClassNotFoundException cnfex) {

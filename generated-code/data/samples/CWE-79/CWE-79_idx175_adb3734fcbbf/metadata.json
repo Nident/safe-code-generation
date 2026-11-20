@@ -1,0 +1,35 @@
+{
+  "sample_id": "CWE-79_idx175_adb3734fcbbf",
+  "cwe": "CWE-79",
+  "source_index": 175,
+  "attack_candidates": [
+    "XSSSpringMVC"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "derived_unified_diff_source_field_absent",
+  "original_metadata": {
+    "index": 175,
+    "commit_hash": "adb3734fcbbf9a9165445e9ee5eef168dbcaedaf",
+    "cve_id": "CVE-2020-24301",
+    "cwe_id": "CWE-79",
+    "file_name": "BaseController.java",
+    "jaccard_similarity": 99.77,
+    "cve_desc": "Users of the HAPI FHIR Testpage Overlay 5.0.0 and below can use a specially crafted URL to exploit an XSS vulnerability in this module, allowing arbitrary JavaScript to be executed in the user's browser. The impact of this vulnerability is believed to be low, as this module is intended for testing and not believed to be widely used for any production purposes."
+  }
+}

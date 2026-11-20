@@ -1,0 +1,11 @@
+--- func_before
++++ func_after
+@@ -10,7 +10,7 @@
+         String username = getUsernameFromObject(thisObj);
+         // Set anonymous user if no user is login to the system
+         if (username == null) {
+-            username = APIConstants.END_USER_ANONYMOUS;
++            username = RegistryConstants.ANONYMOUS_USER;
+         }
+         String resource = (String) args[1];
+         String tenantDomain = (String) args[0];

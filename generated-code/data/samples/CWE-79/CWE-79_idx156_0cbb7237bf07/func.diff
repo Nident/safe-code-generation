@@ -1,0 +1,18 @@
+--- func_before
++++ func_after
+@@ -17,7 +17,7 @@
+                                     continue;
+
+                                 }
+
+                             }
+
+-                        } catch (UsernameNotFoundException x) {
+
++                        } catch (AuthenticationException x) {
+
+                             
+
+                             if (SEND_TO_UNKNOWN_USERS || ExtendedEmailPublisher.descriptor().isAllowUnregisteredEnabled() ) {
+
+                                 listener.getLogger().printf("Warning: %s is not a recognized user, but sending mail anyway%n", userAddress);

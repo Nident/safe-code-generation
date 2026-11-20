@@ -1,0 +1,35 @@
+{
+  "sample_id": "CWE-79_idx099_66c1f626bf38",
+  "cwe": "CWE-79",
+  "source_index": 99,
+  "attack_candidates": [
+    "XSSSpringMVC"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 99,
+    "commit_hash": "66c1f626bf38a7d1a9530b4d68598269ee5245a2",
+    "cve_id": "CVE-2021-25929",
+    "cwe_id": "CWE-79",
+    "file_name": "NotificationsPageIT.java",
+    "jaccard_similarity": 96.15385,
+    "cve_description": "In OpenNMS Horizon, versions opennms-1-0-stable through opennms-27.1.0-1; OpenNMS Meridian, versions meridian-foundation-2015.1.0-1 through meridian-foundation-2019.1.18-1; meridian-foundation-2020.1.0-1 through meridian-foundation-2020.1.6-1 are vulnerable to Stored Cross-Site Scripting since there is no validation on the input being sent to the `name` parameter in `noticeWizard` endpoint. Due to this flaw an authenticated attacker could inject arbitrary script and trick other admin users into downloading malicious files."
+  }
+}

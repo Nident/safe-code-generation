@@ -1,0 +1,15 @@
+--- func_before
++++ func_after
+@@ -14,6 +14,12 @@
+ 		if (StringUtils.isNotBlank(title)){
+ 			vars.put("title", title);
+ 		}
++
++		// 安全过滤
++		Matcher matcher = businessTablePattern.matcher(businessTable);
++		if (!matcher.matches()) {
++			throw new ServiceException("非法参数 businessTable");
++		}
+ 		
+ 		// 启动流程
+ 		ProcessInstance procIns = runtimeService.startProcessInstanceByKey(procDefKey, businessTable+":"+businessId, vars);

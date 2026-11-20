@@ -1,0 +1,40 @@
+{
+  "sample_id": "CWE-89_idx181_32faa4355f82",
+  "cwe": "CWE-89",
+  "source_index": 181,
+  "attack_candidates": [
+    "SQLInjectionMyBatisGroupBy",
+    "SQLInjectionMyBatisOrderBy",
+    "SQLInjectionSpringJDBC",
+    "SQLInjectionMyBatisLike",
+    "JDBCInjectionExecuteUpdate",
+    "SQLInjectionMyBatisCRUD"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 181,
+    "commit_hash": "32faa4355f82783326d16b0252e81e1231e12c9c",
+    "cve_id": "CVE-2019-15566",
+    "cwe_id": "CWE-89",
+    "file_name": "HistorySearchProvider.java",
+    "jaccard_similarity": 91.66667,
+    "cve_description": "The Alfresco application before 1.8.7 for Android allows SQL injection in HistorySearchProvider.java."
+  }
+}

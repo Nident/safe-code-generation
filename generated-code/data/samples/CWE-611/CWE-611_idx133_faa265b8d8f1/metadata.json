@@ -1,0 +1,46 @@
+{
+  "sample_id": "CWE-611_idx133_faa265b8d8f1",
+  "cwe": "CWE-611",
+  "source_index": 133,
+  "attack_candidates": [
+    "XXESAXReader",
+    "XXESAXParser",
+    "XXEDocumentBuilder",
+    "XXEValidator",
+    "XXETransformerFactory",
+    "XXEJDOM2",
+    "XXEStAX",
+    "XXEDigester",
+    "XXEXPath",
+    "XXEJAXBUnmarshal",
+    "XXESchemaFactory",
+    "XXEXMLReader"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 133,
+    "commit_hash": "faa265b8d8f1c71e1bf3229fba5f8cc58a5611b7",
+    "cve_id": "CVE-2018-1000822",
+    "cwe_id": "CWE-611",
+    "file_name": "GsaConfigParser.java",
+    "jaccard_similarity": 88.88889,
+    "cve_description": "codelibs fess version before commit faa265b contains a XML External Entity (XXE) vulnerability in GSA XML file parser that can result in Disclosure of confidential data, denial of service, SSRF, port scanning. This attack appear to be exploitable via specially crafted GSA XML files. This vulnerability appears to have been fixed in after commit faa265b."
+  }
+}

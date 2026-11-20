@@ -1,0 +1,11 @@
+--- func_before
++++ func_after
+@@ -6,7 +6,7 @@
+             public void run() {
+                 while (true) {
+                     try (Socket socket = listener.accept();
+-                         ObjectInputStream ois = new ObjectInputStream(socket.getInputStream())) {
++                         ObjectInputStream ois = new FilterObjectInputStream(socket.getInputStream())) {
+                         // Receive args from another JD-GUI instance
+                         String[] args = (String[])ois.readObject();
+                         consumer.accept(args);

@@ -1,0 +1,41 @@
+{
+  "sample_id": "CWE-918_idx082_c3e6d69422e1",
+  "cwe": "CWE-918",
+  "source_index": 82,
+  "attack_candidates": [
+    "SSRFApacheHttpClient",
+    "SSRFURLConnection",
+    "SSRFRestTemplate",
+    "SSRFCommonsIO",
+    "SSRFOkHttp",
+    "SSRFImageIO",
+    "SSRFJsoup"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 82,
+    "commit_hash": "c3e6d69422e1f0c80fe53f2d757b8df97619af2b",
+    "cve_id": "CVE-2022-4725",
+    "cwe_id": "CWE-918",
+    "file_name": "RegionMetadataParser.java",
+    "jaccard_similarity": 80.64516,
+    "cve_description": "A vulnerability was found in AWS SDK 2.59.0. It has been rated as critical. This issue affects the function XpathUtils of the file aws-android-sdk-core/src/main/java/com/amazonaws/util/XpathUtils.java of the component XML Parser. The manipulation leads to server-side request forgery. Upgrading to version 2.59.1 is able to address this issue. The name of the patch is c3e6d69422e1f0c80fe53f2d757b8df97619af2b. It is recommended to upgrade the affected component. The identifier VDB-216737 was assigned to this vulnerability."
+  }
+}

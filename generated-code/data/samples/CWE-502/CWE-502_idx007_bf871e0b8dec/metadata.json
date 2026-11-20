@@ -1,0 +1,39 @@
+{
+  "sample_id": "CWE-502_idx007_bf871e0b8dec",
+  "cwe": "CWE-502",
+  "source_index": 7,
+  "attack_candidates": [
+    "DeserializationHessian",
+    "DeserializationObjectInputStream",
+    "DeserializationSnakeYAML",
+    "DeserializationXMLDecoder",
+    "DeserializationFlexjson"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 7,
+    "commit_hash": "bf871e0b8decf6895c0522a4e25da5e623808656",
+    "cve_id": "CVE-2023-34212",
+    "cwe_id": "CWE-502",
+    "file_name": "nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/FlowResource.java",
+    "jaccard_similarity": 85.71429,
+    "cve_description": "The JndiJmsConnectionFactoryProvider Controller Service, along with the ConsumeJMS and PublishJMS Processors, in Apache NiFi 1.8.0 through 1.21.0 allow an authenticated and authorized user to configure URL and library properties that enable deserialization of untrusted data from a remote location.\n\nThe resolution validates the JNDI URL and restricts locations to a set of allowed schemes.\n\nYou are recommended to upgrade to version 1.22.0 or later which fixes this issue."
+  }
+}

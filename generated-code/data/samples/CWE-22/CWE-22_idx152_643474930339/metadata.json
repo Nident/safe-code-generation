@@ -1,0 +1,39 @@
+{
+  "sample_id": "CWE-22_idx152_643474930339",
+  "cwe": "CWE-22",
+  "source_index": 152,
+  "attack_candidates": [
+    "PathTraversalRead",
+    "PathTraversalWrite",
+    "ZipSlip"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "mechanism_visible",
+    "issues": [
+      "containment_guard_visible_not_dynamically_validated"
+    ],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Java standard java.io and java.util.zip APIs. Existing FileMisc.mkdirs(File) creates a directory and its parents; existing copy(InputStream, OutputStream) copies the remaining stream bytes. These helpers are supplied by the surrounding project; do not reimplement them.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 152,
+    "commit_hash": "643474930339e5567745ba0695f2a8decf627a8c",
+    "cve_id": "CVE-2022-26049",
+    "cwe_id": "CWE-22",
+    "file_name": "src/main/java/com/diffplug/gradle/ZipMisc.java",
+    "jaccard_similarity": 85.71429,
+    "cve_description": "This affects the package com.diffplug.gradle:goomph before 3.37.2. It allows a malicious zip file to potentially break out of the expected destination directory, writing contents into arbitrary locations on the file system. Overwriting certain files/directories could allow an attacker to achieve remote code execution on a target system by exploiting this vulnerability. **Note:** This could have allowed a malicious zip file to extract itself into an arbitrary directory. The only file that Goomph extracts is the p2 bootstrapper and eclipse metadata files hosted at eclipse.org, which are not malicious, so the only way this vulnerability could have affected you is if you had set a custom bootstrap zip, and that zip was malicious."
+  }
+}

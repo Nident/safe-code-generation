@@ -1,0 +1,37 @@
+{
+  "sample_id": "CWE-22_idx151_bfb3d4239672",
+  "cwe": "CWE-22",
+  "source_index": 151,
+  "attack_candidates": [
+    "PathTraversalRead",
+    "PathTraversalWrite",
+    "ZipSlip"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 151,
+    "commit_hash": "bfb3d42396727614aef625143b4381e64142f9bb",
+    "cve_id": "CVE-2023-48299",
+    "cwe_id": "CWE-22",
+    "file_name": "ZipUtils.java",
+    "jaccard_similarity": 91.89189,
+    "cve_description": "TorchServe is a tool for serving and scaling PyTorch models in production. Starting in version 0.1.0 and prior to version 0.9.0, using the model/workflow management API, there is a chance of uploading potentially harmful archives that contain files that are extracted to any location on the filesystem that is within the process permissions. Leveraging this issue could aid third-party actors in hiding harmful code in open-source/public models, which can be downloaded from the internet, and take advantage of machines running Torchserve. The ZipSlip issue in TorchServe has been fixed by validating the paths of files contained within a zip archive before extracting them. TorchServe release 0.9.0 includes fixes to address the ZipSlip vulnerability."
+  }
+}

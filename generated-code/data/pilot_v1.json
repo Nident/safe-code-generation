@@ -1,0 +1,304 @@
+[
+  {
+    "task_id": "task-01",
+    "sample_id": "CWE-94_idx017_641325bbc847",
+    "cwe": "CWE-94",
+    "source_index": 17,
+    "prompt_dir": "prompts/v1/task-01",
+    "reference_dir": "generated-code/data/samples/CWE-94/CWE-94_idx017_641325bbc847",
+    "target": {
+      "func_before": {
+        "path": "samples/CWE-94/CWE-94_idx017_641325bbc847/target_func_before.java",
+        "source_lines": [
+          1,
+          80
+        ]
+      },
+      "func_after": {
+        "path": "samples/CWE-94/CWE-94_idx017_641325bbc847/target_func_after.java",
+        "source_lines": [
+          1,
+          85
+        ]
+      }
+    },
+    "mechanism_review": "mechanism_visible_engine_mismatch",
+    "evidence": "An input stylesheet is compiled with TransformerFactory without secure processing; the paired change enables FEATURE_SECURE_PROCESSING to restrict extension execution. Groovy/JavaxScript attacks share a category, not this execution engine.",
+    "preferred_attack_candidates": [
+      "CodeInjectionGroovy",
+      "CodeInjectionJavaxScript"
+    ],
+    "next_adaptation_step": "CodeInjectionGroovy/CodeInjectionJavaxScript cannot directly test XSLT. Build a HtmlUnit/JAXP fixture for transform and adapt the harmless execution-marker concept to the selected XSLT provider. Pin provider/JDK and test extension execution before/after. Keep this task out of dynamic scoring until that succeeds.",
+    "generation_enabled": true,
+    "mechanism_confirmed": true,
+    "dynamic_scoring_eligible": false,
+    "eligibility_reason": "No executable adapter or before/after differential validation yet.",
+    "leakage": {
+      "train_commit_indices": [],
+      "train_cve_indices": [],
+      "train_normalized_code_indices": [],
+      "train_code_containment_indices": [],
+      "graph_explicit_identifier_matches": [],
+      "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+      "known_overlap": false
+    }
+  },
+  {
+    "task_id": "task-02",
+    "sample_id": "CWE-79_idx051_870d518f7de3",
+    "cwe": "CWE-79",
+    "source_index": 51,
+    "prompt_dir": "prompts/v1/task-02",
+    "reference_dir": "generated-code/data/samples/CWE-79/CWE-79_idx051_870d518f7de3",
+    "target": {
+      "func_before": {
+        "path": "samples/CWE-79/CWE-79_idx051_870d518f7de3/target_func_before.java",
+        "source_lines": [
+          1,
+          12
+        ]
+      },
+      "func_after": {
+        "path": "samples/CWE-79/CWE-79_idx051_870d518f7de3/target_func_after.java",
+        "source_lines": [
+          1,
+          15
+        ]
+      }
+    },
+    "mechanism_review": "mechanism_visible",
+    "evidence": "Regex-based filtering only recognizes literal javascript:; the paired change adds javascript&colon; patterns. This is a narrow patch, not a complete HTML sanitization proof.",
+    "preferred_attack_candidates": [
+      "XSSSpringMVC"
+    ],
+    "next_adaptation_step": "Use XSSSpringMVC as the source of payloads, not as a drop-in harness. Add a wrapper calling sanitizeInput and a rendering-context oracle; verify harmless text survives. Include encoded-URL variants from the paired change in evaluator-only tests.",
+    "generation_enabled": true,
+    "mechanism_confirmed": true,
+    "dynamic_scoring_eligible": false,
+    "eligibility_reason": "No executable adapter or before/after differential validation yet.",
+    "leakage": {
+      "train_commit_indices": [],
+      "train_cve_indices": [],
+      "train_normalized_code_indices": [],
+      "train_code_containment_indices": [],
+      "graph_explicit_identifier_matches": [],
+      "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+      "known_overlap": false
+    }
+  },
+  {
+    "task_id": "task-03",
+    "sample_id": "CWE-89_idx113_d374a5f77e6b",
+    "cwe": "CWE-89",
+    "source_index": 113,
+    "prompt_dir": "prompts/v1/task-03",
+    "reference_dir": "generated-code/data/samples/CWE-89/CWE-89_idx113_d374a5f77e6b",
+    "target": {
+      "func_before": {
+        "path": "samples/CWE-89/CWE-89_idx113_d374a5f77e6b/target_func_before.java",
+        "source_lines": [
+          134,
+          143
+        ]
+      },
+      "func_after": {
+        "path": "samples/CWE-89/CWE-89_idx113_d374a5f77e6b/target_func_after.java",
+        "source_lines": [
+          134,
+          144
+        ]
+      }
+    },
+    "mechanism_review": "mechanism_visible",
+    "evidence": "The schema string is interpolated into a quoted SQL literal; the paired method binds the schema as a prepared-statement parameter.",
+    "preferred_attack_candidates": [
+      "SQLInjectionSpringJDBC"
+    ],
+    "next_adaptation_step": "Adapt SQLInjectionSpringJDBC payload concepts to schemaExists. Use PostgreSQL (the source query is dialect-specific), create a known schema and verify true/false before testing quote/injection payloads. Do not silently replace the query with the benchmark user-table query.",
+    "generation_enabled": true,
+    "mechanism_confirmed": true,
+    "dynamic_scoring_eligible": false,
+    "eligibility_reason": "No executable adapter or before/after differential validation yet.",
+    "leakage": {
+      "train_commit_indices": [],
+      "train_cve_indices": [],
+      "train_normalized_code_indices": [],
+      "train_code_containment_indices": [],
+      "graph_explicit_identifier_matches": [],
+      "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+      "known_overlap": false
+    }
+  },
+  {
+    "task_id": "task-04",
+    "sample_id": "CWE-22_idx152_643474930339",
+    "cwe": "CWE-22",
+    "source_index": 152,
+    "prompt_dir": "prompts/v1/task-04",
+    "reference_dir": "generated-code/data/samples/CWE-22/CWE-22_idx152_643474930339",
+    "target": {
+      "func_before": {
+        "path": "samples/CWE-22/CWE-22_idx152_643474930339/target_func_before.java",
+        "source_lines": [
+          1,
+          16
+        ]
+      },
+      "func_after": {
+        "path": "samples/CWE-22/CWE-22_idx152_643474930339/target_func_after.java",
+        "source_lines": [
+          1,
+          19
+        ]
+      }
+    },
+    "mechanism_review": "mechanism_visible",
+    "evidence": "Entry names flow into new File(destinationDir, entry.getName()) and FileOutputStream without a containment check. The paired change adds a normalized path containment check.",
+    "preferred_attack_candidates": [
+      "ZipSlip"
+    ],
+    "next_adaptation_step": "Start from ZipSlip: adapt its ZipService invocation to unzip(File, File), provide the two existing file helpers, retain benign nested-file tests and malicious ../ ZIP entries. Validate before/after on an isolated temp directory.",
+    "generation_enabled": true,
+    "mechanism_confirmed": true,
+    "dynamic_scoring_eligible": false,
+    "eligibility_reason": "No executable adapter or before/after differential validation yet.",
+    "leakage": {
+      "train_commit_indices": [],
+      "train_cve_indices": [],
+      "train_normalized_code_indices": [],
+      "train_code_containment_indices": [],
+      "graph_explicit_identifier_matches": [],
+      "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+      "known_overlap": false
+    }
+  },
+  {
+    "task_id": "task-05",
+    "sample_id": "CWE-502_idx190_0b1f57e0a906",
+    "cwe": "CWE-502",
+    "source_index": 190,
+    "prompt_dir": "prompts/v1/task-05",
+    "reference_dir": "generated-code/data/samples/CWE-502/CWE-502_idx190_0b1f57e0a906",
+    "target": {
+      "func_before": {
+        "path": "samples/CWE-502/CWE-502_idx190_0b1f57e0a906/target_func_before.java",
+        "source_lines": [
+          1,
+          21
+        ]
+      },
+      "func_after": {
+        "path": "samples/CWE-502/CWE-502_idx190_0b1f57e0a906/target_func_after.java",
+        "source_lines": [
+          1,
+          21
+        ]
+      }
+    },
+    "mechanism_review": "mechanism_visible",
+    "evidence": "ObjectInputStream.readObject executes before the String[] cast. The paired change substitutes FilterObjectInputStream, whose implementation is not included.",
+    "preferred_attack_candidates": [
+      "DeserializationObjectInputStream"
+    ],
+    "next_adaptation_step": "Adapt DeserializationObjectInputStream and its EvilObject marker fixture to a local TCP socket, checking a benign String[] is delivered. Retrieve the real FilterObjectInputStream before treating func_after as a fixed oracle; execute each listener in a disposable process with a timeout.",
+    "generation_enabled": true,
+    "mechanism_confirmed": true,
+    "dynamic_scoring_eligible": false,
+    "eligibility_reason": "No executable adapter or before/after differential validation yet.",
+    "leakage": {
+      "train_commit_indices": [],
+      "train_cve_indices": [],
+      "train_normalized_code_indices": [],
+      "train_code_containment_indices": [],
+      "graph_explicit_identifier_matches": [],
+      "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+      "known_overlap": false
+    }
+  },
+  {
+    "task_id": "task-06",
+    "sample_id": "CWE-611_idx197_90aee8f8ceef",
+    "cwe": "CWE-611",
+    "source_index": 197,
+    "prompt_dir": "prompts/v1/task-06",
+    "reference_dir": "generated-code/data/samples/CWE-611/CWE-611_idx197_90aee8f8ceef",
+    "target": {
+      "func_before": {
+        "path": "samples/CWE-611/CWE-611_idx197_90aee8f8ceef/target_func_before.java",
+        "source_lines": [
+          1,
+          11
+        ]
+      },
+      "func_after": {
+        "path": "samples/CWE-611/CWE-611_idx197_90aee8f8ceef/target_func_after.java",
+        "source_lines": [
+          1,
+          16
+        ]
+      }
+    },
+    "mechanism_review": "mechanism_visible",
+    "evidence": "A namespace-aware DocumentBuilder parses caller-supplied XML with default entity handling. The paired change adds FEATURE_SECURE_PROCESSING only; external-entity behavior still depends on provider/JDK and must be tested.",
+    "preferred_attack_candidates": [
+      "XXEDocumentBuilder"
+    ],
+    "next_adaptation_step": "Adapt XXEDocumentBuilder from a filename argument to InputStream. Supply the HTTP logging fixture expected by its tests (127.0.0.1:7000) or replace it with an equivalent local marker server. Ensure the malicious document is valid and demonstrably triggers the before version; check namespaces on benign XML.",
+    "generation_enabled": true,
+    "mechanism_confirmed": true,
+    "dynamic_scoring_eligible": false,
+    "eligibility_reason": "No executable adapter or before/after differential validation yet.",
+    "leakage": {
+      "train_commit_indices": [],
+      "train_cve_indices": [],
+      "train_normalized_code_indices": [],
+      "train_code_containment_indices": [],
+      "graph_explicit_identifier_matches": [],
+      "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+      "known_overlap": false
+    }
+  },
+  {
+    "task_id": "task-07",
+    "sample_id": "CWE-918_idx237_49cc584dd6bd",
+    "cwe": "CWE-918",
+    "source_index": 237,
+    "prompt_dir": "prompts/v1/task-07",
+    "reference_dir": "generated-code/data/samples/CWE-918/CWE-918_idx237_49cc584dd6bd",
+    "target": {
+      "func_before": {
+        "path": "samples/CWE-918/CWE-918_idx237_49cc584dd6bd/target_func_before.java",
+        "source_lines": [
+          1,
+          30
+        ]
+      },
+      "func_after": {
+        "path": "samples/CWE-918/CWE-918_idx237_49cc584dd6bd/target_func_after.java",
+        "source_lines": [
+          1,
+          29
+        ]
+      }
+    },
+    "mechanism_review": "unconfirmed_missing_uri_validation_context",
+    "evidence": "Message-controlled URL components reach HTTP_CLIENT.execute. The fix delegates URI creation to message.getUri(); helper implementations are absent, so the fragment alone does not establish the validation defect or its fix.",
+    "preferred_attack_candidates": [
+      "SSRFApacheHttpClient"
+    ],
+    "next_adaptation_step": "SSRFApacheHttpClient is a candidate only. Retrieve BaseMessage/CustomWebhookMessage, buildUri and getUri from the real project first. Define allowed destinations, adapt the benchmark request harness, and prove before reaches a forbidden local marker endpoint while after blocks it. Until then this is a generation-only task, not an eligible security-evaluation pilot.",
+    "generation_enabled": true,
+    "mechanism_confirmed": false,
+    "dynamic_scoring_eligible": false,
+    "eligibility_reason": "URI validation/fix context is missing; generation-only exploratory task.",
+    "leakage": {
+      "train_commit_indices": [],
+      "train_cve_indices": [],
+      "train_normalized_code_indices": [],
+      "train_code_containment_indices": [],
+      "graph_explicit_identifier_matches": [],
+      "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+      "known_overlap": false
+    }
+  }
+]

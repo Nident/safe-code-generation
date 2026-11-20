@@ -1,0 +1,37 @@
+{
+  "sample_id": "CWE-22_idx041_4917c8f35571",
+  "cwe": "CWE-22",
+  "source_index": 41,
+  "attack_candidates": [
+    "PathTraversalRead",
+    "PathTraversalWrite",
+    "ZipSlip"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 41,
+    "commit_hash": "4917c8f355717bb636d763844528b1fe0f95e8e2",
+    "cve_id": "CVE-2022-29253",
+    "cwe_id": "CWE-22",
+    "file_name": "AbstractResourceSkin.java",
+    "jaccard_similarity": 84.61538,
+    "cve_description": "XWiki Platform is a generic wiki platform offering runtime services for applications built on top of it. Starting with version 8.3-rc-1 and prior to versions 12.10.3 and 14.0, one can ask for any file located in the classloader using the template API and a path with \"..\" in it. The issue is patched in versions 14.0 and 13.10.3. There is no easy workaround for this issue."
+  }
+}

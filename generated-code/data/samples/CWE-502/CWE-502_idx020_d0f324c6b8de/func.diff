@@ -1,0 +1,28 @@
+--- func_before
++++ func_after
+@@ -2,10 +2,12 @@
+     public Map<String, ArrayList<Object>> buildImageParameters(SQLInsertRecognizer recognizer) {
+
+         List<String> duplicateKeyUpdateColumns = recognizer.getDuplicateKeyUpdate();
+
+         if (CollectionUtils.isNotEmpty(duplicateKeyUpdateColumns)) {
+
++            List<String> duplicateKeyUpdateLowerCaseColumns =
+
++                duplicateKeyUpdateColumns.parallelStream().map(String::toLowerCase).collect(Collectors.toList());
+
+             getTableMeta().getAllIndexes().forEach((k, v) -> {
+
+                 if ("PRIMARY".equalsIgnoreCase(k)) {
+
+                     for (ColumnMeta m : v.getValues()) {
+
+-                        if (duplicateKeyUpdateColumns.contains(m.getColumnName())) {
+
++                        if (duplicateKeyUpdateLowerCaseColumns.contains(m.getColumnName().toLowerCase())) {
+
+                             throw new ShouldNeverHappenException("update pk value is not supported!");
+
+                         }
+
+                     }

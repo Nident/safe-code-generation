@@ -1,0 +1,43 @@
+{
+  "sample_id": "CWE-918_idx019_e41635bb36f6",
+  "cwe": "CWE-918",
+  "source_index": 19,
+  "attack_candidates": [
+    "SSRFApacheHttpClient",
+    "SSRFURLConnection",
+    "SSRFRestTemplate",
+    "SSRFCommonsIO",
+    "SSRFOkHttp",
+    "SSRFImageIO",
+    "SSRFJsoup"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [
+      "The visible operation is local path containment, despite the SSRF label."
+    ],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 19,
+    "commit_hash": "e41635bb36f6d90fccbfff451eeb4e5c6aedde64",
+    "cve_id": "CVE-2023-41327",
+    "cwe_id": "CWE-918",
+    "file_name": "src/main/java/com/github/tomakehurst/wiremock/common/AbstractFileSource.java",
+    "jaccard_similarity": 85.71429,
+    "cve_description": "WireMock is a tool for mocking HTTP services. WireMock can be configured to only permit proxying (and therefore recording) to certain addresses. This is achieved via a list of allowed address rules and a list of denied address rules, where the allowed list is evaluated first. \n\nUntil WireMock Webhooks Extension 3.0.0-beta-15, the filtering of target addresses from the proxy mode DID NOT work for Webhooks, so the users were potentially vulnerable regardless of the `limitProxyTargets` settings. Via the WireMock webhooks configuration, POST requests from a webhook might be forwarded to an arbitrary service reachable from WireMock’s instance. For example, If someone is running the WireMock docker Container inside a private cluster, they can trigger internal POST requests against unsecured APIs or even against secure ones by passing a token, discovered using another exploit, via authentication headers. This issue has been addressed in versions 2.35.1 and 3.0.3 of wiremock. Wiremock studio has been discontinued and will not see a fix. Users unable to upgrade should use external firewall rules to define the list of permitted destinations."
+  }
+}

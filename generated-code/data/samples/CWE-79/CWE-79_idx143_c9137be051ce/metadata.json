@@ -1,0 +1,35 @@
+{
+  "sample_id": "CWE-79_idx143_c9137be051ce",
+  "cwe": "CWE-79",
+  "source_index": 143,
+  "attack_candidates": [
+    "XSSSpringMVC"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 143,
+    "commit_hash": "c9137be051ce98b3e3e27f65f54ec7d9f8886903",
+    "cve_id": "CVE-2022-1231",
+    "cwe_id": "CWE-79",
+    "file_name": "UImageSvg.java",
+    "jaccard_similarity": 83.09859,
+    "cve_description": "XSS via Embedded SVG in SVG Diagram Format in GitHub repository plantuml/plantuml prior to 1.2022.4. Stored XSS in the context of the diagram embedder. Depending on the actual context, this ranges from stealing secrets to account hijacking or even to code execution for example in desktop applications. Web based applications are the ones most affected. Since the SVG format allows clickable links in diagrams, it is commonly used in plugins for web based projects (like the Confluence plugin, etc. see https://plantuml.com/de/running)."
+  }
+}

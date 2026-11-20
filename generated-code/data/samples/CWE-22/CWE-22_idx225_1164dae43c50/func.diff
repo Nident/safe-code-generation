@@ -1,0 +1,22 @@
+--- func_before
++++ func_after
+@@ -1,5 +1,11 @@
+ protected UploadPackageResultDto performUploadPackage(MultipartFile pluginPackageFile, File localFilePath) {
+         String pluginPackageFileName = pluginPackageFile.getName();
++        
++        if(!validateUploadFilename(pluginPackageFileName)){
++            log.info("Invalid upload filename:{}", pluginPackageFileName);
++            throw new WecubeCoreException("Invalid upload filename.");
++        }
++        
+         if (!localFilePath.exists()) {
+             if (localFilePath.mkdirs()) {
+                 log.info("Create directory [{}] successful", localFilePath.getAbsolutePath());
+@@ -9,6 +15,7 @@
+             }
+         }
+ 
++        //TODO
+         File dest = new File(localFilePath, "/" + pluginPackageFileName);
+         try {
+             log.info("new file location: {}, filename: {}, canonicalpath: {}, canonicalfilename: {}",

@@ -1,0 +1,48 @@
+{
+  "sample_id": "CWE-611_idx197_90aee8f8ceef",
+  "cwe": "CWE-611",
+  "source_index": 197,
+  "attack_candidates": [
+    "XXESAXReader",
+    "XXESAXParser",
+    "XXEDocumentBuilder",
+    "XXEValidator",
+    "XXETransformerFactory",
+    "XXEJDOM2",
+    "XXEStAX",
+    "XXEDigester",
+    "XXEXPath",
+    "XXEJAXBUnmarshal",
+    "XXESchemaFactory",
+    "XXEXMLReader"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "mechanism_visible",
+    "issues": [
+      "secure_processing_only_external_entity_behavior_unverified"
+    ],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Java InputStream, org.w3c.dom.Document, javax.xml.parsers and org.xml.sax APIs are available. Implement the method in its existing class; no application-specific helpers are needed.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 197,
+    "commit_hash": "90aee8f8ceef463884cc400af4f6d1f109fb0972",
+    "cve_id": "CVE-2018-1000889",
+    "cwe_id": "CWE-611",
+    "file_name": "XmlReader.java",
+    "jaccard_similarity": 83.33333,
+    "cve_description": "Logisim Evolution version 2.14.3 and earlier contains an XML External Entity (XXE) vulnerability in Circuit file loading functionality (loadXmlFrom in src/com/cburch/logisim/file/XmlReader.java) that can result in information leak, possible RCE depending on system configuration. This attack appears to be exploitable via the victim opening a specially crafted circuit file. This vulnerability appears to have been fixed in 2.14.4."
+  }
+}

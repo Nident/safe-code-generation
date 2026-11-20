@@ -1,0 +1,42 @@
+{
+  "sample_id": "CWE-89_idx003_1cf7e01b878a",
+  "cwe": "CWE-89",
+  "source_index": 3,
+  "attack_candidates": [
+    "SQLInjectionMyBatisGroupBy",
+    "SQLInjectionMyBatisOrderBy",
+    "SQLInjectionSpringJDBC",
+    "SQLInjectionMyBatisLike",
+    "JDBCInjectionExecuteUpdate",
+    "SQLInjectionMyBatisCRUD"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [
+      "The visible diff changes error reporting, not the interpolated SQL sink."
+    ],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 3,
+    "commit_hash": "1cf7e01b878aee923f2b22cc2535c71a680e4c30",
+    "cve_id": "CVE-2015-10047",
+    "cwe_id": "CWE-89",
+    "file_name": "DBManager.java",
+    "jaccard_similarity": 82.35294,
+    "cve_description": "A vulnerability was found in KYUUBl school-register. It has been classified as critical. This affects an unknown part of the file src/DBManager.java. The manipulation leads to sql injection. The patch is named 1cf7e01b878aee923f2b22cc2535c71a680e4c30. It is recommended to apply a patch to fix this issue. The associated identifier of this vulnerability is VDB-218355."
+  }
+}

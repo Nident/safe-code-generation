@@ -1,0 +1,46 @@
+{
+  "sample_id": "CWE-611_idx010_b23ee9ef5ba4",
+  "cwe": "CWE-611",
+  "source_index": 10,
+  "attack_candidates": [
+    "XXESAXReader",
+    "XXESAXParser",
+    "XXEDocumentBuilder",
+    "XXEValidator",
+    "XXETransformerFactory",
+    "XXEJDOM2",
+    "XXEStAX",
+    "XXEDigester",
+    "XXEXPath",
+    "XXEJAXBUnmarshal",
+    "XXESchemaFactory",
+    "XXEXMLReader"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 10,
+    "commit_hash": "b23ee9ef5ba4b65e7bd0e341c76ed197c06ee83d",
+    "cve_id": "CVE-2019-9843",
+    "cwe_id": "CWE-611",
+    "file_name": "EclipseXmlFormatterStepImpl.java",
+    "jaccard_similarity": 80.0,
+    "cve_description": "In DiffPlug Spotless before 1.20.0 (library and Maven plugin) and before 3.20.0 (Gradle plugin), the XML parser would resolve external entities over both HTTP and HTTPS and didn't respect the resolveExternalEntities setting. For example, this allows disclosure of file contents to a MITM attacker if a victim performs a spotlessApply operation on an untrusted XML file."
+  }
+}

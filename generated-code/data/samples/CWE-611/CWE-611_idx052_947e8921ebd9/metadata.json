@@ -1,0 +1,46 @@
+{
+  "sample_id": "CWE-611_idx052_947e8921ebd9",
+  "cwe": "CWE-611",
+  "source_index": 52,
+  "attack_candidates": [
+    "XXESAXReader",
+    "XXESAXParser",
+    "XXEDocumentBuilder",
+    "XXEValidator",
+    "XXETransformerFactory",
+    "XXEJDOM2",
+    "XXEStAX",
+    "XXEDigester",
+    "XXEXPath",
+    "XXEJAXBUnmarshal",
+    "XXESchemaFactory",
+    "XXEXMLReader"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 52,
+    "commit_hash": "947e8921ebd95462d5a7928f397dd1b64f77c7d5",
+    "cve_id": "CVE-2022-24898",
+    "cwe_id": "CWE-611",
+    "file_name": "XMLUtils.java",
+    "jaccard_similarity": 94.31818,
+    "cve_description": "org.xwiki.commons:xwiki-commons-xml is a common module used by other XWiki top level projects. Starting in version 2.7 and prior to versions 12.10.10, 13.4.4, and 13.8-rc-1, it is possible for a script to access any file accessing to the user running XWiki application server with XML External Entity Injection through the XML script service. The problem has been patched in versions 12.10.10, 13.4.4, and 13.8-rc-1. There is no easy workaround for fixing this vulnerability other than upgrading and being careful when giving Script rights."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "sample_id": "CWE-79_idx066_1943ea26c967",
+  "cwe": "CWE-79",
+  "source_index": 66,
+  "attack_candidates": [
+    "XSSSpringMVC"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 66,
+    "commit_hash": "1943ea26c967ef868fb5f67c487d98d97cba0380",
+    "cve_id": "CVE-2023-29506",
+    "cwe_id": "CWE-79",
+    "file_name": "AuthenticationResourceReferenceHandler.java",
+    "jaccard_similarity": 87.23404,
+    "cve_description": "XWiki Commons are technical libraries common to several other top level XWiki projects. It was possible to inject some code using the URL of authenticated endpoints. This problem has been patched on XWiki 13.10.11, 14.4.7 and 14.10."
+  }
+}

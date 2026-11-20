@@ -1,0 +1,20 @@
+--- func_before
++++ func_after
+@@ -12,7 +12,8 @@
+ 
+
+             final Date d = new Date();  // Now.
+
+ 
+
+-            return fmt.format( d );
+
++            return TextUtil.replaceEntities( fmt.format( d ) );
+
++
+
+         } catch( final IllegalArgumentException e ) {
+
+             final ResourceBundle rb = Preferences.getBundle( context, Plugin.CORE_PLUGINS_RESOURCEBUNDLE );
+
+             throw new PluginException( rb.getString( "currenttimeplugin.badformat" ) + e.getMessage() );

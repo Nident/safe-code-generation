@@ -1,0 +1,8 @@
+cwe,clear_records,secbench_copied_tasks,secbench_confirmed_category_tasks,train_records,graph_entries
+CWE-22,30,3,3,14,45
+CWE-79,32,1,1,26,51
+CWE-89,14,7,6,8,9
+CWE-94,3,2,2,8,7
+CWE-502,15,5,5,17,14
+CWE-611,27,12,12,14,46
+CWE-918,6,7,7,5,11

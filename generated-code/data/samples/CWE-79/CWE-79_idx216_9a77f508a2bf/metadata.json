@@ -1,0 +1,35 @@
+{
+  "sample_id": "CWE-79_idx216_9a77f508a2bf",
+  "cwe": "CWE-79",
+  "source_index": 216,
+  "attack_candidates": [
+    "XSSSpringMVC"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 216,
+    "commit_hash": "9a77f508a2bf8cf661d588f37a4cc29ecaea4fc8",
+    "cve_id": "CVE-2022-4859",
+    "cwe_id": "CWE-79",
+    "file_name": "UserProfileMenu.java",
+    "jaccard_similarity": 95.91837,
+    "cve_description": "A vulnerability, which was classified as problematic, has been found in Joget up to 7.0.33. This issue affects the function submitForm of the file wflow-core/src/main/java/org/joget/plugin/enterprise/UserProfileMenu.java of the component User Profile Menu. The manipulation of the argument firstName/lastName leads to cross site scripting. The attack may be initiated remotely. Upgrading to version 7.0.34 is able to address this issue. The patch is named 9a77f508a2bf8cf661d588f37a4cc29ecaea4fc8. It is recommended to upgrade the affected component. The associated identifier of this vulnerability is VDB-217055."
+  }
+}

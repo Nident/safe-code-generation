@@ -1,0 +1,12 @@
+--- func_before
++++ func_after
+@@ -6,7 +6,9 @@
+         // Check if the caller has requested a column which does not exists
+         checkColumns(projection);
+ 
++        queryBuilder.setStrict(true);
+         queryBuilder.setTables(HistorySearchSchema.TABLENAME);
++        queryBuilder.setProjectionMap(createProjectionMap(projection));
+ 
+         int uriType = URI_MATCHER.match(uri);
+         switch (uriType)

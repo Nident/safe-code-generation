@@ -1,0 +1,35 @@
+{
+  "sample_id": "CWE-79_idx138_5db1f7622e8e",
+  "cwe": "CWE-79",
+  "source_index": 138,
+  "attack_candidates": [
+    "XSSSpringMVC"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 138,
+    "commit_hash": "5db1f7622e8e2c9a559ef0145a0f04c5854a1e8b",
+    "cve_id": "CVE-2014-2963",
+    "cwe_id": "CWE-79",
+    "file_name": "TemplateContextHelper.java",
+    "jaccard_similarity": 95.4023,
+    "cve_description": "Multiple cross-site scripting (XSS) vulnerabilities in group/control_panel/manage in Liferay Portal 6.1.2 CE GA3, 6.1.X EE, and 6.2.X EE allow remote attackers to inject arbitrary web script or HTML via the (1) _2_firstName, (2) _2_lastName, or (3) _2_middleName parameter."
+  }
+}

@@ -1,0 +1,10 @@
+--- func_before
++++ func_after
+@@ -4,6 +4,7 @@
+             if (caption == null) {
+                 caption = ""; // Render null as empty
+             }
++            caption = Jsoup.parse(caption).text();
+             state.headerCaption = caption;
+ 
+             HeaderRow row = grid.getHeader().getDefaultRow();

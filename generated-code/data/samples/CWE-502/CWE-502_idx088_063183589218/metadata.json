@@ -1,0 +1,46 @@
+{
+  "sample_id": "CWE-502_idx088_063183589218",
+  "cwe": "CWE-502",
+  "source_index": 88,
+  "attack_candidates": [
+    "DeserializationHessian",
+    "DeserializationObjectInputStream",
+    "DeserializationSnakeYAML",
+    "DeserializationXMLDecoder",
+    "DeserializationFlexjson"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [
+      552
+    ],
+    "train_cve_indices": [
+      552
+    ],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [
+      427,
+      552
+    ],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": true
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 88,
+    "commit_hash": "063183589218fec19a9293ed2f17ec53ea80ba88",
+    "cve_id": "CVE-2022-42004",
+    "cwe_id": "CWE-502",
+    "file_name": "BeanDeserializer.java",
+    "jaccard_similarity": 80.0,
+    "cve_description": "In FasterXML jackson-databind before 2.13.4, resource exhaustion can occur because of a lack of a check in BeanDeserializer._deserializeFromArray to prevent use of deeply nested arrays. An application is vulnerable only with certain customized choices for deserialization."
+  }
+}

@@ -1,0 +1,10 @@
+--- func_before
++++ func_after
+@@ -4,6 +4,7 @@
+       DocumentBuilderFactory dbf = safeDocumentBuilderFactory();
+ 
+       SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
++      factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+       Schema schema = factory.newSchema(schemaFile);
+       dbf.setSchema(schema);
+ 

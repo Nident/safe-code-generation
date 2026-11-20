@@ -1,0 +1,26 @@
+--- func_before
++++ func_after
+@@ -3,13 +3,13 @@
+         Objects.requireNonNull(reader);
+ 
+         /*
+-            The correct behaviour is to return false if it is certain that the file is
++            The correct behavior is to return false if it is certain that the file is
+             not of the MsBib type, and true otherwise. Returning true is the safe choice
+             if not certain.
+          */
+         Document docin;
+         try {
+-            DocumentBuilder dbuild = DocumentBuilderFactory.newInstance().newDocumentBuilder();
++            DocumentBuilder dbuild = makeSafeDocBuilderFactory(DocumentBuilderFactory.newInstance()).newDocumentBuilder();
+             dbuild.setErrorHandler(new ErrorHandler() {
+ 
+                 @Override
+@@ -27,6 +27,7 @@
+                     throw exception;
+                 }
+             });
++
+             docin = dbuild.parse(new InputSource(reader));
+         } catch (Exception e) {
+             return false;

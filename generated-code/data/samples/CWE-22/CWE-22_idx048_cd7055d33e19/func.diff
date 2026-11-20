@@ -1,0 +1,27 @@
+@@ -49,6 +49,7 @@ public class WhiteLabelingServlet extends HttpServlet {
+ 	private String themesByDomain;
+ 	private String defaultTheme = "default";
+ 	private String applyCommonByDomain;
++	private Pattern themePattern = Pattern.compile("^[a-zA-Z0-9]+$"); 
+ 
+ 	@Override
+ 	public void init(ServletConfig config) {
+@@ -96,6 +97,18 @@ public class WhiteLabelingServlet extends HttpServlet {
+ 		if (t == null) {
+ 			t = defaultTheme;
+ 		}
++		
++		// check theme name. must be simple alphanum (no file path allowed or special chars)
++		if (!themePattern.matcher(t).find()) {
++			logger.warn("requested theme name is not valid! theme={}", t);
++			return;
++		}
++			
++		// check theme exists
++		if (!new File(resDir, "theme/" +t).exists()) {
++			logger.warn("requested theme does not exists! theme={}", t);
++			return;
++		}
+ 
+ 		File comFile = null;
+ 		File file = null;

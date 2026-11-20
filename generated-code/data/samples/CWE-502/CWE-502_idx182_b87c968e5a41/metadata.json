@@ -1,0 +1,39 @@
+{
+  "sample_id": "CWE-502_idx182_b87c968e5a41",
+  "cwe": "CWE-502",
+  "source_index": 182,
+  "attack_candidates": [
+    "DeserializationHessian",
+    "DeserializationObjectInputStream",
+    "DeserializationSnakeYAML",
+    "DeserializationXMLDecoder",
+    "DeserializationFlexjson"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 182,
+    "commit_hash": "b87c968e5a41a1a09166199bf54eee12608f3900",
+    "cve_id": "CVE-2017-0806",
+    "cwe_id": "CWE-502",
+    "file_name": "GateKeeperResponse.java",
+    "jaccard_similarity": 84.61538,
+    "cve_description": "An elevation of privilege vulnerability in the Android framework (gatekeeperresponse). Product: Android. Versions: 6.0, 6.0.1, 7.0, 7.1.1, 7.1.2, 8.0. Android ID: A-62998805."
+  }
+}

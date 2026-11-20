@@ -1,0 +1,18 @@
+--- func_before
++++ func_after
+@@ -8,7 +8,7 @@
+               ? new File(path).getCanonicalPath()
+
+               : new File(rootDirectory, path).getCanonicalPath();
+
+ 
+
+-      if (!filePath.startsWith(rootPath)) {
+
++      if (!Paths.get(filePath).normalize().startsWith(rootPath)) {
+
+         throw new NotAuthorisedException("Access to file " + path + " is not permitted");
+
+       }
+
+     } catch (IOException ioe) {

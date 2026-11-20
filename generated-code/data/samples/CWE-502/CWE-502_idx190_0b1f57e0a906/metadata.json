@@ -1,0 +1,41 @@
+{
+  "sample_id": "CWE-502_idx190_0b1f57e0a906",
+  "cwe": "CWE-502",
+  "source_index": 190,
+  "attack_candidates": [
+    "DeserializationHessian",
+    "DeserializationObjectInputStream",
+    "DeserializationSnakeYAML",
+    "DeserializationXMLDecoder",
+    "DeserializationFlexjson"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "mechanism_visible",
+    "issues": [
+      "filter_implementation_missing"
+    ],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Java ServerSocket, Socket, object serialization, Consumer<String[]> and Thread APIs are available. PORT and ExceptionUtil.printStackTrace(Exception) are supplied by the surrounding project. The excerpt does not provide a shutdown API; do not invent its project contract.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 190,
+    "commit_hash": "0b1f57e0a906269fa4e7bc9d9878925f0d859fb0",
+    "cve_id": "CVE-2023-26234",
+    "cwe_id": "CWE-502",
+    "file_name": "InterProcessCommunicationUtil.java",
+    "jaccard_similarity": 88.23529,
+    "cve_description": "JD-GUI 1.6.6 allows deserialization via UIMainWindowPreferencesProvider.singleInstance."
+  }
+}

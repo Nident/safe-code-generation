@@ -1,0 +1,14 @@
+--- func_before
++++ func_after
+@@ -1,9 +1,9 @@
+ @Override
+     public void visit(MaterialRevision revision) {
+         this.revision = revision;
+-        modificationsJson = new ArrayList();
++        modificationsJson = new ArrayList<>();
+ 
+-        materialJson = new LinkedHashMap();
++        materialJson = new LinkedHashMap<>();
+         materialJson.put("revision", revision.getRevision().getRevision());
+         materialJson.put("revision_href", revision.getRevision().getRevisionUrl());
+         materialJson.put("user", revision.buildCausedBy());

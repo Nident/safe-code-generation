@@ -1,0 +1,11 @@
+--- func_before
++++ func_after
+@@ -1,7 +1,7 @@
+ @Override
+   public RequestParameter isValid(String value) throws ValidationException {
+     try {
+-      DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
++      DocumentBuilder parser = createDocumentBuilderFactoryInstance().newDocumentBuilder();
+       Document document = parser.parse(value);
+       this.schemaValidator.validate(new DOMSource(document));
+       return RequestParameter.create(document);

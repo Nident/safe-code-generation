@@ -1,0 +1,39 @@
+{
+  "sample_id": "CWE-79_idx044_9d844f313334",
+  "cwe": "CWE-79",
+  "source_index": 44,
+  "attack_candidates": [
+    "XSSSpringMVC"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [
+      495
+    ],
+    "train_cve_indices": [
+      495
+    ],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": true
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 44,
+    "commit_hash": "9d844f31333475a0394dd14b901ea50674b281f8",
+    "cve_id": "CVE-2022-1782",
+    "cwe_id": "CWE-79",
+    "file_name": "Utils.java",
+    "jaccard_similarity": 98.79518,
+    "cve_description": "Cross-site Scripting (XSS) - Generic in GitHub repository erudika/para prior to v1.45.11."
+  }
+}

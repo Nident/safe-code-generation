@@ -1,0 +1,18 @@
+--- func_before
++++ func_after
+@@ -1,4 +1,4 @@
+-private static void setupFramework() throws BundleException {
++private static void setupFramework(boolean resolveExternalURI) throws BundleException {
+ 		if (SpotlessEclipseFramework.setup(
+ 				plugins -> {
+ 					plugins.applyDefault();
+@@ -10,6 +10,9 @@
+ 					plugins.add(new DTDCorePlugin());
+ 					//Support formatting based on XSD restrictions
+ 					plugins.add(new XSDCorePlugin());
++					if(!resolveExternalURI) {
++						plugins.add(new PreventExternalURIResolverExtension());
++					}
+ 				})) {
+ 			PREFERENCE_FACTORY = new XmlFormattingPreferencesFactory();
+ 			//Register required EMF factories

@@ -1,0 +1,44 @@
+{
+  "sample_id": "CWE-89_idx118_dd7bf104e7ed",
+  "cwe": "CWE-89",
+  "source_index": 118,
+  "attack_candidates": [
+    "SQLInjectionMyBatisGroupBy",
+    "SQLInjectionMyBatisOrderBy",
+    "SQLInjectionSpringJDBC",
+    "SQLInjectionMyBatisLike",
+    "JDBCInjectionExecuteUpdate",
+    "SQLInjectionMyBatisCRUD"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [
+      178
+    ],
+    "train_cve_indices": [
+      178
+    ],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": true
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 118,
+    "commit_hash": "dd7bf104e7ed59142909567ecd004335c3442ec5",
+    "cve_id": "CVE-2023-34602",
+    "cwe_id": "CWE-89",
+    "file_name": "AbstractQueryBlackListHandler.java",
+    "jaccard_similarity": 84.61538,
+    "cve_description": "JeecgBoot up to v 3.5.1 was discovered to contain a SQL injection vulnerability via the component queryTableDictItemsByCode at org.jeecg.modules.api.controller.SystemApiController."
+  }
+}

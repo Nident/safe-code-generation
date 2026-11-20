@@ -1,0 +1,21 @@
+--- func_before
++++ func_after
+@@ -3,8 +3,7 @@
+         HttpRequestBase httpRequest;
+         if (message instanceof CustomWebhookMessage) {
+             CustomWebhookMessage customWebhookMessage = (CustomWebhookMessage) message;
+-            uri = buildUri(customWebhookMessage.getUrl(), customWebhookMessage.getScheme(), customWebhookMessage.getHost(),
+-                    customWebhookMessage.getPort(), customWebhookMessage.getPath(), customWebhookMessage.getQueryParams());
++            uri = customWebhookMessage.getUri();
+             httpRequest = constructHttpRequest(((CustomWebhookMessage) message).getMethod());
+             // set headers
+             Map<String, String> headerParams = customWebhookMessage.getHeaderParams();
+@@ -17,7 +16,7 @@
+             }
+         } else {
+              httpRequest = new HttpPost();
+-             uri = buildUri(message.getUrl().trim(), null, null, -1, null, null);
++             uri = message.getUri();
+         }
+ 
+         httpRequest.setURI(uri);

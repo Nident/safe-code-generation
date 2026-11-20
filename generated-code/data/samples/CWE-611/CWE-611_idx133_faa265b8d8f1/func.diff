@@ -1,0 +1,10 @@
+--- func_before
++++ func_after
+@@ -1,6 +1,7 @@
+ public void parse(final InputSource is) {
+         try {
+             final SAXParserFactory factory = SAXParserFactory.newInstance();
++            factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+             final SAXParser parser = factory.newSAXParser();
+             parser.parse(is, this);
+         } catch (final Exception e) {

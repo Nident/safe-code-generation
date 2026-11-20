@@ -1,0 +1,11 @@
+--- func_before
++++ func_after
+@@ -12,7 +12,7 @@
+ 
+ 		theModel.put("jsonEncodedConf", getContext(theRequest).newJsonParser().encodeResourceToString(capabilityStatement));
+ 
+-		Map<String, Number> resourceCounts = new HashMap<String, Number>();
++		Map<String, Number> resourceCounts = new HashMap<>();
+ 		long total = 0;
+ 
+ 		for (org.hl7.fhir.r5.model.CapabilityStatement.CapabilityStatementRestComponent nextRest : capabilityStatement.getRest()) {

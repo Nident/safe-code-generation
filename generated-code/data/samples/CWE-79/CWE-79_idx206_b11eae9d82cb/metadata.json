@@ -1,0 +1,35 @@
+{
+  "sample_id": "CWE-79_idx206_b11eae9d82cb",
+  "cwe": "CWE-79",
+  "source_index": 206,
+  "attack_candidates": [
+    "XSSSpringMVC"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 206,
+    "commit_hash": "b11eae9d82cb53f32962056b5faa73f3720c6182",
+    "cve_id": "CVE-2023-29201",
+    "cwe_id": "CWE-79",
+    "file_name": "DefaultHTMLCleaner.java",
+    "jaccard_similarity": 96.73913,
+    "cve_description": "XWiki Commons are technical libraries common to several other top level XWiki projects. The \"restricted\" mode of the HTML cleaner in XWiki, introduced in version 4.2-milestone-1, only escaped `<script>` and `<style>`-tags but neither attributes that can be used to inject scripts nor other dangerous HTML tags like `<iframe>`. As a consequence, any code relying on this \"restricted\" mode for security is vulnerable to JavaScript injection (\"cross-site scripting\"/XSS). When a privileged user with programming rights visits such a comment in XWiki, the malicious JavaScript code is executed in the context of the user session. This allows server-side code execution with programming rights, impacting the confidentiality, integrity and availability of the XWiki instance. This problem has been patched in XWiki 14.6 RC1 with the introduction of a filter with allowed HTML elements and attributes that is enabled in restricted mode. There are no known workarounds apart from upgrading to a version including the fix."
+  }
+}

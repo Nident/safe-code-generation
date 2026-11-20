@@ -1,0 +1,13 @@
+--- func_before
++++ func_after
+@@ -4,8 +4,8 @@
+ 
+         try {
+             tenantListRepository.addTenant(tenant);
+-            databaseService.create(tenant.toLowerCase());
+-            databaseService.migrate(tenant.toLowerCase());
++            databaseService.create(tenant);
++            databaseService.migrate(tenant);
+             addUaaSpecification(tenant);
+             addLoginsSpecification(tenant);
+             addRoleSpecification(tenant);

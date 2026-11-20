@@ -1,0 +1,38 @@
+{
+  "sample_id": "CWE-94_idx178_9c93c17b8107",
+  "cwe": "CWE-94",
+  "source_index": 178,
+  "attack_candidates": [
+    "CodeInjectionGroovy",
+    "CodeInjectionJavaxScript"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [
+      "The visible change removes input from an error message; code execution is not established."
+    ],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 178,
+    "commit_hash": "9c93c17b8107e58073443a045e22274467b88aae",
+    "cve_id": "CVE-2021-41269",
+    "cwe_id": "CWE-94",
+    "file_name": "src/main/java/com/cronutils/parser/CronParser.java",
+    "jaccard_similarity": 94.87179,
+    "cve_description": "cron-utils is a Java library to define, parse, validate, migrate crons as well as get human readable descriptions for them. In affected versions A template Injection was identified in cron-utils enabling attackers to inject arbitrary Java EL expressions, leading to unauthenticated Remote Code Execution (RCE) vulnerability. Versions up to 9.1.2 are susceptible to this vulnerability. Please note, that only projects using the @Cron annotation to validate untrusted Cron expressions are affected. The issue was patched and a new version was released. Please upgrade to version 9.1.6. There are no known workarounds known."
+  }
+}

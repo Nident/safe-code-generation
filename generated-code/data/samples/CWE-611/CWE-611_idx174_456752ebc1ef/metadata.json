@@ -1,0 +1,46 @@
+{
+  "sample_id": "CWE-611_idx174_456752ebc1ef",
+  "cwe": "CWE-611",
+  "source_index": 174,
+  "attack_candidates": [
+    "XXESAXReader",
+    "XXESAXParser",
+    "XXEDocumentBuilder",
+    "XXEValidator",
+    "XXETransformerFactory",
+    "XXEJDOM2",
+    "XXEStAX",
+    "XXEDigester",
+    "XXEXPath",
+    "XXEJAXBUnmarshal",
+    "XXESchemaFactory",
+    "XXEXMLReader"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 174,
+    "commit_hash": "456752ebc1ef4c0db980cb5b01a0b3cd0a9e0bae",
+    "cve_id": "CVE-2020-36641",
+    "cwe_id": "CWE-611",
+    "file_name": "ResponseParser.java",
+    "jaccard_similarity": 93.33333,
+    "cve_description": "A vulnerability classified as problematic was found in gturri aXMLRPC up to 1.12.0. This vulnerability affects the function ResponseParser of the file src/main/java/de/timroes/axmlrpc/ResponseParser.java. The manipulation leads to xml external entity reference. Upgrading to version 1.14.0 is able to address this issue. The patch is identified as 456752ebc1ef4c0db980cb5b01a0b3cd0a9e0bae. It is recommended to upgrade the affected component. VDB-217450 is the identifier assigned to this vulnerability."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "imports": {
+      "type": "string"
+    },
+    "dependency_notes": {
+      "type": "string"
+    },
+    "retrieval_notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "code",
+    "imports",
+    "dependency_notes",
+    "retrieval_notes"
+  ]
+}

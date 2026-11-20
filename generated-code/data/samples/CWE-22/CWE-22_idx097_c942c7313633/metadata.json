@@ -1,0 +1,37 @@
+{
+  "sample_id": "CWE-22_idx097_c942c7313633",
+  "cwe": "CWE-22",
+  "source_index": 97,
+  "attack_candidates": [
+    "PathTraversalRead",
+    "PathTraversalWrite",
+    "ZipSlip"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 97,
+    "commit_hash": "c942c73136333bc493050910f171a48e6f575b23",
+    "cve_id": "CVE-2022-36007",
+    "cwe_id": "CWE-22",
+    "file_name": "LoadPaths.java",
+    "jaccard_similarity": 98.21429,
+    "cve_description": "Venice is a Clojure inspired sandboxed Lisp dialect with excellent Java interoperability. A partial path traversal issue exists within the functions `load-file` and `load-resource`. These functions can be limited to load files from a list of load paths. Assuming Venice has been configured with the load paths: `[ \"/Users/foo/resources\" ]` When passing **relative** paths to these two vulnerable functions everything is fine: `(load-resource \"test.png\")` => loads the file \"/Users/foo/resources/test.png\" `(load-resource \"../resources-alt/test.png\")` => rejected, outside the load path When passing **absolute** paths to these two vulnerable functions Venice may return files outside the configured load paths: `(load-resource \"/Users/foo/resources/test.png\")` => loads the file \"/Users/foo/resources/test.png\" `(load-resource \"/Users/foo/resources-alt/test.png\")` => loads the file \"/Users/foo/resources-alt/test.png\" !!! The latter call suffers from the _Partial Path Traversal_ vulnerability. This issue’s scope is limited to absolute paths whose name prefix matches a load path. E.g. for a load-path `\"/Users/foo/resources\"`, the actor can cause loading a resource also from `\"/Users/foo/resources-alt\"`, but not from `\"/Users/foo/images\"`. Versions of Venice before and including v1.10.17 are affected by this issue. Upgrade to Venice >= 1.10.18, if you are on a version < 1.10.18. There are currently no known workarounds."
+  }
+}

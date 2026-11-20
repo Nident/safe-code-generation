@@ -1,0 +1,13 @@
+cwe,clear_records,reason
+CWE-352,4,No confirmed matching Java dynamic task in pinned local sec-code-bench
+CWE-862,7,No confirmed matching Java dynamic task in pinned local sec-code-bench
+CWE-522,0,Absent from source CLEAR
+CWE-20,6,No confirmed matching Java dynamic task in pinned local sec-code-bench
+CWE-200,8,"Java security assessment is LLM-based, no executable attack"
+CWE-295,0,Absent from source CLEAR
+CWE-400,7,No confirmed matching Java dynamic task in pinned local sec-code-bench
+CWE-863,5,No confirmed matching Java dynamic task in pinned local sec-code-bench
+CWE-770,4,No confirmed matching Java dynamic task in pinned local sec-code-bench
+CWE-287,8,No confirmed matching Java dynamic task in pinned local sec-code-bench
+CWE-285,0,Absent from source CLEAR
+CWE-345,2,No confirmed matching Java dynamic task in pinned local sec-code-bench

@@ -1,0 +1,11 @@
+--- func_before
++++ func_after
+@@ -8,6 +8,8 @@
+             if (mPayload != null) {
+                 dest.writeInt(mPayload.length);
+                 dest.writeByteArray(mPayload);
++            } else {
++                dest.writeInt(0);
+             }
+         }
+     }

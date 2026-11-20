@@ -1,0 +1,38 @@
+{
+  "sample_id": "CWE-94_idx017_641325bbc847",
+  "cwe": "CWE-94",
+  "source_index": 17,
+  "attack_candidates": [
+    "CodeInjectionGroovy",
+    "CodeInjectionJavaxScript"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "mechanism_visible_engine_mismatch",
+    "issues": [
+      "secure_processing_added_provider_behavior_unverified"
+    ],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "This is a method in an existing HtmlUnit/Rhino-based class, not a standalone Java program. Node.getDomNodeOrDie() yields DomNode; style_ is the stylesheet Node; parameters_ maps parameter names to values. The project supplies SgmlPage, WebResponseData, WebResponse, XmlUtils.buildDocument, Context.reportRuntimeError, findOutputNode, and JS_XSLT_TRANSFORM_INDENT. Standard JAXP and Java I/O APIs are available. Exact project versions and helper implementations are not present in this fragment: list them as unresolved dependencies, do not invent helper bodies.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 17,
+    "commit_hash": "641325bbc84702dc9800ec7037aec061ce21956b",
+    "cve_id": "CVE-2023-26119",
+    "cwe_id": "CWE-94",
+    "file_name": "XSLTProcessor.java",
+    "jaccard_similarity": 92.59259,
+    "cve_description": "Versions of the package net.sourceforge.htmlunit:htmlunit from 0 and before 3.0.0 are vulnerable to Remote Code Execution (RCE) via XSTL, when browsing the attacker’s webpage."
+  }
+}

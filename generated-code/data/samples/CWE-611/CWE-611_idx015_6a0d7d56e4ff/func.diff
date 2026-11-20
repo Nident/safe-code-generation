@@ -1,0 +1,10 @@
+--- func_before
++++ func_after
+@@ -2,6 +2,7 @@
+         XMLInputFactory factory = XMLInputFactory.newInstance();
+         factory.setProperty(XMLInputFactory.IS_COALESCING, true);
+         factory.setProperty(XMLInputFactory.IS_REPLACING_ENTITY_REFERENCES, true);
++        factory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+         
+         return factory.createXMLStreamReader(wrapPrefixRemovingInputStream(inputStream));
+     }

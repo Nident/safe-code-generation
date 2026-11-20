@@ -1,0 +1,11 @@
+--- func_before
++++ func_after
+@@ -2,7 +2,7 @@
+       hotrod = server;
+       hotrodClient = new RemoteCacheManager(new ConfigurationBuilder()
+             .addServers("localhost:" + hotrod.getPort())
+-            .addJavaSerialWhiteList(".*Person.*")
++            .addJavaSerialWhiteList(".*Person.*", ".*CustomEvent.*")
+             .marshaller(marshaller)
+             .build());
+       hotrodCache = cacheName.isEmpty()

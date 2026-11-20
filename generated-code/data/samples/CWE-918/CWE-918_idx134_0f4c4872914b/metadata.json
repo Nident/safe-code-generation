@@ -1,0 +1,41 @@
+{
+  "sample_id": "CWE-918_idx134_0f4c4872914b",
+  "cwe": "CWE-918",
+  "source_index": 134,
+  "attack_candidates": [
+    "SSRFApacheHttpClient",
+    "SSRFURLConnection",
+    "SSRFRestTemplate",
+    "SSRFCommonsIO",
+    "SSRFOkHttp",
+    "SSRFImageIO",
+    "SSRFJsoup"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 134,
+    "commit_hash": "0f4c4872914b6a71305e121a7d9a19c07cde0338",
+    "cve_id": "CVE-2021-27693",
+    "cwe_id": "CWE-918",
+    "file_name": "UeditorAdminController.java",
+    "jaccard_similarity": 97.22222,
+    "cve_description": "Server-side Request Forgery (SSRF) vulnerability in PublicCMS before 4.0.202011.b via /publiccms/admin/ueditor when the action is catchimage."
+  }
+}

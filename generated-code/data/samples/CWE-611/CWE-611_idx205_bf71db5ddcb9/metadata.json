@@ -1,0 +1,46 @@
+{
+  "sample_id": "CWE-611_idx205_bf71db5ddcb9",
+  "cwe": "CWE-611",
+  "source_index": 205,
+  "attack_candidates": [
+    "XXESAXReader",
+    "XXESAXParser",
+    "XXEDocumentBuilder",
+    "XXEValidator",
+    "XXETransformerFactory",
+    "XXEJDOM2",
+    "XXEStAX",
+    "XXEDigester",
+    "XXEXPath",
+    "XXEJAXBUnmarshal",
+    "XXESchemaFactory",
+    "XXEXMLReader"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 205,
+    "commit_hash": "bf71db5ddcb967c0863dad4745367b54f49e06ba",
+    "cve_id": "CVE-2023-4218",
+    "cwe_id": "CWE-611",
+    "file_name": "MacGenerator.java",
+    "jaccard_similarity": 99.54904,
+    "cve_description": "In Eclipse IDE versions < 2023-09 (4.29) some files with xml content are parsed vulnerable against all sorts of XXE attacks. The user just needs to open any evil project or update an open project with a vulnerable file (for example for review a foreign repository or patch).\n"
+  }
+}

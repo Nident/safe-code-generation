@@ -1,0 +1,39 @@
+{
+  "sample_id": "CWE-502_idx221_23a9b6a3eb90",
+  "cwe": "CWE-502",
+  "source_index": 221,
+  "attack_candidates": [
+    "DeserializationHessian",
+    "DeserializationObjectInputStream",
+    "DeserializationSnakeYAML",
+    "DeserializationXMLDecoder",
+    "DeserializationFlexjson"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 221,
+    "commit_hash": "23a9b6a3eb901b7edbd70fa8ad0dbfc481557434",
+    "cve_id": "CVE-2023-51518",
+    "cwe_id": "CWE-502",
+    "file_name": "protocols/smtp/src/main/java/org/apache/james/protocols/smtp/core/esmtp/AuthCmdHandler.java",
+    "jaccard_similarity": 81.81818,
+    "cve_description": "Apache James prior to version 3.7.5 and 3.8.0 exposes a JMX endpoint on localhost subject to pre-authentication deserialisation of untrusted data.\nGiven a deserialisation gadjet, this could be leveraged as part of an exploit chain that could result in privilege escalation.\nNote that by default JMX endpoint is only bound locally.\n\nWe recommend users to:\n - Upgrade to a non-vulnerable Apache James version\n\n - Run Apache James isolated from other processes (docker - dedicated virtual machine)\n - If possible turn off JMX"
+  }
+}

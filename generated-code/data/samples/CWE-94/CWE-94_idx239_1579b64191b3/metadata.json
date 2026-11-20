@@ -1,0 +1,38 @@
+{
+  "sample_id": "CWE-94_idx239_1579b64191b3",
+  "cwe": "CWE-94",
+  "source_index": 239,
+  "attack_candidates": [
+    "CodeInjectionGroovy",
+    "CodeInjectionJavaxScript"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [
+      "The visible change works around a JDK compiler crash; code injection is not established."
+    ],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 239,
+    "commit_hash": "1579b64191b3c41328e23aef312294c0b14a128f",
+    "cve_id": "CVE-2023-31415",
+    "cwe_id": "CWE-94",
+    "file_name": "server/src/main/java/org/elasticsearch/search/aggregations/bucket/histogram/DateHistogramAggregator.java",
+    "jaccard_similarity": 81.81818,
+    "cve_description": "Kibana version 8.7.0 contains an arbitrary code execution flaw. An attacker with All privileges to the Uptime/Synthetics feature could send a request that will attempt to execute JavaScript code. This could lead to the attacker executing arbitrary commands on the host system with permissions of the Kibana process."
+  }
+}

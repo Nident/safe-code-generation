@@ -1,0 +1,18 @@
+--- func_before
++++ func_after
+@@ -38,7 +38,7 @@
+ 
+
+             processor.setAuthority(authority);
+
+ 
+
+-            caX500DN = (X500Name) authority.getCACert().getIssuerDN();
+
++            caX500DN = (X500Name) authority.getCACert().getSubjectDN();
+
+ 
+
+         } catch (EBaseException e) {
+
+             logger.error("Unable to revoke certificate: " + e.getMessage(), e);

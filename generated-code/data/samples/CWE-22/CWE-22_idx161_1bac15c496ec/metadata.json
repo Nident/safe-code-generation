@@ -1,0 +1,37 @@
+{
+  "sample_id": "CWE-22_idx161_1bac15c496ec",
+  "cwe": "CWE-22",
+  "source_index": 161,
+  "attack_candidates": [
+    "PathTraversalRead",
+    "PathTraversalWrite",
+    "ZipSlip"
+  ],
+  "compatibility": "requires_adaptation",
+  "leakage": {
+    "train_commit_indices": [],
+    "train_cve_indices": [],
+    "train_normalized_code_indices": [],
+    "train_code_containment_indices": [],
+    "graph_explicit_identifier_matches": [],
+    "graph_audit_limit": "Graph entries expose local index/root_cwe_id/nodes/edges. Local indices are not provenance IDs. Absence of an explicit match does not prove independence.",
+    "known_overlap": false
+  },
+  "quality": {
+    "review_status": "unreviewed_source_label_only",
+    "issues": [],
+    "context_completeness": "fragment_only_imports_enclosing_class_or_project_dependencies_may_be_missing",
+    "external_dependencies_review": "Not resolved; inspect source fragment and original project before compilation.",
+    "func_after_oracle": "unvalidated_source_after_not_guaranteed_secure"
+  },
+  "diff_origin": "source",
+  "original_metadata": {
+    "index": 161,
+    "commit_hash": "1bac15c496ec54efe21ad7fab4e17633778582fc",
+    "cve_id": "CVE-2022-4594",
+    "cwe_id": "CWE-22",
+    "file_name": "WarRoller.java",
+    "jaccard_similarity": 99.05213,
+    "cve_description": "A vulnerability was found in drogatkin TJWS2. It has been declared as critical. Affected by this vulnerability is the function deployWar of the file 1.x/src/rogatkin/web/WarRoller.java. The manipulation leads to path traversal. The attack can be launched remotely. The name of the patch is 1bac15c496ec54efe21ad7fab4e17633778582fc. It is recommended to apply a patch to fix this issue. The associated identifier of this vulnerability is VDB-216187."
+  }
+}
